@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cq363d3q2d14h"]
+
+[ext_resource type="Texture2D" uid="uid://hoiwg2fdxvcr" path="res://assets/images/bg/tutorial.png" id="1_b1jmx"]
+[ext_resource type="Script" uid="uid://5vsgiw6tuejk" path="res://scripts/util/startGame.gd" id="1_nn6dr"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_nn6dr"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="3_71jxh"]
+[ext_resource type="Texture2D" uid="uid://b2vo6s7u3fcwc" path="res://assets/images/bg/happyending.png" id="3_kai3b"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="4_himh2"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="6_himh2"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="7_kai3b"]
+
+[node name="Win" type="Node2D" unique_id=984637642]
+script = ExtResource("1_nn6dr")
+nextscene = "res://scenes/levels/tutorial.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1458705994]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1080202671]
+z_index = -98
+position = Vector2(642, 360.5)
+scale = Vector2(1.0125, 1.0125)
+texture = ExtResource("1_b1jmx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer" unique_id=888375417]
+z_index = -98
+position = Vector2(645, 376)
+scale = Vector2(2.7663188, 2.7663188)
+texture = ExtResource("3_kai3b")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=308095957]
+light_mask = 1024
+offset_left = 544.0
+offset_top = 632.0
+offset_right = 722.0
+offset_bottom = 671.0
+theme = ExtResource("2_nn6dr")
+text = "        New game!"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Label" unique_id=1570642935]
+material = ExtResource("3_71jxh")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_himh2")
+animation = &"e"
+autoplay = "e"
+
+[node name="Label7" type="Label" parent="CanvasLayer" unique_id=2028513638]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 56.0
+offset_right = 1281.0
+offset_bottom = 179.0
+theme = ExtResource("2_nn6dr")
+theme_override_colors/font_color = Color(0.66316664, 1, 0.57, 1)
+theme_override_font_sizes/font_size = 40
+text = "You won and changed the world for a better place!"
+horizontal_alignment = 1
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=1160012169]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_himh2")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=1733141407]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_kai3b")

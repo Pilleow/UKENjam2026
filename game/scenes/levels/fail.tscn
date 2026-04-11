@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://baleira8cjk8d"]
+
+[ext_resource type="Texture2D" uid="uid://hoiwg2fdxvcr" path="res://assets/images/bg/tutorial.png" id="1_02nyg"]
+[ext_resource type="Script" uid="uid://5vsgiw6tuejk" path="res://scripts/util/startGame.gd" id="1_qvg2t"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_qvg2t"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="3_2mj8x"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="4_acpmy"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="6_acpmy"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="7_xl4dv"]
+
+[node name="Fail" type="Node2D" unique_id=1436357930]
+script = ExtResource("1_qvg2t")
+nextscene = "res://scenes/levels/tutorial.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=950129024]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=374705723]
+z_index = -98
+position = Vector2(642, 360.5)
+scale = Vector2(1.0125, 1.0125)
+texture = ExtResource("1_02nyg")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=787032778]
+light_mask = 1024
+offset_left = 544.0
+offset_top = 441.0
+offset_right = 722.0
+offset_bottom = 480.0
+theme = ExtResource("2_qvg2t")
+text = "        Try again?"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Label" unique_id=1340482091]
+material = ExtResource("3_2mj8x")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_acpmy")
+animation = &"e"
+autoplay = "e"
+
+[node name="Label7" type="Label" parent="CanvasLayer" unique_id=2030093393]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 247.0
+offset_right = 1281.0
+offset_bottom = 378.0
+theme = ExtResource("2_qvg2t")
+theme_override_colors/font_color = Color(1, 0.57, 0.57, 1)
+theme_override_font_sizes/font_size = 40
+text = "You lost, went to jail for illegal sale of unlicensed 
+radio equipment and the people are sad."
+horizontal_alignment = 1
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=1851278951]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_acpmy")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=1383528034]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_xl4dv")

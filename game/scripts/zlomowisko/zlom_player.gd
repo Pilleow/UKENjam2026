@@ -12,6 +12,8 @@ var move2startpos = false;
 var enable_w = true;
 #sprawdz czy gracz oddal juz zlom na smietnik lub do plecaka - jesli tak to odpala animacja do 
 var decision = false;
+
+var enable_input = true
 var ready2grab = true;
 
 var start_pos = Vector2(0,0);
@@ -26,6 +28,12 @@ func _ready() -> void:
 	comeback_speed *= Prst.tasmaProperties['arm_speed']
 	($CollisionShape2D.shape as RectangleShape2D).size.x *= Prst.tasmaProperties['arm_reach']
 	($CollisionShape2D.shape as RectangleShape2D).size.y *= Prst.tasmaProperties['arm_reach']
+
+func close():
+	$Sprite2D.animation = 'closed'
+
+func open():
+	$Sprite2D.animation = 'open'
 
 func _move_back(delta:float) -> void:
 	
@@ -77,7 +85,7 @@ func _getblock2pos(delta:float,pos: Vector2) -> void:
 	
 func _physics_process(delta: float) -> void:
 
-	if Input.is_action_just_pressed("w") and enable_w:
+	if Input.is_action_just_pressed("w") and enable_w and tasma.current_cap[1] < tasma.max_capacity_pack:
 		#print("clicked!")
 		velocity.y = -speed;	
 

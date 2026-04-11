@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://dbjrcrhh8ubaf"]
+
+[ext_resource type="Texture2D" uid="uid://hoiwg2fdxvcr" path="res://assets/images/bg/tutorial.png" id="1_rnyxf"]
+[ext_resource type="Script" uid="uid://5vsgiw6tuejk" path="res://scripts/util/startGame.gd" id="1_uu0hj"]
+[ext_resource type="Texture2D" uid="uid://uopdli1dakj" path="res://assets/sprites/ui/flying_car.png" id="2_1wklo"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_u4f7j"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="3_1wklo"]
+[ext_resource type="Texture2D" uid="uid://bj0ce0orvqjg" path="res://assets/sprites/ATM.png" id="3_7ac3l"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="4_7ac3l"]
+[ext_resource type="Texture2D" uid="uid://n4ot648poajq" path="res://assets/sprites/inator.png" id="4_iig34"]
+[ext_resource type="Texture2D" uid="uid://csbhw2i7ri4xe" path="res://assets/sprites/PC.png" id="5_3e81p"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="9_g7bfq"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="10_4a02d"]
+
+[node name="Tutorial" type="Node2D" unique_id=1783201073]
+script = ExtResource("1_uu0hj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=539396207]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1577702799]
+z_index = -98
+position = Vector2(642, 360.5)
+scale = Vector2(1.0125, 1.0125)
+texture = ExtResource("1_rnyxf")
+
+[node name="FlyingCar" type="Sprite2D" parent="CanvasLayer" unique_id=534323108]
+position = Vector2(145, 456.00003)
+rotation = -0.1850049
+scale = Vector2(6, 6)
+texture = ExtResource("2_1wklo")
+
+[node name="FlyingCar2" type="Sprite2D" parent="CanvasLayer" unique_id=447991739]
+position = Vector2(1087, 459)
+scale = Vector2(4, 4)
+texture = ExtResource("3_7ac3l")
+
+[node name="FlyingCar3" type="Sprite2D" parent="CanvasLayer" unique_id=1591218741]
+position = Vector2(449.00006, 400.00003)
+scale = Vector2(5, 5)
+texture = ExtResource("4_iig34")
+
+[node name="FlyingCar4" type="Sprite2D" parent="CanvasLayer" unique_id=1953415900]
+position = Vector2(795, 452)
+scale = Vector2(4, 4)
+texture = ExtResource("5_3e81p")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=460118279]
+light_mask = 1024
+offset_left = 544.0
+offset_top = 632.0
+offset_right = 722.0
+offset_bottom = 671.0
+theme = ExtResource("2_u4f7j")
+text = "        Start game!"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Label" unique_id=1920756283]
+material = ExtResource("3_1wklo")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_7ac3l")
+animation = &"e"
+autoplay = "e"
+
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=1768352896]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 176.0
+offset_right = 1281.0
+offset_bottom = 257.0
+theme = ExtResource("2_u4f7j")
+text = "You have a limited amount of time to invest money into buying an FCC certificate. "
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="CanvasLayer" unique_id=149985240]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 48.0
+offset_right = 1281.0
+offset_bottom = 171.0
+theme = ExtResource("2_u4f7j")
+text = "Hello! Your amazing inventions breathe new life into the people, 
+but the Government wants you to comply with state law. 
+"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer" unique_id=1928376048]
+light_mask = 1024
+offset_left = 58.0
+offset_top = 531.0
+offset_right = 220.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+text = "Get scrap"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer" unique_id=1561845588]
+light_mask = 1024
+offset_left = 367.0
+offset_top = 531.0
+offset_right = 561.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+text = "Create inventions"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer" unique_id=2090910631]
+light_mask = 1024
+offset_left = 692.0
+offset_top = 531.0
+offset_right = 886.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+text = "Buy upgrades"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer" unique_id=49060107]
+light_mask = 1024
+offset_left = 978.0
+offset_top = 531.0
+offset_right = 1231.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+text = "Invest in the certificate"
+horizontal_alignment = 1
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=700744434]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_g7bfq")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=2091850587]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("10_4a02d")

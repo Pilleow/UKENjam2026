@@ -1,19 +1,41 @@
 [gd_scene format=3 uid="uid://c2553ps1o82hn"]
 
 [ext_resource type="Script" uid="uid://c86wqmfmy0x2y" path="res://scripts/zlomowisko/zlom_player.gd" id="1_11wn2"]
+[ext_resource type="Texture2D" uid="uid://cqghiebp8mf8i" path="res://assets/sprites/fabryka/hand2.png" id="2_c7wto"]
+[ext_resource type="Texture2D" uid="uid://dqq6ugo2ij6oc" path="res://assets/sprites/fabryka/hand1.png" id="3_gnjcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ra7h"]
 size = Vector2(48, 48)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_vx5dr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c7wto")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gnjcf")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
 [node name="Reka" type="CharacterBody2D" unique_id=1730410172 groups=["reka"]]
 script = ExtResource("1_11wn2")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1915102316]
-offset_left = -24.0
-offset_right = 24.0
-offset_bottom = 48.0
-color = Color(0, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=783572456]
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_7ra7h")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=932993339]
+position = Vector2(-11, 119)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_vx5dr")
+animation = &"open"
+autoplay = "open"

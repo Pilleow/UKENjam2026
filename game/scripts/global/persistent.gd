@@ -2,6 +2,39 @@ extends Node
 
 # skrypt globalny przechowujacy wszystkie dane trwałe (takie jak stan gracza, postęp itd.)
 
+# game state
+
+var started = false
+var defaults = {
+	"invested": 0,
+	"money": 10,
+	"tasmaProperties": {
+		"arm_reach": 1.0,
+		"arm_speed": 1.0,
+		"roll_speed": 1.0
+	},
+	"upgradePrice": {
+		Util.UPGRADES.GRAVITY_GLOVES: 3,
+		Util.UPGRADES.EXOSKELETON: 3,
+		Util.UPGRADES.WD40: 3
+	},
+	"scrapAmount": [
+		5,
+		2,
+		1
+	],
+	"timeLeft": 400
+}
+
+func restart():
+	timeLeftSecRaw = defaults['timeLeft']
+	timeLeftSec = defaults['timeLeft']
+	invested = defaults['invested']
+	money = defaults['money']
+	tasmaProperties = defaults['tasmaProperties']
+	upgradePrice = defaults['upgradePrice']
+	scrap_amount = defaults['scrapAmount']
+
 # scenes
 
 var previousScene = ""
@@ -9,7 +42,7 @@ var previousScene = ""
 # invest 
 
 signal investmentChanged
-var investTarget = 200
+var investTarget = 10
 var invested = 0
 
 func investMoney(v=1):
@@ -18,16 +51,20 @@ func investMoney(v=1):
 	Prst.remove_money(v)
 	invested += v
 	investmentChanged.emit()
+	if started and invested >= investTarget:
+		started = false
+		get_tree().change_scene_to_file("res://scenes/levels/win.tscn")
 	return invested
 
 # time
 
 signal timeUpdated
-var timeLeftSecRaw: float = 360.0
+var timeLeftSecRaw: float = 400.0
 var timeLeftSec: int = timeLeftSecRaw
 
 func _process(delta: float) -> void:
-	decrement_time(delta)
+	if started:
+		decrement_time(delta)
 
 func decrement_time(delta):
 	timeLeftSecRaw -= delta
@@ -35,6 +72,9 @@ func decrement_time(delta):
 	timeLeftSec = ceil(timeLeftSecRaw)
 	if timeLeftSec != timeleftSecPrev:
 		timeUpdated.emit()
+		if started and timeLeftSec < 0:
+			started = false
+			get_tree().change_scene_to_file("res://scenes/levels/fail.tscn")
 
 # money
 
@@ -63,14 +103,14 @@ var upgradesBought = {
 	Util.UPGRADES.WD40: 0
 }
 var upgradePrice = {
-	Util.UPGRADES.GRAVITY_GLOVES: 4,
-	Util.UPGRADES.EXOSKELETON: 4,
-	Util.UPGRADES.WD40: 4
+	Util.UPGRADES.GRAVITY_GLOVES: 3,
+	Util.UPGRADES.EXOSKELETON: 3,
+	Util.UPGRADES.WD40: 3
 }
 var upgradeEffectValues = {
-	Util.UPGRADES.GRAVITY_GLOVES: 0.12,
-	Util.UPGRADES.EXOSKELETON: 0.06,
-	Util.UPGRADES.WD40: 0.03,
+	Util.UPGRADES.GRAVITY_GLOVES: 0.2,
+	Util.UPGRADES.EXOSKELETON: 0.25,
+	Util.UPGRADES.WD40: 0.15,
 }
 var tasmaProperties = {
 	"arm_reach": 1.0,
@@ -107,10 +147,10 @@ var inventPrice = {
 	Util.INVENTIONS.SEGWAY: [1, 2, 1]
 }
 var inventPriceComplexity = {
-	Util.INVENTIONS.HOVERBOARD: 0.10,
+	Util.INVENTIONS.HOVERBOARD: 0.15,
 	Util.INVENTIONS.ROOMBA: 0,
-	Util.INVENTIONS.FLYING_CAR: 0.35,
-	Util.INVENTIONS.SEGWAY: 0.20
+	Util.INVENTIONS.FLYING_CAR: 0.5,
+	Util.INVENTIONS.SEGWAY: 0.25
 }
 
 func calcThingValue(u):

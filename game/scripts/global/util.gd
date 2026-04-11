@@ -63,6 +63,9 @@ var nameToInvent = {
 
 # easing functions
 
+func ease_out_expo(x: float) -> float:
+	return 1.0 if x == 1.0 else 1.0 - pow(2.0, -10.0 * x)
+
 func ease_out_elastic(x: float) -> float:
 	if x == 0.0:
 		return 0.0

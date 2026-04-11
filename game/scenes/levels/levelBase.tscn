@@ -42,6 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://clfbieaygx4og" path="res://assets/sprites/ui/wd40.png" id="23_4472j"]
 [ext_resource type="Texture2D" uid="uid://7el23u30bexo" path="res://assets/sprites/light.png" id="24_qq0t2"]
 [ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="34_d3s0h"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="42_raufl"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="43_va3cv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etbdm"]
 size = Vector2(1312, 148)
@@ -337,7 +339,7 @@ offset_bottom = 380.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
 theme_override_font_sizes/font_size = 20
-text = "+ 10% bonus!"
+text = "+ 15% bonus!"
 horizontal_alignment = 2
 
 [node name="noMoney7" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1109971181]
@@ -618,7 +620,7 @@ offset_bottom = 380.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
 theme_override_font_sizes/font_size = 20
-text = "+ 35% bonus!"
+text = "+ 50% bonus!"
 horizontal_alignment = 2
 
 [node name="segway" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=101088052]
@@ -748,7 +750,7 @@ offset_bottom = 380.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
 theme_override_font_sizes/font_size = 20
-text = "+ 20% bonus!"
+text = "+ 25% bonus!"
 horizontal_alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu" unique_id=547664769]
@@ -771,6 +773,7 @@ color = Color(0.02040301, 0.2529714, 1, 1)
 
 [node name="enterCar" type="Area2D" parent="worldObjects/car" unique_id=1397110705]
 script = ExtResource("15_0lg5m")
+fadein = NodePath("../../../CanvasLayer/FadeIn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/car/enterCar" unique_id=1453596078]
 position = Vector2(82, 58.5)
@@ -1268,6 +1271,25 @@ offset_top = -97.5
 offset_right = 1160.0
 offset_bottom = 40.0
 color = Color(0.13444316, 0.13120636, 0.1602942, 0.3254902)
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=90964333]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("42_raufl")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=2003972523]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("43_va3cv")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=203336946]
 color = Color(0.89708984, 0.8970898, 0.89708984, 1)

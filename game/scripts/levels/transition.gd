@@ -12,7 +12,6 @@ func _ready() -> void:
 		$CanvasLayer/Label.text = "Going to base"
 
 func _process(delta: float) -> void:
-	Prst.decrement_time(delta)
 	time_sec -= delta
 	var t_start:float = min(1, max(0, init_time_sec - time_sec))
 	var t_end:float = min(1, max(0, time_sec))

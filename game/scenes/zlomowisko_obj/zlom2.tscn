@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://btrtqtwyingo5" path="res://sprites2D/złom/gier_tier2.png" id="2_o61nu"]
 [ext_resource type="Texture2D" uid="uid://dxj5juycty36u" path="res://sprites2D/złom/key_tier2.png" id="3_ufpv8"]
 [ext_resource type="Texture2D" uid="uid://fx2aw7qqx4vl" path="res://sprites2D/złom/screw_tier2.png" id="4_4cj0l"]
+[ext_resource type="Texture2D" uid="uid://7el23u30bexo" path="res://assets/sprites/light.png" id="5_4cj0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2fb"]
 size = Vector2(96, 48)
@@ -28,9 +29,21 @@ metadata/_edit_use_anchors_ = true
 rect = Rect2(-48, -24, 58, 34)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1955258232]
+light_mask = 2
 position = Vector2(0, 1.4305115e-06)
 scale = Vector2(2.5510204, 2.6470587)
 texture = ExtResource("2_o61nu")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=679259431]
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_4cj0l")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1475842218]
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_4cj0l")
+texture_scale = 0.3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

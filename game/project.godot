@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="game"
-run/main_scene="uid://b2hmknili4j8y"
+run/main_scene="uid://dbjrcrhh8ubaf"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.44433686, 0.55504483, 1, 1)
 config/icon="res://icon.svg"

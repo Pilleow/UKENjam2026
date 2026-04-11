@@ -14,5 +14,8 @@ func send_money(hold=0.12):
 	if not send or player not in get_overlapping_bodies():
 		return
 	Prst.investMoney()
-	var t = get_tree().create_timer(hold) as SceneTreeTimer
+	var gt = get_tree()
+	if not gt:
+		return
+	var t = gt.create_timer(hold) as SceneTreeTimer
 	t.connect("timeout", func(): send_money(hold*0.91))
