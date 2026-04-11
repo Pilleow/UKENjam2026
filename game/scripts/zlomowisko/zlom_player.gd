@@ -9,6 +9,7 @@ extends CharacterBody2D
 var catch = false;
 var move2startpos = false;
 
+var enable_w = true;
 #sprawdz czy gracz oddal juz zlom na smietnik lub do plecaka - jesli tak to odpala animacja do 
 var decision = false;
 var ready2grab = true;
@@ -49,25 +50,37 @@ func _move_back(delta:float) -> void:
 
 func _getblock2pos(delta:float,pos: Vector2) -> void:
 	
+	#move player to the bin/koszyk 
+	#player made the decisicion and is putting down the scrab
 	if decision:
 		ready2grab = false;
+		enable_input = false;
 		position = position.move_toward(pos,delta*speed*5);
+		
+		
+		#gracz osianal pozycje koszyka/smietnika 
 		if position == pos:
-			decision = false;
-			#ready2grab = true;
+			decision = false;	
+			print("putted_down!");
+			
+	#move player back from bin/koszyk to start position:
 	if not ready2grab and not decision:
 		if position != start_pos:
 			#print("moving 2 start pos")
 			position = position.move_toward(start_pos,delta*speed*5);
 		else:
+			print("ready to grab")
 			ready2grab = true;
+			enable_input = true;
+			enable_w = true;
 
 	
 func _physics_process(delta: float) -> void:
 
-	if Input.is_action_just_pressed("w") and ready2grab:
+	if Input.is_action_just_pressed("w") and enable_w:
 		#print("clicked!")
-		velocity.y = -speed;
+		velocity.y = -speed;	
+
 	
 	#velocity.y = velocity.move_toward(velocity.y,spe)
 	
