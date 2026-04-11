@@ -9,11 +9,14 @@ extends Node2D
 
 @export var max_capacity_pack = 10;
 @export var max_capacity_bin = 10;
-	
+
 	
 var pack_ypos = 0;
 var smietnik_pos =  Vector2(100,600);
-var koszyk_pos =  Vector2(1000,600);
+var koszyk_pos =  Vector2(1050,600);
+var spawn_pos = Vector2(0,190);
+
+var block_size = 40;
 
 #0 - bin, 1- backpack
 var current_cap = [0,0];
@@ -22,10 +25,7 @@ var current_cap = [0,0];
 # czyli moze byc 4 bloczki 1 pod drugim i potem juz ukladaja sie obok znowu do 4 az do limitu :D
 var push_threshold = 4
 #o ile popychamy bloczek 
-var push_pack_x = 300;
-
-var spawn_pos = Vector2(0,200);
-
+var push_pack_x = 150;
 var zlom = 0;
 #odstep czasowy pomiedzy złomem
 var counter_max = 1.5;
@@ -56,15 +56,15 @@ func _ready() -> void:
 
 var pushed = [false,false];
 func _updateXpos()->void:
-	
-	if not pushed[0]:
-		if current_cap[0] >= 3:
-			smietnik_pos.x += push_pack_x;
-			smietnik_pos.y = pack_ypos;
-			pushed = true;
-	if current_cap[1] >= 3 and not pushed[1]:
+
+	if current_cap[0] >= push_threshold and not pushed[0]:
+		smietnik_pos.x += push_pack_x;
+		smietnik_pos.y = pack_ypos + 50;
+		pushed[0] = true;
+			
+	if current_cap[1] >= push_threshold and not pushed[1]:
 		koszyk_pos.x -= push_pack_x;
-		koszyk_pos.y = pack_ypos;
+		koszyk_pos.y = pack_ypos+ 50;
 		pushed[1] = true;
 	# 1. Random Float between 0.0 and 1.0
 	
@@ -90,6 +90,6 @@ func _spawn(delta: float) -> void:
 		
 func _physics_process(delta: float) -> void:
 	_spawn(delta);
-	_updateXpos()
+	#_updateXpos()
 
 	

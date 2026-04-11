@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://2h1cewgrtrh0"]
 
 [ext_resource type="Script" uid="uid://dorwf62m2u4pq" path="res://scripts/zlomowisko/zlom_move.gd" id="1_omkes"]
+[ext_resource type="Texture2D" uid="uid://d1rrehld1edve" path="res://sprites2D/złom/key_tier1.png" id="2_1sj36"]
+[ext_resource type="Texture2D" uid="uid://d1u6t0yld7nxx" path="res://sprites2D/złom/screw_tier1.png" id="2_q5reh"]
+[ext_resource type="Texture2D" uid="uid://cr303ssxft6hl" path="res://sprites2D/złom/gier_tier1.png" id="3_87n28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2fb"]
 size = Vector2(96, 48)
 
 [node name="zlom1" type="Area2D" unique_id=1313368299]
 script = ExtResource("1_omkes")
+textures = Array[Texture2D]([ExtResource("2_1sj36"), ExtResource("3_87n28"), ExtResource("2_q5reh")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=325230566]
 shape = SubResource("RectangleShape2D_gm2fb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1185882604]
+visible = false
 offset_left = -48.0
 offset_top = -24.0
 offset_right = 48.0
@@ -21,6 +26,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=852607043]
 rect = Rect2(-48, -24, 58, 34)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054930293]
+position = Vector2(2.3841858e-07, -2.3841858e-07)
+scale = Vector2(2.1447368, 2.2499998)
+texture = ExtResource("2_q5reh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

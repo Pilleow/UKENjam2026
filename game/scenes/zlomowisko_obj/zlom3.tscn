@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://bm1axi874vhyk"]
 
 [ext_resource type="Script" uid="uid://dorwf62m2u4pq" path="res://scripts/zlomowisko/zlom_move.gd" id="1_qr2gy"]
+[ext_resource type="Texture2D" uid="uid://dm1e0o1snpux6" path="res://sprites2D/złom/gier_tier3.png" id="2_2cpq4"]
+[ext_resource type="Texture2D" uid="uid://cssq503mqw8al" path="res://sprites2D/złom/key_tier3.png" id="3_6qmpy"]
+[ext_resource type="Texture2D" uid="uid://d1pufshwr610" path="res://sprites2D/złom/screw_tier3.png" id="4_h3246"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2fb"]
 size = Vector2(96, 48)
 
 [node name="zlom3" type="Area2D" unique_id=1313368299]
 script = ExtResource("1_qr2gy")
+textures = Array[Texture2D]([ExtResource("2_2cpq4"), ExtResource("3_6qmpy"), ExtResource("4_h3246")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=325230566]
 shape = SubResource("RectangleShape2D_gm2fb")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1185882604]
+visible = false
 offset_left = -48.0
 offset_top = -24.0
 offset_right = 48.0
@@ -20,7 +25,13 @@ color = Color(0.4627451, 0.6392157, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=852607043]
+position = Vector2(18, 7)
 rect = Rect2(-48, -24, 58, 34)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1663320192]
+position = Vector2(5.9604645e-08, -5.9604645e-08)
+scale = Vector2(2.4852939, 2.485294)
+texture = ExtResource("2_2cpq4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
