@@ -1,17 +1,45 @@
 [gd_scene format=3 uid="uid://b2hmknili4j8y"]
 
 [ext_resource type="Script" uid="uid://4eml1nvoc7q4" path="res://scripts/levels/level_base.gd" id="1_etbdm"]
+[ext_resource type="Texture2D" uid="uid://re0rov1t5m4t" path="res://assets/images/bg/background.png" id="2_3fbye"]
 [ext_resource type="Script" uid="uid://ntow660gbeum" path="res://scripts/entities/inator.gd" id="2_237x2"]
 [ext_resource type="Script" uid="uid://cbu62oay4pyh3" path="res://scripts/entities/player.gd" id="2_5074v"]
 [ext_resource type="Script" uid="uid://dfwo7q2oancaf" path="res://scripts/util/popupLabel.gd" id="2_x5he8"]
+[ext_resource type="Texture2D" uid="uid://ckm2n24uxrhva" path="res://assets/images/bg/floor.png" id="2_ykr34"]
 [ext_resource type="Script" uid="uid://bev1imbqwl8ii" path="res://scripts/menus/invention_menu_controller.gd" id="4_eamg3"]
 [ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="4_lwywj"]
+[ext_resource type="Script" uid="uid://dvj6yvtpxq32r" path="res://scripts/util/cost_scrap.gd" id="6_1h7lg"]
 [ext_resource type="Script" uid="uid://cyxg88jagdy1y" path="res://scripts/menus/upgrade_menu_controller.gd" id="6_ibh7t"]
 [ext_resource type="Script" uid="uid://c5705uoc20fl2" path="res://scripts/entities/upgrades.gd" id="6_y62yp"]
 [ext_resource type="Script" uid="uid://di2ns3nbp5opo" path="res://scripts/util/hud_controller.gd" id="7_hh3ij"]
+[ext_resource type="Script" uid="uid://bxngydaja33x7" path="res://scripts/util/no_money.gd" id="8_2am8w"]
+[ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="8_f4aoa"]
+[ext_resource type="Script" uid="uid://7kuu0sqx4wda" path="res://scripts/menus/invest_controller.gd" id="10_4dlwg"]
+[ext_resource type="Texture2D" uid="uid://cnh2xelmsfntw" path="res://assets/images/bg/PCscreen.png" id="10_up2ol"]
+[ext_resource type="Texture2D" uid="uid://n4ot648poajq" path="res://assets/sprites/inator.png" id="12_mibl4"]
+[ext_resource type="Script" uid="uid://rmtlv2jjbw72" path="res://scripts/util/camera_2d.gd" id="13_eabmc"]
+[ext_resource type="Texture2D" uid="uid://sx0g5l5x5d0h" path="res://assets/sprites/player/idle1.png" id="14_jovm7"]
+[ext_resource type="Texture2D" uid="uid://csbhw2i7ri4xe" path="res://assets/sprites/PC.png" id="15_3p487"]
+[ext_resource type="Texture2D" uid="uid://cwk0fqredpmk4" path="res://assets/sprites/player/idle2.png" id="15_r78wi"]
+[ext_resource type="Texture2D" uid="uid://begfswcpoliwr" path="res://assets/sprites/player/idle3.png" id="16_6cr3c"]
+[ext_resource type="Shader" uid="uid://dvr7jb5hn8t60" path="res://scripts/util/levelBase.gdshader" id="16_lunea"]
+[ext_resource type="Texture2D" uid="uid://c734shgkkucrf" path="res://assets/sprites/player/idle4.png" id="17_ao2s2"]
+[ext_resource type="Script" uid="uid://pf08bexgtsul" path="res://scripts/entities/invest.gd" id="17_lunea"]
+[ext_resource type="Texture2D" uid="uid://bj0ce0orvqjg" path="res://assets/sprites/ATM.png" id="17_qcump"]
+[ext_resource type="Texture2D" uid="uid://dg4art60ig1jg" path="res://assets/sprites/player/run1.png" id="18_nd1xi"]
+[ext_resource type="Texture2D" uid="uid://by2i4je6kfl8u" path="res://assets/sprites/player/run2.png" id="19_qq0t2"]
+[ext_resource type="Texture2D" uid="uid://babmvyao2g1xh" path="res://assets/sprites/player/run3.png" id="20_up2ol"]
+[ext_resource type="Texture2D" uid="uid://d1i1fo08himcm" path="res://assets/sprites/player/run4.png" id="21_f4aoa"]
+[ext_resource type="Texture2D" uid="uid://dqx3w2yeoln62" path="res://assets/sprites/player/run5.png" id="22_mibl4"]
+[ext_resource type="Texture2D" uid="uid://dnjk3qld1cueg" path="res://assets/sprites/player/run6.png" id="23_3p487"]
+[ext_resource type="Texture2D" uid="uid://7el23u30bexo" path="res://assets/sprites/light.png" id="24_qq0t2"]
+[ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="34_d3s0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etbdm"]
 size = Vector2(1312, 148)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qq0t2"]
+polygon = PackedVector2Array(0, 13, 1300, 13, 1300, 137, 0, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eamg3"]
 size = Vector2(184, 137)
@@ -19,33 +47,115 @@ size = Vector2(184, 137)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5he8"]
 size = Vector2(71, 728)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lunea"]
+shader = ExtResource("16_lunea")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 1.0
+shader_parameter/outline_enabled = true
+shader_parameter/blink_enabled = true
+shader_parameter/blink_speed = 7.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwywj"]
 size = Vector2(71, 804)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_237x2"]
 size = Vector2(108, 145)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3s0h"]
+shader = ExtResource("16_lunea")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 2.0
+shader_parameter/outline_enabled = true
+shader_parameter/blink_enabled = true
+shader_parameter/blink_speed = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7djgm"]
+shader = ExtResource("16_lunea")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 2.0
+shader_parameter/outline_enabled = true
+shader_parameter/blink_enabled = true
+shader_parameter/blink_speed = 7.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5074v"]
 size = Vector2(40, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fbye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jovm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r78wi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6cr3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ao2s2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_nd1xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qq0t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_up2ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_f4aoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_mibl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_3p487")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dlwg"]
+bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1h7lg"]
+bg_color = Color(1, 0.7921569, 0.40392157, 1)
 
 [node name="levelBase" type="Node2D" unique_id=1697035239]
 script = ExtResource("1_etbdm")
 
-[node name="worldObjects" type="Node" parent="." unique_id=925252457]
+[node name="worldObjects" type="Node2D" parent="." unique_id=307637130]
+position = Vector2(0, -115)
 
 [node name="bg" type="ColorRect" parent="worldObjects" unique_id=151108686]
 offset_left = -23.0
 offset_top = -746.0
 offset_right = 1235.0
 offset_bottom = 118.0
-color = Color(0.8034897, 0.89507866, 0.9727798, 1)
+color = Color(0.19607843, 0.19215687, 0.23137255, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="worldObjects/bg" unique_id=752152241]
+scroll_scale = Vector2(0.15, 0.15)
+scroll_offset = Vector2(618, 1030)
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/bg/Parallax2D" unique_id=1497030804]
+scale = Vector2(2, 2)
+texture = ExtResource("2_3fbye")
 
 [node name="floor" type="ColorRect" parent="worldObjects" unique_id=1855334503]
-offset_left = -23.0
+offset_left = -214.0
 offset_top = -78.0
-offset_right = 1235.0
+offset_right = 1426.0
 offset_bottom = 118.0
-color = Color(0.028856792, 0.01596513, 0, 1)
+color = Color(0.19607843, 0.19215687, 0.23137255, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/floor" unique_id=1286383535]
 
@@ -53,12 +163,16 @@ color = Color(0.028856792, 0.01596513, 0, 1)
 position = Vector2(647, 75)
 shape = SubResource("RectangleShape2D_etbdm")
 
-[node name="inator" type="ColorRect" parent="worldObjects" unique_id=368588656]
-offset_left = 116.0
-offset_top = -265.0
-offset_right = 300.0
-offset_bottom = -73.0
-color = Color(0.5568628, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/floor" unique_id=907308710]
+position = Vector2(858, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ykr34")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="worldObjects/floor" unique_id=1429061141]
+occluder = SubResource("OccluderPolygon2D_qq0t2")
+
+[node name="inator" type="Node2D" parent="worldObjects" unique_id=502711792]
+position = Vector2(118, -262)
 script = ExtResource("2_237x2")
 
 [node name="invent" type="Area2D" parent="worldObjects/inator" unique_id=1288151274]
@@ -76,7 +190,9 @@ offset_right = -472.0
 offset_bottom = -105.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
-text = "[E] Create great inventions"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "[E] Build inventions"
 script = ExtResource("2_x5he8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/inator" unique_id=810846364]
@@ -85,121 +201,434 @@ script = ExtResource("2_x5he8")
 position = Vector2(147.5, -163)
 shape = SubResource("RectangleShape2D_x5he8")
 
-[node name="inventionMenu" type="Node2D" parent="worldObjects/inator" unique_id=303031419]
-visible = false
-position = Vector2(-209, 277)
+[node name="inventionMenu" type="CanvasLayer" parent="worldObjects/inator" unique_id=1957729965]
+offset = Vector2(0, 700)
+transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("4_eamg3")
 
 [node name="bg" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=534757653]
-offset_left = 135.0
-offset_top = -646.0
-offset_right = 920.0
-offset_bottom = -379.0
+visible = false
+light_mask = 1024
+offset_left = 241.0
+offset_top = 135.0
+offset_right = 1026.0
+offset_bottom = 577.0
 color = Color(0.14767182, 0.14767179, 0.14767179, 1)
 
 [node name="hoverboard" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=335667992]
-offset_left = 189.0
-offset_top = -594.0
-offset_right = 321.0
-offset_bottom = -462.0
+light_mask = 1024
+z_index = 1
+offset_left = 401.0
+offset_top = 164.0
+offset_right = 533.0
+offset_bottom = 296.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1336434883]
+light_mask = 1024
 layout_mode = 0
-offset_left = -13.0
-offset_top = 142.0
-offset_right = 142.0
-offset_bottom = 167.0
+offset_left = -11.250008
+offset_top = 133.75003
+offset_right = 147.75
+offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
-text = "[1] hoverboard"
+text = "[1] Hoverboard"
 
 [node name="count" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=743744329]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.250015
+offset_top = 161.25002
+offset_right = 143.74998
+offset_bottom = 200.25002
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 24
+text = "x 0"
+
+[node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=973169774]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 203.74997
+offset_right = 144.00003
+offset_bottom = 242.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "required:"
+
+[node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1947355783]
+light_mask = 1024
 layout_mode = 0
 offset_left = -11.0
-offset_top = 171.0
+offset_top = 225.00003
 offset_right = 144.0
-offset_bottom = 196.0
+offset_bottom = 259.56003
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_f4aoa")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[color=green]5       [color=cyan]5       [color=red]5"
+scroll_active = false
+script = ExtResource("6_1h7lg")
+
+[node name="hint2" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1504871389]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 264.99997
+offset_right = 144.00003
+offset_bottom = 303.99997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
-text = "x 0"
+text = "reward:"
+
+[node name="reward" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=104648573]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.25
+offset_top = 288.74997
+offset_right = 143.75
+offset_bottom = 327.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$5"
+
+[node name="noMoney7" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1109971181]
+light_mask = 1024
+layout_mode = 0
+offset_left = -16.0
+offset_top = 102.99998
+offset_right = 150.0
+offset_bottom = 135.99997
+rotation = -0.18787088
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
 
 [node name="roomba" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=437922270]
-offset_left = 369.0
-offset_top = -594.0
-offset_right = 501.0
-offset_bottom = -462.0
+light_mask = 1024
+z_index = 1
+offset_left = 551.0
+offset_top = 164.0
+offset_right = 683.0
+offset_bottom = 296.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1561994008]
+[node name="noMoney6" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=694203028]
+light_mask = 1024
 layout_mode = 0
-offset_left = 7.0
-offset_top = 142.0
-offset_right = 168.0
-offset_bottom = 167.0
+offset_left = -14.0000305
+offset_top = 103.00001
+offset_right = 151.99997
+offset_bottom = 136.0
+rotation = -0.18787088
 theme = ExtResource("4_lwywj")
-text = "[2] roomba"
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
 
-[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=738207068]
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1971429353]
+light_mask = 1024
 layout_mode = 0
-offset_left = 10.0
-offset_top = 171.0
-offset_right = 165.0
-offset_bottom = 196.0
+offset_left = -11.250015
+offset_top = 161.25002
+offset_right = 143.74998
+offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
+
+[node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=379139424]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 203.74997
+offset_right = 144.00003
+offset_bottom = 242.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "required:"
+
+[node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/roomba" unique_id=2079284180]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.0
+offset_top = 225.00003
+offset_right = 144.0
+offset_bottom = 259.56003
+theme = ExtResource("4_lwywj")
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_f4aoa")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[color=green]5       [color=cyan]5       [color=red]5"
+scroll_active = false
+script = ExtResource("6_1h7lg")
+
+[node name="hint2" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=867516139]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 264.99997
+offset_right = 144.00003
+offset_bottom = 303.99997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "reward:"
+
+[node name="reward" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=310277279]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.25
+offset_top = 288.74997
+offset_right = 143.75
+offset_bottom = 327.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$5"
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1041059558]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.250008
+offset_top = 133.75003
+offset_right = 147.75
+offset_bottom = 172.75003
+theme = ExtResource("4_lwywj")
+text = "[2] Roomba"
 
 [node name="flying_car" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=1816765723]
-offset_left = 550.0
-offset_top = -594.0
-offset_right = 682.0
-offset_bottom = -462.0
+light_mask = 1024
+z_index = 1
+offset_left = 701.0
+offset_top = 164.0
+offset_right = 833.0
+offset_bottom = 296.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1514387666]
+[node name="noMoney5" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=453325322]
+light_mask = 1024
 layout_mode = 0
-offset_left = -4.0
-offset_top = 142.0
-offset_right = 157.0
-offset_bottom = 167.0
+offset_left = -16.000015
+offset_top = 103.0
+offset_right = 149.99998
+offset_bottom = 136.0
+rotation = -0.18787088
 theme = ExtResource("4_lwywj")
-text = "[3] flyingCar"
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
 
-[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1522066561]
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1854607554]
+light_mask = 1024
 layout_mode = 0
-offset_left = -2.0
-offset_top = 171.0
-offset_right = 153.0
-offset_bottom = 196.0
+offset_left = -11.250015
+offset_top = 161.25002
+offset_right = 143.74998
+offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
+
+[node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=207952828]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 203.74997
+offset_right = 144.00003
+offset_bottom = 242.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "required:"
+
+[node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1313087822]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.0
+offset_top = 225.00003
+offset_right = 144.0
+offset_bottom = 259.56003
+theme = ExtResource("4_lwywj")
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_f4aoa")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[color=green]5       [color=cyan]5       [color=red]5"
+scroll_active = false
+script = ExtResource("6_1h7lg")
+
+[node name="hint2" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=2047291566]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 264.99997
+offset_right = 144.00003
+offset_bottom = 303.99997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "reward:"
+
+[node name="reward" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=477019608]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.25
+offset_top = 288.74997
+offset_right = 143.75
+offset_bottom = 327.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$5"
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=2036904356]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.250008
+offset_top = 133.75003
+offset_right = 147.75
+offset_bottom = 172.75003
+theme = ExtResource("4_lwywj")
+text = "[3] Flying Car"
 
 [node name="segway" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=101088052]
-offset_left = 731.0
-offset_top = -594.0
-offset_right = 863.0
-offset_bottom = -462.0
+light_mask = 1024
+z_index = 1
+offset_left = 851.0
+offset_top = 164.0
+offset_right = 983.0
+offset_bottom = 296.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=1870921673]
+[node name="noMoney4" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=520750024]
+light_mask = 1024
 layout_mode = 0
-offset_left = 9.0
-offset_top = 142.0
-offset_right = 170.0
-offset_bottom = 167.0
+offset_left = -14.999939
+offset_top = 102.99999
+offset_right = 151.00006
+offset_bottom = 136.0
+rotation = -0.18787088
 theme = ExtResource("4_lwywj")
-text = "[4] segway"
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
 
-[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=1893976678]
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=896246542]
+light_mask = 1024
 layout_mode = 0
-offset_left = 11.0
-offset_top = 171.0
-offset_right = 166.0
-offset_bottom = 196.0
+offset_left = -11.250015
+offset_top = 161.25002
+offset_right = 143.74998
+offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
+
+[node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=2086519168]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 203.74997
+offset_right = 144.00003
+offset_bottom = 242.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "required:"
+
+[node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/segway" unique_id=1494044648]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.0
+offset_top = 225.00003
+offset_right = 144.0
+offset_bottom = 259.56003
+theme = ExtResource("4_lwywj")
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_f4aoa")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[color=green]5       [color=cyan]5       [color=red]5"
+scroll_active = false
+script = ExtResource("6_1h7lg")
+
+[node name="hint2" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=1324789577]
+light_mask = 1024
+layout_mode = 0
+offset_left = -10.9999695
+offset_top = 264.99997
+offset_right = 144.00003
+offset_bottom = 303.99997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_f4aoa")
+theme_override_font_sizes/font_size = 20
+text = "reward:"
+
+[node name="reward" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=874366439]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.25
+offset_top = 288.74997
+offset_right = 143.75
+offset_bottom = 327.74997
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$5"
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=625220052]
+light_mask = 1024
+layout_mode = 0
+offset_left = -11.250008
+offset_top = 133.75003
+offset_right = 147.75
+offset_bottom = 172.75003
+theme = ExtResource("4_lwywj")
+text = "[4] Segway"
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu" unique_id=547664769]
+position = Vector2(641, 291.00003)
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("10_up2ol")
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator" unique_id=1831429868]
+material = SubResource("ShaderMaterial_lunea")
+position = Vector2(97, 96)
+scale = Vector2(4, 4)
+texture = ExtResource("12_mibl4")
 
 [node name="car" type="ColorRect" parent="worldObjects" unique_id=497847455]
 offset_left = 904.0
@@ -222,6 +651,8 @@ offset_right = 173.0
 offset_bottom = -78.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
 text = "[E] Get more scrap"
 script = ExtResource("2_x5he8")
 
@@ -231,12 +662,8 @@ script = ExtResource("2_x5he8")
 position = Vector2(166, -199)
 shape = SubResource("RectangleShape2D_lwywj")
 
-[node name="upgrades" type="ColorRect" parent="worldObjects" unique_id=196245635]
-offset_left = 679.0
-offset_top = -144.0
-offset_right = 773.0
-offset_bottom = -76.0
-color = Color(0.5920351, 0.0013281199, 0.74825597, 1)
+[node name="upgrades" type="Node2D" parent="worldObjects" unique_id=877311930]
+position = Vector2(679, -144)
 script = ExtResource("6_y62yp")
 
 [node name="showUpgrades" type="Area2D" parent="worldObjects/upgrades" unique_id=1138189556]
@@ -253,26 +680,36 @@ offset_right = 156.0
 offset_bottom = -73.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
-text = "[E] Get upgrades"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "[E] Buy upgrades"
 script = ExtResource("2_x5he8")
 
-[node name="upgradesMenu" type="Node2D" parent="worldObjects/upgrades" unique_id=61001821]
+[node name="upgradesMenu" type="CanvasLayer" parent="worldObjects/upgrades" unique_id=438066860]
 visible = false
-position = Vector2(-588, 208)
+offset = Vector2(0, 700)
+transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("6_ibh7t")
 
 [node name="bg" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=617833963]
+visible = false
+light_mask = 1024
+z_index = 1
 offset_left = 135.0
 offset_top = -646.0
 offset_right = 920.0
-offset_bottom = -379.0
+offset_bottom = -204.0
 color = Color(0.14767182, 0.14767179, 0.14767179, 1)
 
 [node name="gravity_gloves" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1188142064]
-offset_left = 189.0
-offset_top = -594.0
-offset_right = 321.0
-offset_bottom = -462.0
+light_mask = 1024
+z_index = 1
+offset_left = 412.0
+offset_top = 158.0
+offset_right = 544.0
+offset_bottom = 290.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=29667949]
 layout_mode = 0
@@ -285,75 +722,171 @@ text = "[1] Gravity Gloves"
 
 [node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=1353303593]
 layout_mode = 0
-offset_left = -11.0
+offset_left = 1.0
 offset_top = 171.0
-offset_right = 144.0
+offset_right = 132.0
 offset_bottom = 196.0
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
 
-[node name="exoskeleton_arm" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=2105107277]
-offset_left = 451.0
-offset_top = -594.0
-offset_right = 583.0
-offset_bottom = -462.0
-
-[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1203178542]
+[node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=274545134]
 layout_mode = 0
-offset_left = -26.0
+offset_left = 1.0
+offset_top = 171.0
+offset_right = 132.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$ 5"
+horizontal_alignment = 2
+
+[node name="noMoney3" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=608514571]
+layout_mode = 0
+offset_left = -15.000061
+offset_top = 96.00001
+offset_right = 150.99994
+offset_bottom = 129.0
+rotation = -0.18787088
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
+
+[node name="exoskeleton_arm" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=23695248]
+light_mask = 1024
+z_index = 1
+offset_left = 628.0
+offset_top = 158.0
+offset_right = 760.0
+offset_bottom = 290.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=113043050]
+layout_mode = 0
+offset_left = -34.0
 offset_top = 142.0
-offset_right = 187.0
+offset_right = 179.0
 offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
 text = "[2] Exoskeleton Arm"
 
-[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=476543416]
+[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1404080673]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 1.0
 offset_top = 171.0
-offset_right = 165.0
+offset_right = 132.0
 offset_bottom = 196.0
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
 
-[node name="wd40" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1761740685]
-offset_left = 729.0
-offset_top = -594.0
-offset_right = 861.0
-offset_bottom = -462.0
-
-[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1879728341]
+[node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=543890264]
 layout_mode = 0
-offset_left = 15.0
+offset_left = 1.0
+offset_top = 171.0
+offset_right = 132.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$ 5"
+horizontal_alignment = 2
+
+[node name="noMoney2" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1700111302]
+layout_mode = 0
+offset_left = -16.00003
+offset_top = 96.0
+offset_right = 149.99997
+offset_bottom = 129.0
+rotation = -0.18787088
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
+
+[node name="wd40" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1765655438]
+light_mask = 1024
+z_index = 1
+offset_left = 853.0
+offset_top = 158.0
+offset_right = 985.0
+offset_bottom = 290.0
+scale = Vector2(0.8, 0.8)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1923081087]
+layout_mode = 0
+offset_left = 13.0
 offset_top = 142.0
-offset_right = 176.0
+offset_right = 204.0
 offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
 text = "[3] WD40"
 
-[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=918215211]
+[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=963925929]
 layout_mode = 0
-offset_left = -2.0
+offset_left = 1.0
 offset_top = 171.0
-offset_right = 153.0
+offset_right = 132.0
 offset_bottom = 196.0
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 24
 text = "x 0"
 
-[node name="invest" type="ColorRect" parent="worldObjects" unique_id=433525819]
-offset_left = 481.0
-offset_top = -145.0
-offset_right = 575.0
-offset_bottom = -77.0
-color = Color(0.58682907, 0.3097784, 1.92523e-07, 1)
+[node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1071143729]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 171.0
+offset_right = 132.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_font_sizes/font_size = 24
+text = "$ 5"
+horizontal_alignment = 2
+
+[node name="noMoney" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=2069370290]
+layout_mode = 0
+offset_left = -16.000004
+offset_top = 95.999985
+offset_right = 150.0
+offset_bottom = 128.99998
+rotation = -0.18787088
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.3496833, 0.2501905, 1)
+theme_override_font_sizes/font_size = 32
+text = "can't afford!"
+horizontal_alignment = 1
+script = ExtResource("8_2am8w")
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades/upgradesMenu" unique_id=787645278]
+light_mask = 1024
+position = Vector2(641, 291.00003)
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("10_up2ol")
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades" unique_id=1910524512]
+material = SubResource("ShaderMaterial_d3s0h")
+position = Vector2(48, 27)
+scale = Vector2(2, 2)
+texture = ExtResource("15_3p487")
+
+[node name="invest" type="Node2D" parent="worldObjects" unique_id=522414838]
+position = Vector2(478, -147)
+script = ExtResource("17_lunea")
 
 [node name="invest" type="Area2D" parent="worldObjects/invest" unique_id=2021402518]
+script = ExtResource("10_4dlwg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/invest/invest" unique_id=1892394743]
 position = Vector2(49, 22)
@@ -367,12 +900,21 @@ offset_right = 160.0
 offset_bottom = -79.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
 text = "[E] Invest in goal"
 script = ExtResource("2_x5he8")
+hideOnInteract = false
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/invest" unique_id=153559944]
+material = SubResource("ShaderMaterial_7djgm")
+position = Vector2(53, 30)
+scale = Vector2(2, 2)
+texture = ExtResource("17_qcump")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1843173054 groups=["player"]]
 z_index = 1
-position = Vector2(410, -152)
+position = Vector2(608, -266)
 script = ExtResource("2_5074v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=444729725]
@@ -380,65 +922,165 @@ position = Vector2(20, 35.5)
 shape = SubResource("RectangleShape2D_5074v")
 
 [node name="ColorRect" type="ColorRect" parent="Player" unique_id=381379127]
+visible = false
 offset_right = 40.0
 offset_bottom = 70.0
 color = Color(0.091525756, 0.32247952, 1, 1)
 
-[node name="hud" type="Node" parent="." unique_id=618927927]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=2068560208]
+light_mask = 2
+position = Vector2(19, 39)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3fbye")
+animation = &"run"
+autoplay = "idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=1909034505]
+position = Vector2(22, 33)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("24_qq0t2")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Player" unique_id=134884731]
+position = Vector2(22, 33)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("24_qq0t2")
+texture_scale = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1043435971]
+z_index = 6
+position = Vector2(-10, -41)
+zoom = Vector2(1.5, 1.5)
+limit_left = -36
+limit_top = -537
+limit_right = 1246
+limit_bottom = 10000424
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+script = ExtResource("13_eabmc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1798229525]
+
+[node name="hud" type="Node2D" parent="CanvasLayer" unique_id=2036686332]
+z_index = 1
+position = Vector2(-22, 693)
+scale = Vector2(1.2, 1.2)
 script = ExtResource("7_hh3ij")
 
-[node name="scrap_t0" type="Label" parent="hud" unique_id=1717799296]
-offset_left = 38.0
-offset_top = -48.0
-offset_right = 139.0
-offset_bottom = -15.0
+[node name="scrap" type="RichTextLabel" parent="CanvasLayer/hud" unique_id=1601355376]
+offset_left = 40.0
+offset_top = -37.50001
+offset_right = 438.33334
+offset_bottom = 14.499989
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.22788927, 0.99247485, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_f4aoa")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "0"
+scroll_active = false
 
-[node name="scrap_t1" type="Label" parent="hud" unique_id=1339510011]
-offset_left = 108.0
-offset_top = -48.0
-offset_right = 209.0
-offset_bottom = -15.0
-theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.34171355, 0.91601217, 0.99999994, 1)
-theme_override_font_sizes/font_size = 32
-text = "0"
-
-[node name="scrap_t2" type="Label" parent="hud" unique_id=1784293943]
-offset_left = 180.0
-offset_top = -48.0
-offset_right = 281.0
-offset_bottom = -15.0
-theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 0.7623729, 0.7215173, 1)
-theme_override_font_sizes/font_size = 32
-text = "0"
-
-[node name="money" type="Label" parent="hud" unique_id=937643953]
-offset_left = 1050.0
-offset_top = -48.0
-offset_right = 1151.0
-offset_bottom = -15.0
+[node name="money" type="Label" parent="CanvasLayer/hud" unique_id=937643953]
+offset_left = 957.49994
+offset_top = -36.50001
+offset_right = 1058.5
+offset_bottom = 15.499989
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
 theme_override_font_sizes/font_size = 32
 text = "$0"
 horizontal_alignment = 2
 
-[node name="time" type="Label" parent="hud" unique_id=2055094789]
-offset_left = 548.0
-offset_top = -48.0
-offset_right = 649.0
-offset_bottom = -15.0
+[node name="time" type="Label" parent="CanvasLayer/hud" unique_id=2055094789]
+offset_left = 957.49994
+offset_top = -83.33332
+offset_right = 1058.5
+offset_bottom = -31.33332
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.88634247, 0.6206796, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "500"
+horizontal_alignment = 2
+
+[node name="target" type="ProgressBar" parent="CanvasLayer/hud" unique_id=647973358]
+offset_left = 41.0
+offset_top = -72.33332
+offset_right = 841.0
+offset_bottom = -45.33332
+theme_override_styles/background = SubResource("StyleBoxFlat_4dlwg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1h7lg")
+value = 5.42
+show_percentage = false
+
+[node name="targetText" type="Label" parent="CanvasLayer/hud" unique_id=812755774]
+offset_left = 676.0
+offset_top = -77.33332
+offset_right = 836.0
+offset_bottom = -25.33332
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 24
+text = "$0 / $1000"
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/hud" unique_id=1195456889]
+z_index = -1
+offset_top = -97.5
+offset_right = 1160.0
+offset_bottom = 40.0
+color = Color(0.13444316, 0.13120636, 0.1602942, 0.3254902)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=203336946]
+color = Color(0.89708984, 0.8970898, 0.89708984, 1)
+
+[node name="hints" type="Node2D" parent="." unique_id=1697570317]
+
+[node name="Label" type="Label" parent="hints" unique_id=706354645]
+offset_left = 143.0
+offset_top = -163.0
+offset_right = 332.0
+offset_bottom = -124.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.44043523, 0.43237785, 0.4971285, 1)
+theme_override_fonts/font = ExtResource("34_d3s0h")
+theme_override_font_sizes/font_size = 16
+text = "Build inventions"
 horizontal_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1043435971]
-z_index = 6
-position = Vector2(600, -324)
+[node name="Label2" type="Label" parent="hints" unique_id=899865557]
+offset_left = 439.0
+offset_top = -163.0
+offset_right = 628.0
+offset_bottom = -124.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.44043523, 0.43237785, 0.4971285, 1)
+theme_override_fonts/font = ExtResource("34_d3s0h")
+theme_override_font_sizes/font_size = 16
+text = "Invest in goal"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="hints" unique_id=1199137741]
+offset_left = 632.0
+offset_top = -163.0
+offset_right = 821.0
+offset_bottom = -124.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.44043523, 0.43237785, 0.4971285, 1)
+theme_override_fonts/font = ExtResource("34_d3s0h")
+theme_override_font_sizes/font_size = 16
+text = "Buy upgrades"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="hints" unique_id=1523398266]
+offset_left = 881.0
+offset_top = -163.0
+offset_right = 1070.0
+offset_bottom = -124.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.44043523, 0.43237785, 0.4971285, 1)
+theme_override_fonts/font = ExtResource("34_d3s0h")
+theme_override_font_sizes/font_size = 16
+text = "Get more scrap"
+horizontal_alignment = 1

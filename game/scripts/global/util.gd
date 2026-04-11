@@ -9,6 +9,14 @@ extends Node
 
 #func addVectors(v1, v2) ...
 
+# colors 
+
+var colors = {
+	"scrap_t0": "#5f5",
+	"scrap_t1": "#55f",
+	"scrap_t2": "#f55"
+}
+
 # upgrades
 
 enum UPGRADES {
@@ -20,6 +28,11 @@ var upgradeToName = {
 	Util.UPGRADES.GRAVITY_GLOVES: "gravity_gloves",
 	Util.UPGRADES.EXOSKELETON: "exoskeleton_arm",
 	Util.UPGRADES.WD40: "wd40",
+}
+var nameToUpgrade = {
+	"gravity_gloves": Util.UPGRADES.GRAVITY_GLOVES,
+	"exoskeleton_arm": Util.UPGRADES.EXOSKELETON,
+	"wd40": Util.UPGRADES.WD40,
 }
 
 # inventions
@@ -36,3 +49,20 @@ var thingToName = {
 	Util.INVENTIONS.FLYING_CAR: "flying_car",
 	Util.INVENTIONS.SEGWAY: "segway"
 }
+var nameToInvent = {
+	"hoverboard": Util.INVENTIONS.HOVERBOARD,
+	"roomba": Util.INVENTIONS.ROOMBA,
+	"flying_car": Util.INVENTIONS.FLYING_CAR,
+	"segway": Util.INVENTIONS.SEGWAY
+}
+
+# easing functions
+
+func ease_out_elastic(x: float) -> float:
+	if x == 0.0:
+		return 0.0
+	if x == 1.0:
+		return 1.0
+	
+	var c4 := (2.0 * PI) / 3.0
+	return pow(2.0, -20.0 * x) * sin((x * 9.0 - 0.75) * c4) + 1.0

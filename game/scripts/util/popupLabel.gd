@@ -1,5 +1,6 @@
 extends Label
 
+@export var hideOnInteract: bool = true
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var parArea = get_parent() as Area2D
 # this object should be connected directly to Area2D
@@ -11,7 +12,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and hideOnInteract:
 		hide()
 
 

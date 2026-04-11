@@ -2,6 +2,20 @@ extends Node
 
 # skrypt globalny przechowujacy wszystkie dane trwałe (takie jak stan gracza, postęp itd.)
 
+# invest 
+
+signal investmentChanged
+var investTarget = 1000
+var invested = 0
+
+func investMoney(v=1):
+	if money < v:
+		return -1
+	Prst.remove_money(v)
+	invested += v
+	investmentChanged.emit()
+	return invested
+
 # time
 
 signal timeUpdated
@@ -18,7 +32,7 @@ func _process(delta: float) -> void:
 # money
 
 signal moneyUpdated
-var money: int = 0
+var money: int = 6
 
 func add_money(v):
 	money += v
@@ -63,18 +77,24 @@ var inventedThings = {
 	Util.INVENTIONS.SEGWAY: 0
 }
 var inventPrice = {
-	Util.INVENTIONS.HOVERBOARD: [2, 1, 0],
+	Util.INVENTIONS.HOVERBOARD: [2, 1, 1],
 	Util.INVENTIONS.ROOMBA: [4, 0, 0],
-	Util.INVENTIONS.FLYING_CAR: [2, 2, 1],
-	Util.INVENTIONS.SEGWAY: [1, 1, 2]
+	Util.INVENTIONS.FLYING_CAR: [0, 1, 3],
+	Util.INVENTIONS.SEGWAY: [1, 2, 1]
+}
+var inventPriceComplexity = {
+	Util.INVENTIONS.HOVERBOARD: 0.08,
+	Util.INVENTIONS.ROOMBA: 0,
+	Util.INVENTIONS.FLYING_CAR: 0.25,
+	Util.INVENTIONS.SEGWAY: 0.12
 }
 
 func calcThingValue(u):
-	var mod = [1, 1.1, 1.2]
 	var pr = 0
 	for st in range(3):
-		pr += inventPrice[u][st] * mod[st]
-	return pr
+		pr += inventPrice[u][st] * scrapRarity[0]/scrapRarity[st]
+	pr *= (1 + inventPriceComplexity[u])
+	return round(pr)
 
 func invent(u):
 	inventedThings[u] += 1
@@ -88,6 +108,11 @@ var scrap_amount = [
 	5,
 	2,
 	1
+]
+var scrapRarity = [
+	.5,
+	.3,
+	.2
 ]
 
 func add_scrap(v):

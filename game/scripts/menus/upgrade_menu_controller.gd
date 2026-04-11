@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 @onready var station = get_parent()
 # this should be conected directly to station object
@@ -9,8 +9,33 @@ var availableUpgrades = [
 	Util.UPGRADES.WD40
 ]
 
+var should_hide = true
+var state_change_time = 0
+
 func _ready() -> void:
+	Prst.connect("upgradeBought", updateItemPrices)
+	hide()
 	hideMenu()
+
+func _process(delta):
+	if should_hide and offset.y < 700:
+		var t : float = Time.get_ticks_msec()/1000.0 - state_change_time
+		offset.y = Util.ease_out_elastic(t) * 700
+		if offset.y >= 700: 
+			hide()
+	elif not should_hide:
+		var t : float = Time.get_ticks_msec()/1000.0 - state_change_time
+		offset.y = (1 - Util.ease_out_elastic(t)) * 700 + 22
+
+func showMenu():
+	updateItemPrices()
+	show()
+	state_change_time = Time.get_ticks_msec() / 1000.0
+	should_hide = false
+
+func hideMenu():
+	state_change_time = Time.get_ticks_msec() / 1000.0
+	should_hide = true
 
 func toggleMenu():
 	if visible:
@@ -18,11 +43,10 @@ func toggleMenu():
 	else:
 		showMenu()
 
-func showMenu():
-	show()
-
-func hideMenu():
-	hide()
+func updateItemPrices():
+	for item in availableUpgrades:
+		var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
+		nd.find_child("cost").text = "$" + str(Prst.upgradePrice[item] as int)
 
 func _input(event: InputEvent) -> void:
 	if not visible:
@@ -30,8 +54,8 @@ func _input(event: InputEvent) -> void:
 	var choice = [
 		event.is_action_pressed("buy_0"),
 		event.is_action_pressed("buy_1"),
-		event.is_action_pressed("buy_2"),
-		event.is_action_pressed("buy_3")
+		event.is_action_pressed("buy_2")
+		#event.is_action_pressed("buy_3")
 	]
 	if true not in choice:
 		return
@@ -40,12 +64,23 @@ func _input(event: InputEvent) -> void:
 		if c:
 			break
 		cidx += 1
-	invent_item(availableUpgrades[cidx])
+	buy_upgrade(availableUpgrades[cidx])
 	
-func invent_item(item):
-	if -1 == Prst.remove_money( Prst.upgradePrice[item]):
-		print("nie masz scrap")
+func buy_upgrade(item):
+	if -1 == Prst.remove_money(Prst.upgradePrice[item]):
+		print("nie masz money")
 		return
 	var count = Prst.invent(item)
-	var nd = get_tree().current_scene.find_child(Util.thingToName[item])
-	nd.find_child("count").text = "x " + str(count)
+	var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
+	nd.get_node("count").text = "x" + str(count)
+	Prst.upgrade(item)
+	Prst.moneyUpdated.emit()
+
+func canBuyAnything():
+	for item in availableUpgrades:
+		if can_afford(Util.upgradeToName[item]):
+			return true
+	return false
+
+func can_afford(itemName):
+	return Prst.upgradePrice[Util.nameToUpgrade[itemName]] <= Prst.money
