@@ -9,7 +9,7 @@ var previousScene = ""
 # invest 
 
 signal investmentChanged
-var investTarget = 1000
+var investTarget = 200
 var invested = 0
 
 func investMoney(v=1):
@@ -63,14 +63,31 @@ var upgradesBought = {
 	Util.UPGRADES.WD40: 0
 }
 var upgradePrice = {
-	Util.UPGRADES.GRAVITY_GLOVES: 3,
-	Util.UPGRADES.EXOSKELETON: 3,
-	Util.UPGRADES.WD40: 3
+	Util.UPGRADES.GRAVITY_GLOVES: 4,
+	Util.UPGRADES.EXOSKELETON: 4,
+	Util.UPGRADES.WD40: 4
+}
+var upgradeEffectValues = {
+	Util.UPGRADES.GRAVITY_GLOVES: 0.12,
+	Util.UPGRADES.EXOSKELETON: 0.06,
+	Util.UPGRADES.WD40: 0.03,
+}
+var tasmaProperties = {
+	"arm_reach": 1.0,
+	"arm_speed": 1.0,
+	"roll_speed": 1.0
 }
 
 func upgrade(u):
 	upgradesBought[u] += 1
 	upgradePrice[u] = ceil(1.2 * upgradePrice[u])
+	match u:
+		Util.UPGRADES.GRAVITY_GLOVES:
+			tasmaProperties['arm_reach'] += upgradeEffectValues[u]
+		Util.UPGRADES.EXOSKELETON:
+			tasmaProperties['arm_speed'] += upgradeEffectValues[u]
+		Util.UPGRADES.WD40:
+			tasmaProperties['roll_speed'] += upgradeEffectValues[u]
 	upgradeBought.emit()
 	return upgradesBought[u]
 
@@ -90,10 +107,10 @@ var inventPrice = {
 	Util.INVENTIONS.SEGWAY: [1, 2, 1]
 }
 var inventPriceComplexity = {
-	Util.INVENTIONS.HOVERBOARD: 0.08,
+	Util.INVENTIONS.HOVERBOARD: 0.10,
 	Util.INVENTIONS.ROOMBA: 0,
-	Util.INVENTIONS.FLYING_CAR: 0.25,
-	Util.INVENTIONS.SEGWAY: 0.12
+	Util.INVENTIONS.FLYING_CAR: 0.35,
+	Util.INVENTIONS.SEGWAY: 0.20
 }
 
 func calcThingValue(u):

@@ -28,16 +28,15 @@ var push_threshold = 4
 var push_pack_x = 150;
 var zlom = 0;
 #odstep czasowy pomiedzy złomem
-var counter_max = 1.5;
+var counter_max = 1.5 / Prst.tasmaProperties['roll_speed'];
 var counter = 0;	
 
 # 0 - smiec, 1,2,3 - zlom1,2,3 
 #warning -> to nie sa procenty tylko prrogi ktore wyznacza funckja _procentage !!!! (line 39)
 var srap_distribution = [0,0,0,0];
+
 # x0- prawdopodobienstwo smiecia ,x1,x2,x3 - prawd zlom1,2,3 
 func _procentage(x0: float, x1: float, x2: float,x3: float):
-	if x0+x1+x2+x3 != 1:
-		print("Error: zla dystrybucja ");
 		
 	srap_distribution[0] = x0;
 	srap_distribution[1] = x0+x1;
@@ -51,7 +50,7 @@ func _ready() -> void:
 	
 	# x0- prawdopodobienstwo smiecia ,x1,x2,x3 - prawd zlom1,2,3 
 	pack_ypos = smietnik_pos.y;
-	_procentage(0.3,0.4,0.2,0.1)
+	_procentage(0.12,0.45,0.25,0.18)
 	randomize()
 
 var pushed = [false,false];
@@ -77,10 +76,13 @@ func _spawn(delta: float) -> void:
 			zlom = smiec.instantiate();
 		elif chance < srap_distribution[1]:
 			zlom = zlom1.instantiate();
+			zlom.tier = 0
 		elif chance < srap_distribution[2]:
 			zlom = zlom2.instantiate();
+			zlom.tier = 1
 		else:
 			zlom = zlom3.instantiate();
+			zlom.tier = 2
 			
 		zlom.global_position = spawn_pos;
 
@@ -92,4 +94,12 @@ func _physics_process(delta: float) -> void:
 	_spawn(delta);
 	#_updateXpos()
 
-	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		Prst.previousScene = "tasma"
+		var zloms = get_tree().get_nodes_in_group("save")
+		var zlomsAdd = [0, 0, 0]
+		for z in zloms:
+			zlomsAdd[z.tier] += 1
+		Prst.add_scrap(zlomsAdd)
+		get_tree().change_scene_to_file("res://scenes/levels/transition.tscn")

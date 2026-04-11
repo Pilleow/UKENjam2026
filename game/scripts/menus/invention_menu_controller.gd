@@ -29,8 +29,14 @@ func _process(delta):
 
 func showMenu():
 	show()
+	updateRewards()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = false
+
+func updateRewards():
+	for item in availableItems:
+		var reward = get_node(Util.thingToName[item]).get_node("reward")
+		reward.text = "$" + str(int(Prst.calcThingValue(item)))
 
 func hideMenu():
 	state_change_time = Time.get_ticks_msec() / 1000.0

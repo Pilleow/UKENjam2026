@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn84mr2nohtn1"
-path="res://.godot/imported/hoverboard.png-a6f3281dda7efb8790ae3d98148a1674.ctex"
+uid="uid://clfbieaygx4og"
+path="res://.godot/imported/wd40.png-5964d97f0a4ef3ef3b26d14c08cce885.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/upgrades/hoverboard.png"
-dest_files=["res://.godot/imported/hoverboard.png-a6f3281dda7efb8790ae3d98148a1674.ctex"]
+source_file="res://assets/sprites/ui/wd40.png"
+dest_files=["res://.godot/imported/wd40.png-5964d97f0a4ef3ef3b26d14c08cce885.ctex"]
 
 [params]
 

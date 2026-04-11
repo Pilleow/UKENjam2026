@@ -10,6 +10,7 @@ extends Area2D
 
 var max_capacity_pack = 0;
 var max_capacity_bin = 0;
+var tier = -1;
 
 #var target_pos = Vector2(100,600);
 
@@ -65,11 +66,12 @@ func _is_scrap_done(ind: int)->void:
 			#tasma.koszyk_pos.y -= block_size
 
 		done = true;
-		print("scrap is done") 
 	
 func _physics_process(delta: float) -> void:
 	if not catched:
-		position.x += speed*delta;
+		position.x += (speed * Prst.tasmaProperties['roll_speed']) * delta;
+		if position.x > 1500:
+			queue_free()
 	else:		
 		# wrzucic do kosza
 		if not done:
@@ -87,15 +89,12 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("d")  and tasma.current_cap[1] <= max_capacity_pack:
 				indx = 1
 				_position_scrap(1);
+				add_to_group("save")
   
 			_is_scrap_done(indx);
-func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	queue_free();
-	pass # Replace with function body.
 
 func _on_body_entered(body: Node2D) -> void:
 	#if body.is_in_group("reka"):
 	#position = Vector2(0,0);
-	#print("catched");
 	catched = true;
 	pass # Replace with function body.

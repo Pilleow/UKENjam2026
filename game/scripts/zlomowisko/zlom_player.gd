@@ -18,12 +18,14 @@ var targetblock_pos = Vector2(100,350 );
 
 var time_to_move_back = 0.1;
 var current_time = 0;
-		
+
 func _ready() -> void:
 	start_pos = position;
+	speed *= Prst.tasmaProperties['arm_speed']
+	comeback_speed *= Prst.tasmaProperties['arm_speed']
+	($CollisionShape2D.shape as RectangleShape2D).size.x *= Prst.tasmaProperties['arm_reach']
+	($CollisionShape2D.shape as RectangleShape2D).size.y *= Prst.tasmaProperties['arm_reach']
 
-
-	
 func _move_back(delta:float) -> void:
 	
 	# zlap zlom i poczekaj time_to_move_back czasu

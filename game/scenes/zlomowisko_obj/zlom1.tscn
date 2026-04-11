@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dorwf62m2u4pq" path="res://scripts/zlomowisko/zlom_move.gd" id="1_omkes"]
 [ext_resource type="Texture2D" uid="uid://d1rrehld1edve" path="res://sprites2D/złom/key_tier1.png" id="2_1sj36"]
 [ext_resource type="Texture2D" uid="uid://d1u6t0yld7nxx" path="res://sprites2D/złom/screw_tier1.png" id="2_q5reh"]
-[ext_resource type="Texture2D" uid="uid://cr303ssxft6hl" path="res://sprites2D/złom/gier_tier1.png" id="3_87n28"]
+[ext_resource type="Texture2D" uid="uid://ycglotnjqi6u" path="res://sprites2D/złom/gier_tier1.png" id="3_87n28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2fb"]
 size = Vector2(96, 48)

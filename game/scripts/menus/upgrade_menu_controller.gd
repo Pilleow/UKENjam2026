@@ -13,7 +13,7 @@ var should_hide = true
 var state_change_time = 0
 
 func _ready() -> void:
-	Prst.connect("upgradeBought", updateItemPrices)
+	Prst.connect("upgradeBought", updateItemInfo)
 	hide()
 	hideMenu()
 
@@ -28,7 +28,7 @@ func _process(delta):
 		offset.y = (1 - Util.ease_out_elastic(t)) * 700 + 22
 
 func showMenu():
-	updateItemPrices()
+	updateItemInfo()
 	show()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = false
@@ -43,10 +43,14 @@ func toggleMenu():
 	else:
 		showMenu()
 
-func updateItemPrices():
+func updateItemInfo():
 	for item in availableUpgrades:
 		var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
-		nd.find_child("cost").text = "$" + str(Prst.upgradePrice[item] as int)
+		nd.get_node("cost").text = "$" + str(Prst.upgradePrice[item] as int)
+		var rwd = nd.get_node("reward")
+		var parts = rwd.text.split(' ')
+		parts[1] = str(int(Prst.tasmaProperties[Util.upgradeToProperty[item]] * 100 - 100.0)) + "%"
+		rwd.text = ' '.join(parts)
 
 func _input(event: InputEvent) -> void:
 	if not visible:

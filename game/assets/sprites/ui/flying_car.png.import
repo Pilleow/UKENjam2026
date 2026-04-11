@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xbhavlcy41h2"
-path="res://.godot/imported/segway.png-40c684c94cca2de5ef6ff4b69e675f32.ctex"
+uid="uid://uopdli1dakj"
+path="res://.godot/imported/flying_car.png-f66e25edd24274b5eb45944a28c95ecb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/upgrades/segway.png"
-dest_files=["res://.godot/imported/segway.png-40c684c94cca2de5ef6ff4b69e675f32.ctex"]
+source_file="res://assets/sprites/ui/flying_car.png"
+dest_files=["res://.godot/imported/flying_car.png-f66e25edd24274b5eb45944a28c95ecb.ctex"]
 
 [params]
 

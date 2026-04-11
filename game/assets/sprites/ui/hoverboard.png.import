@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ycglotnjqi6u"
-path="res://.godot/imported/gier_tier1.png-dd6fa424d337ff6d04d21bd1ec7f7891.ctex"
+uid="uid://cn84mr2nohtn1"
+path="res://.godot/imported/hoverboard.png-0d6569c1708fb83029c26df89a651d3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites2D/złom/gier_tier1.png"
-dest_files=["res://.godot/imported/gier_tier1.png-dd6fa424d337ff6d04d21bd1ec7f7891.ctex"]
+source_file="res://assets/sprites/ui/hoverboard.png"
+dest_files=["res://.godot/imported/hoverboard.png-0d6569c1708fb83029c26df89a651d3c.ctex"]
 
 [params]
 

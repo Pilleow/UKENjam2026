@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://2h1cewgrtrh0" path="res://scenes/zlomowisko_obj/zlom1.tscn" id="4_70uve"]
 [ext_resource type="PackedScene" uid="uid://c70mcd2a0pps" path="res://scenes/zlomowisko_obj/zlom2.tscn" id="5_oc4kh"]
 [ext_resource type="PackedScene" uid="uid://bm1axi874vhyk" path="res://scenes/zlomowisko_obj/zlom3.tscn" id="6_m4luk"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="7_p22pe"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="9_3i3pe"]
+[ext_resource type="Script" uid="uid://di2ns3nbp5opo" path="res://scripts/util/hud_controller.gd" id="10_3i3pe"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="10_wajn4"]
+[ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="11_wajn4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uuwi"]
+bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06kmb"]
+bg_color = Color(1, 0.7921569, 0.40392157, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1682711517]
 script = ExtResource("1_ix6v0")
@@ -16,51 +27,175 @@ zlom2 = ExtResource("5_oc4kh")
 zlom3 = ExtResource("6_m4luk")
 
 [node name="smietnik" type="ColorRect" parent="." unique_id=1350322914]
-offset_left = 8.0
-offset_top = 344.0
-offset_right = 328.0
-offset_bottom = 608.0
+offset_left = 59.0
+offset_top = 353.0
+offset_right = 379.0
+offset_bottom = 617.0
 color = Color(1, 0.14117648, 1, 1)
 
 [node name="plecak" type="ColorRect" parent="." unique_id=907211997]
-offset_left = 816.0
-offset_top = 336.0
-offset_right = 1136.0
-offset_bottom = 600.0
+offset_left = 867.0
+offset_top = 345.0
+offset_right = 1187.0
+offset_bottom = 609.0
 color = Color(0.18039216, 0, 1, 1)
-
-[node name="lab_kosz" type="Label" parent="." unique_id=369915152]
-offset_left = 136.0
-offset_top = 608.0
-offset_right = 200.0
-offset_bottom = 640.0
-text = "bin [a] 	"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="lab_grap" type="Label" parent="." unique_id=1966262369]
-offset_left = 528.0
-offset_top = 608.0
-offset_right = 624.0
-offset_bottom = 640.0
-text = "grap [space]"
-
-[node name="lab_plecak" type="Label" parent="." unique_id=1678199618]
-offset_left = 936.0
-offset_top = 600.0
-offset_right = 1040.0
-offset_bottom = 640.0
-text = "backback [d] 	"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="tasma" type="ColorRect" parent="." unique_id=2106096501]
 light_mask = 3
 visibility_layer = 6
-offset_top = 112.0
-offset_right = 1152.0
-offset_bottom = 264.0
+offset_left = 51.0
+offset_top = 121.0
+offset_right = 1203.0
+offset_bottom = 273.0
 
 [node name="Reka" parent="." unique_id=1730410172 instance=ExtResource("2_ix6v0")]
-position = Vector2(576, 344)
+position = Vector2(627, 353)
+
+[node name="hints" type="Node2D" parent="." unique_id=1633313468]
+
+[node name="hint1" type="Label" parent="hints" unique_id=475448460]
+offset_left = 393.0
+offset_top = 44.0
+offset_right = 677.0
+offset_bottom = 83.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Reach out for scrap"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint1" unique_id=401566259]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"w"
+autoplay = "w"
+
+[node name="hint2" type="Label" parent="hints" unique_id=325255470]
+offset_left = 726.0
+offset_top = 43.0
+offset_right = 1010.0
+offset_bottom = 82.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Go back to base"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint2" unique_id=2029705716]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"e"
+autoplay = "e"
+
+[node name="hint3" type="Label" parent="hints" unique_id=1531375179]
+offset_left = 143.0
+offset_top = 291.0
+offset_right = 427.0
+offset_bottom = 330.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Move scrap to bin"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint3" unique_id=957181247]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"a"
+autoplay = "a"
+
+[node name="hint4" type="Label" parent="hints" unique_id=1231770742]
+offset_left = 978.0
+offset_top = 293.0
+offset_right = 1262.0
+offset_bottom = 332.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Move scrap to car"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint4" unique_id=2079098787]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"d"
+autoplay = "d"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1117061065]
+
+[node name="hud" type="Node2D" parent="CanvasLayer" unique_id=210873405]
+z_index = 1
+position = Vector2(-22, 693)
+scale = Vector2(1.2, 1.2)
+script = ExtResource("10_3i3pe")
+
+[node name="money" type="Label" parent="CanvasLayer/hud" unique_id=852890425]
+visible = false
+offset_left = 957.49994
+offset_top = -36.50001
+offset_right = 1058.5
+offset_bottom = 15.499989
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 32
+text = "$0"
+horizontal_alignment = 2
+
+[node name="target" type="ProgressBar" parent="CanvasLayer/hud" unique_id=1395841306]
+visible = false
+offset_left = 41.0
+offset_top = -72.33332
+offset_right = 841.0
+offset_bottom = -45.33332
+theme_override_styles/background = SubResource("StyleBoxFlat_1uuwi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_06kmb")
+value = 5.42
+show_percentage = false
+
+[node name="targetText" type="Label" parent="CanvasLayer/hud" unique_id=429143028]
+visible = false
+offset_left = 676.0
+offset_top = -77.33332
+offset_right = 836.0
+offset_bottom = -25.33332
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 24
+text = "$0 / $1000"
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/hud" unique_id=1043938687]
+z_index = -1
+offset_left = -1.6666666
+offset_top = -47.5
+offset_right = 1158.3334
+offset_bottom = 90.0
+color = Color(0.13444316, 0.13120636, 0.1602942, 0.3254902)
+
+[node name="scrap" type="RichTextLabel" parent="CanvasLayer/hud" unique_id=1626153060]
+offset_left = 40.0
+offset_top = -37.50001
+offset_right = 438.33334
+offset_bottom = 14.499989
+theme = ExtResource("7_p22pe")
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("11_wajn4")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "0"
+scroll_active = false
+
+[node name="time" type="Label" parent="CanvasLayer/hud" unique_id=169626055]
+offset_left = 962.5
+offset_top = -37.49999
+offset_right = 1063.5
+offset_bottom = 14.500011
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_color = Color(0.88634247, 0.6206796, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "500"
+horizontal_alignment = 2

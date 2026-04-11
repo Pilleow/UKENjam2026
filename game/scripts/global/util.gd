@@ -34,6 +34,11 @@ var nameToUpgrade = {
 	"exoskeleton_arm": Util.UPGRADES.EXOSKELETON,
 	"wd40": Util.UPGRADES.WD40,
 }
+var upgradeToProperty = {
+	Util.UPGRADES.GRAVITY_GLOVES: "arm_reach",
+	Util.UPGRADES.EXOSKELETON: "arm_speed",
+	Util.UPGRADES.WD40: "roll_speed",
+}
 
 # inventions
 

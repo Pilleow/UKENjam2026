@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clfbieaygx4og"
-path="res://.godot/imported/wd40.png-4beb78f982725ed4d943a6c097ba16cd.ctex"
+uid="uid://xbhavlcy41h2"
+path="res://.godot/imported/segway.png-42a209c7d1e15bfc6aea956fc1aa9156.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/upgrades/wd40.png"
-dest_files=["res://.godot/imported/wd40.png-4beb78f982725ed4d943a6c097ba16cd.ctex"]
+source_file="res://assets/sprites/ui/segway.png"
+dest_files=["res://.godot/imported/segway.png-42a209c7d1e15bfc6aea956fc1aa9156.ctex"]
 
 [params]
 
