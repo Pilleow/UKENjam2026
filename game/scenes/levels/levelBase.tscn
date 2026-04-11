@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://b2hmknili4j8y"]
+
+[ext_resource type="Script" uid="uid://4eml1nvoc7q4" path="res://scripts/levels/level_base.gd" id="1_etbdm"]
+[ext_resource type="Script" uid="uid://ntow660gbeum" path="res://scripts/entities/inator.gd" id="2_237x2"]
+[ext_resource type="Script" uid="uid://cbu62oay4pyh3" path="res://scripts/entities/player.gd" id="2_5074v"]
+[ext_resource type="Script" uid="uid://dfwo7q2oancaf" path="res://scripts/util/popupLabel.gd" id="2_x5he8"]
+[ext_resource type="Script" uid="uid://bev1imbqwl8ii" path="res://scripts/menus/invention_menu_controller.gd" id="4_eamg3"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="4_lwywj"]
+[ext_resource type="Script" uid="uid://cyxg88jagdy1y" path="res://scripts/menus/upgrade_menu_controller.gd" id="6_ibh7t"]
+[ext_resource type="Script" uid="uid://c5705uoc20fl2" path="res://scripts/entities/upgrades.gd" id="6_y62yp"]
+[ext_resource type="Script" uid="uid://di2ns3nbp5opo" path="res://scripts/util/hud_controller.gd" id="7_hh3ij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etbdm"]
+size = Vector2(1312, 148)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eamg3"]
+size = Vector2(184, 137)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5he8"]
+size = Vector2(71, 728)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwywj"]
+size = Vector2(71, 804)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_237x2"]
+size = Vector2(108, 145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5074v"]
+size = Vector2(40, 71)
+
+[node name="levelBase" type="Node2D" unique_id=1697035239]
+script = ExtResource("1_etbdm")
+
+[node name="worldObjects" type="Node" parent="." unique_id=925252457]
+
+[node name="bg" type="ColorRect" parent="worldObjects" unique_id=151108686]
+offset_left = -23.0
+offset_top = -746.0
+offset_right = 1235.0
+offset_bottom = 118.0
+color = Color(0.8034897, 0.89507866, 0.9727798, 1)
+
+[node name="floor" type="ColorRect" parent="worldObjects" unique_id=1855334503]
+offset_left = -23.0
+offset_top = -78.0
+offset_right = 1235.0
+offset_bottom = 118.0
+color = Color(0.028856792, 0.01596513, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/floor" unique_id=1286383535]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/floor/StaticBody2D" unique_id=365906508]
+position = Vector2(647, 75)
+shape = SubResource("RectangleShape2D_etbdm")
+
+[node name="inator" type="ColorRect" parent="worldObjects" unique_id=368588656]
+offset_left = 116.0
+offset_top = -265.0
+offset_right = 300.0
+offset_bottom = -73.0
+color = Color(0.5568628, 0, 0, 1)
+script = ExtResource("2_237x2")
+
+[node name="invent" type="Area2D" parent="worldObjects/inator" unique_id=1288151274]
+position = Vector2(788, 74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/inator/invent" unique_id=2082499048]
+position = Vector2(-617, 60)
+shape = SubResource("RectangleShape2D_eamg3")
+debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
+
+[node name="label4" type="Label" parent="worldObjects/inator/invent" unique_id=950057680]
+offset_left = -756.0
+offset_top = -137.0
+offset_right = -472.0
+offset_bottom = -105.0
+rotation = -0.09571571
+theme = ExtResource("4_lwywj")
+text = "[E] Create great inventions"
+script = ExtResource("2_x5he8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/inator" unique_id=810846364]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/inator/StaticBody2D" unique_id=1036958784]
+position = Vector2(147.5, -163)
+shape = SubResource("RectangleShape2D_x5he8")
+
+[node name="inventionMenu" type="Node2D" parent="worldObjects/inator" unique_id=303031419]
+visible = false
+position = Vector2(-209, 277)
+script = ExtResource("4_eamg3")
+
+[node name="bg" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=534757653]
+offset_left = 135.0
+offset_top = -646.0
+offset_right = 920.0
+offset_bottom = -379.0
+color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+
+[node name="hoverboard" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=335667992]
+offset_left = 189.0
+offset_top = -594.0
+offset_right = 321.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1336434883]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 142.0
+offset_right = 142.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[1] hoverboard"
+
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=743744329]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 171.0
+offset_right = 144.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="roomba" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=437922270]
+offset_left = 369.0
+offset_top = -594.0
+offset_right = 501.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1561994008]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 142.0
+offset_right = 168.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[2] roomba"
+
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=738207068]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 171.0
+offset_right = 165.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="flying_car" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=1816765723]
+offset_left = 550.0
+offset_top = -594.0
+offset_right = 682.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1514387666]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 142.0
+offset_right = 157.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[3] flyingCar"
+
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1522066561]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 171.0
+offset_right = 153.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="segway" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=101088052]
+offset_left = 731.0
+offset_top = -594.0
+offset_right = 863.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=1870921673]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 142.0
+offset_right = 170.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[4] segway"
+
+[node name="count" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=1893976678]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 171.0
+offset_right = 166.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="car" type="ColorRect" parent="worldObjects" unique_id=497847455]
+offset_left = 904.0
+offset_top = -191.0
+offset_right = 1088.0
+offset_bottom = -79.0
+color = Color(0.02040301, 0.2529714, 1, 1)
+
+[node name="enterCar" type="Area2D" parent="worldObjects/car" unique_id=1397110705]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/car/enterCar" unique_id=1453596078]
+position = Vector2(82, 58.5)
+shape = SubResource("RectangleShape2D_eamg3")
+debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
+
+[node name="label3" type="Label" parent="worldObjects/car/enterCar" unique_id=712428697]
+offset_left = -31.0
+offset_top = -110.0
+offset_right = 173.0
+offset_bottom = -78.0
+rotation = -0.09571571
+theme = ExtResource("4_lwywj")
+text = "[E] Get more scrap"
+script = ExtResource("2_x5he8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/car" unique_id=1065630198]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/car/StaticBody2D" unique_id=1545910961]
+position = Vector2(166, -199)
+shape = SubResource("RectangleShape2D_lwywj")
+
+[node name="upgrades" type="ColorRect" parent="worldObjects" unique_id=196245635]
+offset_left = 679.0
+offset_top = -144.0
+offset_right = 773.0
+offset_bottom = -76.0
+color = Color(0.5920351, 0.0013281199, 0.74825597, 1)
+script = ExtResource("6_y62yp")
+
+[node name="showUpgrades" type="Area2D" parent="worldObjects/upgrades" unique_id=1138189556]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/upgrades/showUpgrades" unique_id=1409967224]
+position = Vector2(49, 22)
+shape = SubResource("RectangleShape2D_237x2")
+debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
+
+[node name="label2" type="Label" parent="worldObjects/upgrades/showUpgrades" unique_id=1538757185]
+offset_left = -48.0
+offset_top = -105.0
+offset_right = 156.0
+offset_bottom = -73.0
+rotation = -0.09571571
+theme = ExtResource("4_lwywj")
+text = "[E] Get upgrades"
+script = ExtResource("2_x5he8")
+
+[node name="upgradesMenu" type="Node2D" parent="worldObjects/upgrades" unique_id=61001821]
+visible = false
+position = Vector2(-588, 208)
+script = ExtResource("6_ibh7t")
+
+[node name="bg" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=617833963]
+offset_left = 135.0
+offset_top = -646.0
+offset_right = 920.0
+offset_bottom = -379.0
+color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+
+[node name="gravity_gloves" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1188142064]
+offset_left = 189.0
+offset_top = -594.0
+offset_right = 321.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=29667949]
+layout_mode = 0
+offset_left = -22.0
+offset_top = 142.0
+offset_right = 169.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[1] Gravity Gloves"
+
+[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=1353303593]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 171.0
+offset_right = 144.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="exoskeleton_arm" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=2105107277]
+offset_left = 451.0
+offset_top = -594.0
+offset_right = 583.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1203178542]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 142.0
+offset_right = 187.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[2] Exoskeleton Arm"
+
+[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=476543416]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 171.0
+offset_right = 165.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="wd40" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1761740685]
+offset_left = 729.0
+offset_top = -594.0
+offset_right = 861.0
+offset_bottom = -462.0
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1879728341]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 142.0
+offset_right = 176.0
+offset_bottom = 167.0
+theme = ExtResource("4_lwywj")
+text = "[3] WD40"
+
+[node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=918215211]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 171.0
+offset_right = 153.0
+offset_bottom = 196.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_font_sizes/font_size = 20
+text = "x 0"
+
+[node name="invest" type="ColorRect" parent="worldObjects" unique_id=433525819]
+offset_left = 481.0
+offset_top = -145.0
+offset_right = 575.0
+offset_bottom = -77.0
+color = Color(0.58682907, 0.3097784, 1.92523e-07, 1)
+
+[node name="invest" type="Area2D" parent="worldObjects/invest" unique_id=2021402518]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/invest/invest" unique_id=1892394743]
+position = Vector2(49, 22)
+shape = SubResource("RectangleShape2D_237x2")
+debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
+
+[node name="label" type="Label" parent="worldObjects/invest/invest" unique_id=1348702298]
+offset_left = -44.0
+offset_top = -111.0
+offset_right = 160.0
+offset_bottom = -79.0
+rotation = -0.09571571
+theme = ExtResource("4_lwywj")
+text = "[E] Invest in goal"
+script = ExtResource("2_x5he8")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1843173054 groups=["player"]]
+z_index = 1
+position = Vector2(410, -152)
+script = ExtResource("2_5074v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=444729725]
+position = Vector2(20, 35.5)
+shape = SubResource("RectangleShape2D_5074v")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=381379127]
+offset_right = 40.0
+offset_bottom = 70.0
+color = Color(0.091525756, 0.32247952, 1, 1)
+
+[node name="hud" type="Node" parent="." unique_id=618927927]
+script = ExtResource("7_hh3ij")
+
+[node name="scrap_t0" type="Label" parent="hud" unique_id=1717799296]
+offset_left = 38.0
+offset_top = -48.0
+offset_right = 139.0
+offset_bottom = -15.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.22788927, 0.99247485, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="scrap_t1" type="Label" parent="hud" unique_id=1339510011]
+offset_left = 108.0
+offset_top = -48.0
+offset_right = 209.0
+offset_bottom = -15.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.34171355, 0.91601217, 0.99999994, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="scrap_t2" type="Label" parent="hud" unique_id=1784293943]
+offset_left = 180.0
+offset_top = -48.0
+offset_right = 281.0
+offset_bottom = -15.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(1, 0.7623729, 0.7215173, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="money" type="Label" parent="hud" unique_id=937643953]
+offset_left = 1050.0
+offset_top = -48.0
+offset_right = 1151.0
+offset_bottom = -15.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 32
+text = "$0"
+horizontal_alignment = 2
+
+[node name="time" type="Label" parent="hud" unique_id=2055094789]
+offset_left = 548.0
+offset_top = -48.0
+offset_right = 649.0
+offset_bottom = -15.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.88634247, 0.6206796, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "500"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1043435971]
+z_index = 6
+position = Vector2(600, -324)
