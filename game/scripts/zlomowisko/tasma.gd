@@ -51,7 +51,7 @@ func _ready() -> void:
 	
 	# x0- prawdopodobienstwo smiecia ,x1,x2,x3 - prawd zlom1,2,3 
 	pack_ypos = smietnik_pos.y;
-	_procentage(0.12,0.45,0.25,0.18)
+	_procentage(0.17,0.45,0.2,0.18)
 	randomize()
 
 var pushed = [false,false];
@@ -114,4 +114,5 @@ func _input(event: InputEvent) -> void:
 		Prst.add_scrap(zlomsAdd)
 		$CanvasLayer/FadeIn.start()
 		await $CanvasLayer/FadeIn.timeout
-		get_tree().change_scene_to_file("res://scenes/levels/transition.tscn")
+		if get_tree():
+			get_tree().change_scene_to_file("res://scenes/levels/transition.tscn")

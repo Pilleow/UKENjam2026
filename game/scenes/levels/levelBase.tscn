@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="8_f4aoa"]
 [ext_resource type="Script" uid="uid://7kuu0sqx4wda" path="res://scripts/menus/invest_controller.gd" id="10_4dlwg"]
 [ext_resource type="Texture2D" uid="uid://cnh2xelmsfntw" path="res://assets/images/bg/PCscreen.png" id="10_up2ol"]
+[ext_resource type="FontFile" uid="uid://cnleevnm0kb2t" path="res://assets/fonts/sairaStencil/SairaStencil-Black.ttf" id="11_6n1o6"]
 [ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="12_7djgm"]
 [ext_resource type="Texture2D" uid="uid://n4ot648poajq" path="res://assets/sprites/inator.png" id="12_mibl4"]
 [ext_resource type="Texture2D" uid="uid://cn84mr2nohtn1" path="res://assets/sprites/ui/hoverboard.png" id="13_4472j"]
@@ -36,11 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://dg4art60ig1jg" path="res://assets/sprites/player/run1.png" id="18_nd1xi"]
 [ext_resource type="Texture2D" uid="uid://by2i4je6kfl8u" path="res://assets/sprites/player/run2.png" id="19_qq0t2"]
 [ext_resource type="Texture2D" uid="uid://babmvyao2g1xh" path="res://assets/sprites/player/run3.png" id="20_up2ol"]
+[ext_resource type="Texture2D" uid="uid://copyokwnydqw5" path="res://assets/sprites/carbody.png" id="21_3kgif"]
 [ext_resource type="Texture2D" uid="uid://d1i1fo08himcm" path="res://assets/sprites/player/run4.png" id="21_f4aoa"]
 [ext_resource type="Texture2D" uid="uid://dqx3w2yeoln62" path="res://assets/sprites/player/run5.png" id="22_mibl4"]
 [ext_resource type="Texture2D" uid="uid://dnjk3qld1cueg" path="res://assets/sprites/player/run6.png" id="23_3p487"]
 [ext_resource type="Texture2D" uid="uid://clfbieaygx4og" path="res://assets/sprites/ui/wd40.png" id="23_4472j"]
 [ext_resource type="Texture2D" uid="uid://7el23u30bexo" path="res://assets/sprites/light.png" id="24_qq0t2"]
+[ext_resource type="FontFile" uid="uid://dhl8ly0ip8c4k" path="res://assets/fonts/sairaStencil/SairaStencil-Bold.ttf" id="25_13gon"]
 [ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="34_d3s0h"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="42_raufl"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="43_va3cv"]
@@ -67,6 +70,13 @@ shader_parameter/blink_speed = 7.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwywj"]
 size = Vector2(71, 804)
+
+[sub_resource type="GDScript" id="GDScript_3kgif"]
+script/source = "extends Sprite2D
+
+func _process(delta: float) -> void:
+	offset.y = sin(Time.get_ticks_msec() / 1000.0) * 2.0
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_237x2"]
 size = Vector2(108, 145)
@@ -221,6 +231,7 @@ position = Vector2(147.5, -163)
 shape = SubResource("RectangleShape2D_x5he8")
 
 [node name="inventionMenu" type="CanvasLayer" parent="worldObjects/inator" unique_id=1957729965]
+visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("4_eamg3")
@@ -252,6 +263,8 @@ offset_top = 133.75003
 offset_right = 147.75
 offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[1] Hoverboard"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/hoverboard/Label" unique_id=759306368]
@@ -270,7 +283,9 @@ offset_top = 161.25002
 offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_colors/font_color = Color(0.3741391, 0.37413934, 0.37413922, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 horizontal_alignment = 2
@@ -283,7 +298,8 @@ offset_top = 203.74997
 offset_right = 144.00003
 offset_bottom = 242.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "required:"
@@ -291,14 +307,14 @@ text = "required:"
 [node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1947355783]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.0
+offset_left = -15.000015
 offset_top = 225.00003
-offset_right = 144.0
+offset_right = 139.99998
 offset_bottom = 259.56003
 theme = ExtResource("4_lwywj")
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("8_f4aoa")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("11_6n1o6")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[color=green]5       [color=cyan]5       [color=red]5"
 scroll_active = false
@@ -312,7 +328,8 @@ offset_top = 264.99997
 offset_right = 144.00003
 offset_bottom = 303.99997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "reward:"
@@ -326,18 +343,22 @@ offset_right = 143.75
 offset_bottom = 327.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
+theme_override_font_sizes/font_size = 28
 text = "$5"
 
 [node name="bonus" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1383230361]
 light_mask = 1024
 layout_mode = 0
 offset_left = -23.75
-offset_top = 313.74997
+offset_top = 318.74997
 offset_right = 131.25
-offset_bottom = 380.74997
+offset_bottom = 385.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
+theme_override_colors/font_color = Color(0.84, 0.54599994, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("25_13gon")
 theme_override_font_sizes/font_size = 20
 text = "+ 15% bonus!"
 horizontal_alignment = 2
@@ -398,7 +419,9 @@ offset_top = 161.25002
 offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_colors/font_color = Color(0.3741391, 0.37413934, 0.37413922, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 horizontal_alignment = 2
@@ -411,7 +434,8 @@ offset_top = 203.74997
 offset_right = 144.00003
 offset_bottom = 242.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "required:"
@@ -419,14 +443,14 @@ text = "required:"
 [node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/roomba" unique_id=2079284180]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.0
+offset_left = -15.000015
 offset_top = 225.00003
-offset_right = 144.0
+offset_right = 139.99998
 offset_bottom = 259.56003
 theme = ExtResource("4_lwywj")
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("8_f4aoa")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("11_6n1o6")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[color=green]5       [color=cyan]5       [color=red]5"
 scroll_active = false
@@ -440,7 +464,8 @@ offset_top = 264.99997
 offset_right = 144.00003
 offset_bottom = 303.99997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "reward:"
@@ -454,7 +479,9 @@ offset_right = 143.75
 offset_bottom = 327.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
+theme_override_font_sizes/font_size = 28
 text = "$5"
 
 [node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1041059558]
@@ -465,6 +492,8 @@ offset_top = 133.75003
 offset_right = 147.75
 offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[2] Roomba"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/roomba/Label" unique_id=1476050079]
@@ -485,11 +514,12 @@ texture = ExtResource("14_4472j")
 light_mask = 1024
 layout_mode = 0
 offset_left = -23.75
-offset_top = 313.74997
+offset_top = 318.74997
 offset_right = 131.25
-offset_bottom = 380.74997
+offset_bottom = 385.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
+theme_override_colors/font_color = Color(0.84, 0.54599994, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 2
 
@@ -527,7 +557,9 @@ offset_top = 161.25002
 offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_colors/font_color = Color(0.3741391, 0.37413934, 0.37413922, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 horizontal_alignment = 2
@@ -540,7 +572,8 @@ offset_top = 203.74997
 offset_right = 144.00003
 offset_bottom = 242.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "required:"
@@ -548,14 +581,14 @@ text = "required:"
 [node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1313087822]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.0
+offset_left = -15.000015
 offset_top = 225.00003
-offset_right = 144.0
+offset_right = 139.99998
 offset_bottom = 259.56003
 theme = ExtResource("4_lwywj")
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("8_f4aoa")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("11_6n1o6")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[color=green]5       [color=cyan]5       [color=red]5"
 scroll_active = false
@@ -569,7 +602,8 @@ offset_top = 264.99997
 offset_right = 144.00003
 offset_bottom = 303.99997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "reward:"
@@ -583,7 +617,9 @@ offset_right = 143.75
 offset_bottom = 327.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
+theme_override_font_sizes/font_size = 28
 text = "$5"
 
 [node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=2036904356]
@@ -594,6 +630,8 @@ offset_top = 133.75003
 offset_right = 147.75
 offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[3] Flying Car"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/flying_car/Label" unique_id=322690436]
@@ -614,11 +652,13 @@ texture = ExtResource("15_4472j")
 light_mask = 1024
 layout_mode = 0
 offset_left = -23.75
-offset_top = 313.74997
+offset_top = 318.74997
 offset_right = 131.25
-offset_bottom = 380.74997
+offset_bottom = 385.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
+theme_override_colors/font_color = Color(0.84, 0.54599994, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("25_13gon")
 theme_override_font_sizes/font_size = 20
 text = "+ 50% bonus!"
 horizontal_alignment = 2
@@ -657,7 +697,9 @@ offset_top = 161.25002
 offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_colors/font_color = Color(0.3741391, 0.37413934, 0.37413922, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 horizontal_alignment = 2
@@ -670,7 +712,8 @@ offset_top = 203.74997
 offset_right = 144.00003
 offset_bottom = 242.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "required:"
@@ -678,14 +721,14 @@ text = "required:"
 [node name="costScrap" type="RichTextLabel" parent="worldObjects/inator/inventionMenu/segway" unique_id=1494044648]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.0
+offset_left = -15.000015
 offset_top = 225.00003
-offset_right = 144.0
+offset_right = 139.99998
 offset_bottom = 259.56003
 theme = ExtResource("4_lwywj")
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("8_f4aoa")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("11_6n1o6")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[color=green]5       [color=cyan]5       [color=red]5"
 scroll_active = false
@@ -699,7 +742,8 @@ offset_top = 264.99997
 offset_right = 144.00003
 offset_bottom = 303.99997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_f4aoa")
 theme_override_font_sizes/font_size = 20
 text = "reward:"
@@ -713,7 +757,9 @@ offset_right = 143.75
 offset_bottom = 327.74997
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
+theme_override_font_sizes/font_size = 28
 text = "$5"
 
 [node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=625220052]
@@ -724,6 +770,8 @@ offset_top = 133.75003
 offset_right = 147.75
 offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[4] Segway"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/segway/Label" unique_id=1238471484]
@@ -744,11 +792,13 @@ texture = ExtResource("16_4472j")
 light_mask = 1024
 layout_mode = 0
 offset_left = -23.75
-offset_top = 313.74997
+offset_top = 318.74997
 offset_right = 131.25
-offset_bottom = 380.74997
+offset_bottom = 385.74997
 theme = ExtResource("4_lwywj")
-theme_override_colors/font_color = Color(1, 0.906639, 0.41991943, 1)
+theme_override_colors/font_color = Color(0.84, 0.54599994, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("25_13gon")
 theme_override_font_sizes/font_size = 20
 text = "+ 25% bonus!"
 horizontal_alignment = 2
@@ -758,18 +808,31 @@ position = Vector2(641, 291.00003)
 scale = Vector2(6.5, 6.5)
 texture = ExtResource("10_up2ol")
 
+[node name="Label" type="Label" parent="worldObjects/inator/inventionMenu" unique_id=2054924868]
+offset_left = 203.0
+offset_top = 43.0
+offset_right = 394.0
+offset_bottom = 82.0
+theme = ExtResource("4_lwywj")
+theme_override_fonts/font = ExtResource("8_f4aoa")
+text = "      Exit"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/Label" unique_id=970685028]
+material = ExtResource("12_7djgm")
+position = Vector2(4.4999886, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
+
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator" unique_id=1831429868]
 material = SubResource("ShaderMaterial_lunea")
 position = Vector2(97, 96)
 scale = Vector2(4, 4)
 texture = ExtResource("12_mibl4")
 
-[node name="car" type="ColorRect" parent="worldObjects" unique_id=497847455]
-offset_left = 904.0
-offset_top = -191.0
-offset_right = 1088.0
-offset_bottom = -79.0
-color = Color(0.02040301, 0.2529714, 1, 1)
+[node name="car" type="Node2D" parent="worldObjects" unique_id=929789585]
+position = Vector2(904, -191)
 
 [node name="enterCar" type="Area2D" parent="worldObjects/car" unique_id=1397110705]
 script = ExtResource("15_0lg5m")
@@ -807,6 +870,12 @@ autoplay = "e"
 position = Vector2(166, -199)
 shape = SubResource("RectangleShape2D_lwywj")
 
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/car" unique_id=1912069446]
+position = Vector2(48, 45)
+scale = Vector2(2, 2)
+texture = ExtResource("21_3kgif")
+script = SubResource("GDScript_3kgif")
+
 [node name="upgrades" type="Node2D" parent="worldObjects" unique_id=877311930]
 position = Vector2(679, -144)
 script = ExtResource("6_y62yp")
@@ -840,7 +909,6 @@ animation = &"e"
 autoplay = "e"
 
 [node name="upgradesMenu" type="CanvasLayer" parent="worldObjects/upgrades" unique_id=438066860]
-visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("6_ibh7t")
@@ -872,6 +940,8 @@ offset_top = 142.0
 offset_right = 169.0
 offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[1] Gravity Gloves"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves/Label" unique_id=649086988]
@@ -890,6 +960,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 
@@ -901,6 +973,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "$ 5"
 horizontal_alignment = 2
@@ -950,6 +1024,8 @@ offset_top = 142.0
 offset_right = 179.0
 offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[2] Exoskeleton Arm"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm/Label" unique_id=1035522327]
@@ -968,6 +1044,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 
@@ -979,6 +1057,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "$ 5"
 horizontal_alignment = 2
@@ -1028,6 +1108,8 @@ offset_top = 142.0
 offset_right = 204.0
 offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 text = "[3] WD40"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/wd40/Label" unique_id=529335070]
@@ -1046,6 +1128,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "x 0"
 
@@ -1057,6 +1141,8 @@ offset_right = 132.0
 offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("11_6n1o6")
 theme_override_font_sizes/font_size = 24
 text = "$ 5"
 horizontal_alignment = 2
@@ -1100,6 +1186,23 @@ light_mask = 1024
 position = Vector2(641, 291.00003)
 scale = Vector2(6.5, 6.5)
 texture = ExtResource("10_up2ol")
+
+[node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu" unique_id=530131577]
+offset_left = 203.0
+offset_top = 43.0
+offset_right = 394.0
+offset_bottom = 82.0
+theme = ExtResource("4_lwywj")
+theme_override_fonts/font = ExtResource("8_f4aoa")
+text = "      Exit"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/Label" unique_id=1390625326]
+material = ExtResource("12_7djgm")
+position = Vector2(4.4999886, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
 
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades" unique_id=1910524512]
 material = SubResource("ShaderMaterial_d3s0h")
@@ -1255,15 +1358,17 @@ value = 5.42
 show_percentage = false
 
 [node name="targetText" type="Label" parent="CanvasLayer/hud" unique_id=812755774]
-offset_left = 676.0
-offset_top = -77.33332
+offset_left = 627.49994
+offset_top = -108.33332
 offset_right = 836.0
-offset_bottom = -25.33332
+offset_bottom = -38.33332
+pivot_offset = Vector2(153.99994, 33.166656)
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
 theme_override_font_sizes/font_size = 24
 text = "$0 / $1000"
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/hud" unique_id=1195456889]
 z_index = -1

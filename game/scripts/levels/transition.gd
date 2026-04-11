@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 	)
 	if time_sec < 0:
 		if Prst.previousScene == "levelBase":
-			get_tree().change_scene_to_file("res://scenes/levels/tasma.tscn")
+			if get_tree():
+				get_tree().change_scene_to_file("res://scenes/levels/tasma.tscn")
 		if Prst.previousScene == "tasma":
-			get_tree().change_scene_to_file("res://scenes/levels/levelBase.tscn")
+			if get_tree():
+				get_tree().change_scene_to_file("res://scenes/levels/levelBase.tscn")

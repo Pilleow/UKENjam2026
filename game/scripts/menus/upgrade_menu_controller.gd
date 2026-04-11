@@ -13,6 +13,7 @@ var should_hide = true
 var state_change_time = 0
 
 func _ready() -> void:
+	updateItemInfo()
 	Prst.connect("upgradeBought", updateItemInfo)
 	hide()
 	hideMenu()
@@ -46,8 +47,10 @@ func toggleMenu():
 func updateItemInfo():
 	for item in availableUpgrades:
 		var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
+		nd.get_node("count").text = "x" + str(Prst.upgradesBought[item])
 		nd.get_node("cost").text = "$" + str(Prst.upgradePrice[item] as int)
 		var rwd = nd.get_node("reward")
+		print(rwd.get_path())
 		var parts = rwd.text.split(' ')
 		parts[1] = str(int(Prst.tasmaProperties[Util.upgradeToProperty[item]] * 100 - 100.0)) + "%"
 		rwd.text = ' '.join(parts)
@@ -74,10 +77,9 @@ func buy_upgrade(item):
 	if -1 == Prst.remove_money(Prst.upgradePrice[item]):
 		print("nie masz money")
 		return
-	var count = Prst.invent(item)
+	var count = Prst.upgrade(item)
 	var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
 	nd.get_node("count").text = "x" + str(count)
-	Prst.upgrade(item)
 	Prst.moneyUpdated.emit()
 
 func canBuyAnything():

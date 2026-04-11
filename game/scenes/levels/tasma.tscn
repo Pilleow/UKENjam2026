@@ -15,8 +15,17 @@
 [ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="10_wajn4"]
 [ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="11_wajn4"]
 [ext_resource type="Texture2D" uid="uid://s1qvbddmad1b" path="res://assets/sprites/fabryka/background_fabryka.png" id="12_3i3pe"]
+[ext_resource type="Texture2D" uid="uid://ycglotnjqi6u" path="res://sprites2D/złom/gier_tier1.png" id="13_kgo5w"]
+[ext_resource type="Texture2D" uid="uid://btrtqtwyingo5" path="res://sprites2D/złom/gier_tier2.png" id="14_i2yes"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="15_06kmb"]
+[ext_resource type="Texture2D" uid="uid://dm1e0o1snpux6" path="res://sprites2D/złom/gier_tier3.png" id="15_cgpjj"]
+[ext_resource type="Texture2D" uid="uid://d1rrehld1edve" path="res://sprites2D/złom/key_tier1.png" id="16_cfnb1"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="16_t6rly"]
+[ext_resource type="Texture2D" uid="uid://dxj5juycty36u" path="res://sprites2D/złom/key_tier2.png" id="17_251yr"]
+[ext_resource type="Texture2D" uid="uid://cssq503mqw8al" path="res://sprites2D/złom/key_tier3.png" id="18_iwgu5"]
+[ext_resource type="Texture2D" uid="uid://d1u6t0yld7nxx" path="res://sprites2D/złom/screw_tier1.png" id="19_da6po"]
+[ext_resource type="Texture2D" uid="uid://fx2aw7qqx4vl" path="res://sprites2D/złom/screw_tier2.png" id="20_tq3wo"]
+[ext_resource type="Texture2D" uid="uid://d1pufshwr610" path="res://sprites2D/złom/screw_tier3.png" id="21_bp5ut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uuwi"]
 bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
@@ -120,7 +129,7 @@ offset_bottom = 64.0
 theme = ExtResource("7_p22pe")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
-text = "Discord scrap"
+text = "Discard scrap"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint3" unique_id=957181247]
 material = ExtResource("9_3i3pe")
@@ -147,6 +156,72 @@ scale = Vector2(3, 3)
 sprite_frames = ExtResource("10_wajn4")
 animation = &"d"
 autoplay = "d"
+
+[node name="ColorRect" type="ColorRect" parent="hints" unique_id=1287515827]
+z_index = -52
+offset_left = 701.0
+offset_top = 405.0
+offset_right = 835.0
+offset_bottom = 571.0
+rotation = 0.11883435
+color = Color(0.91161156, 0.8784394, 0.87003845, 1)
+
+[node name="hint6" type="Label" parent="hints/ColorRect" unique_id=1858394192]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 296.0
+offset_bottom = 44.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+text = "Save only"
+
+[node name="GierTier1" type="Sprite2D" parent="hints/ColorRect" unique_id=774110831]
+position = Vector2(31, 63)
+scale = Vector2(2, 2)
+texture = ExtResource("13_kgo5w")
+
+[node name="GierTier2" type="Sprite2D" parent="hints/ColorRect" unique_id=450127708]
+position = Vector2(31, 102)
+scale = Vector2(2, 2)
+texture = ExtResource("14_i2yes")
+
+[node name="GierTier3" type="Sprite2D" parent="hints/ColorRect" unique_id=1985115992]
+position = Vector2(31, 137)
+scale = Vector2(2, 2)
+texture = ExtResource("15_cgpjj")
+
+[node name="KeyTier1" type="Sprite2D" parent="hints/ColorRect" unique_id=1925612117]
+position = Vector2(65, 63)
+scale = Vector2(2, 2)
+texture = ExtResource("16_cfnb1")
+
+[node name="KeyTier2" type="Sprite2D" parent="hints/ColorRect" unique_id=2083776510]
+position = Vector2(65, 102)
+scale = Vector2(2, 2)
+texture = ExtResource("17_251yr")
+
+[node name="KeyTier3" type="Sprite2D" parent="hints/ColorRect" unique_id=394887353]
+position = Vector2(65, 137)
+scale = Vector2(2, 2)
+texture = ExtResource("18_iwgu5")
+
+[node name="ScrewTier1" type="Sprite2D" parent="hints/ColorRect" unique_id=1978013692]
+position = Vector2(98, 63)
+scale = Vector2(2, 2)
+texture = ExtResource("19_da6po")
+
+[node name="ScrewTier2" type="Sprite2D" parent="hints/ColorRect" unique_id=1124817711]
+position = Vector2(98, 102)
+scale = Vector2(2, 2)
+texture = ExtResource("20_tq3wo")
+
+[node name="ScrewTier3" type="Sprite2D" parent="hints/ColorRect" unique_id=571355206]
+position = Vector2(98, 137)
+scale = Vector2(2, 2)
+texture = ExtResource("21_bp5ut")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1117061065]
 

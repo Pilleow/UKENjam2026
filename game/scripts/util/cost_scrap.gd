@@ -7,6 +7,6 @@ func _ready():
 
 func update():
 	var prices = Prst.inventPrice[Util.nameToInvent[get_parent().name]]
-	text = ''
+	text = ' '
 	for i in range(3):
-		text += "[color=" + Util.colors['scrap_t' + str(i)] + "]" + str(prices[i]) + '    '
+		text += "[color=" + Util.colors['scrap_t' + str(i)] + "]" + str(prices[i]) + '   '

@@ -9,4 +9,5 @@ func _input(event: InputEvent) -> void:
 	Prst.started = true
 	$CanvasLayer/FadeIn.start()
 	await $CanvasLayer/FadeIn.timeout
-	get_tree().change_scene_to_file(nextscene)
+	if get_tree():
+		get_tree().change_scene_to_file(nextscene)

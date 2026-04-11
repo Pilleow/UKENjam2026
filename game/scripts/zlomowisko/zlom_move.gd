@@ -5,11 +5,12 @@ var speed;
 @onready var reka = tasma.get_node("Reka")
 
 @export var textures: Array[Texture2D]
-@onready var sprite:Sprite2D = $Sprite2D;
+@onready var sprite: Sprite2D = $Sprite2D;
 
 var max_capacity_pack = 0;
 var max_capacity_bin = 0;
 var tier = -1;
+var timeout = 5.5
 
 #var target_pos = Vector2(100,600);
 
@@ -76,8 +77,11 @@ func _process(delta: float) -> void:
 		position.x += (speed * Prst.tasmaProperties['roll_speed']) * delta;
 
 func _physics_process(delta: float) -> void:
+	if position.x > 1280:
+		queue_free()
 	if not catched:
-		if position.x > 1500:
+		timeout -= delta
+		if timeout < 0:
 			queue_free()
 	else:		
 		
@@ -111,15 +115,13 @@ func _physics_process(delta: float) -> void:
 				queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("reka"):
-	#position = Vector2(0,0);
-	if catched:
-		return
-	for o in get_tree().get_nodes_in_group("scrap"):
-		if o.catched and not o.done:
+	if body.is_in_group("reka"):
+		if catched:
 			return
-	reka.close()
-	catched = true
-	sprite.offset.y = 0
-	reka.enable_w = false;
-	pass # Replace with function body.
+		for o in get_tree().get_nodes_in_group("scrap"):
+			if o.catched and not o.done:
+				return
+		reka.close()
+		catched = true
+		sprite.offset.y = 0
+		reka.enable_w = false;

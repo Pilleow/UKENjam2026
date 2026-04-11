@@ -11,4 +11,5 @@ func _input(event):
 		var f = get_node(fadein)
 		f.start()
 		await f.timeout
-		get_tree().change_scene_to_file(next_scene)
+		if get_tree():
+			get_tree().change_scene_to_file(next_scene)

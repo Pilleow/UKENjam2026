@@ -7,15 +7,15 @@ extends Node
 var started = false
 var defaults = {
 	"invested": 0,
-	"money": 10,
+	"money": 3,
 	"tasmaProperties": {
 		"arm_reach": 1.0,
 		"arm_speed": 1.0,
 		"roll_speed": 1.0
 	},
 	"upgradePrice": {
-		Util.UPGRADES.GRAVITY_GLOVES: 3,
-		Util.UPGRADES.EXOSKELETON: 3,
+		Util.UPGRADES.GRAVITY_GLOVES: 5,
+		Util.UPGRADES.EXOSKELETON: 4,
 		Util.UPGRADES.WD40: 3
 	},
 	"scrapAmount": [
@@ -42,7 +42,7 @@ var previousScene = ""
 # invest 
 
 signal investmentChanged
-var investTarget = 10
+var investTarget = 100
 var invested = 0
 
 func investMoney(v=1):
@@ -53,7 +53,8 @@ func investMoney(v=1):
 	investmentChanged.emit()
 	if started and invested >= investTarget:
 		started = false
-		get_tree().change_scene_to_file("res://scenes/levels/win.tscn")
+		if get_tree():
+			get_tree().change_scene_to_file("res://scenes/levels/win.tscn")
 	return invested
 
 # time
@@ -74,12 +75,13 @@ func decrement_time(delta):
 		timeUpdated.emit()
 		if started and timeLeftSec < 0:
 			started = false
-			get_tree().change_scene_to_file("res://scenes/levels/fail.tscn")
+			if get_tree():
+				get_tree().change_scene_to_file("res://scenes/levels/fail.tscn")
 
 # money
 
 signal moneyUpdated
-var money: int = 6
+var money: int = 622
 
 func add_money(v):
 	money += v
@@ -103,14 +105,14 @@ var upgradesBought = {
 	Util.UPGRADES.WD40: 0
 }
 var upgradePrice = {
-	Util.UPGRADES.GRAVITY_GLOVES: 3,
-	Util.UPGRADES.EXOSKELETON: 3,
+	Util.UPGRADES.GRAVITY_GLOVES: 5,
+	Util.UPGRADES.EXOSKELETON: 4,
 	Util.UPGRADES.WD40: 3
 }
 var upgradeEffectValues = {
-	Util.UPGRADES.GRAVITY_GLOVES: 0.2,
-	Util.UPGRADES.EXOSKELETON: 0.25,
-	Util.UPGRADES.WD40: 0.15,
+	Util.UPGRADES.GRAVITY_GLOVES: 0.3,
+	Util.UPGRADES.EXOSKELETON: 0.3,
+	Util.UPGRADES.WD40: 0.25,
 }
 var tasmaProperties = {
 	"arm_reach": 1.0,
@@ -120,7 +122,7 @@ var tasmaProperties = {
 
 func upgrade(u):
 	upgradesBought[u] += 1
-	upgradePrice[u] = ceil(1.2 * upgradePrice[u])
+	upgradePrice[u] = ceil(1.7 * upgradePrice[u])
 	match u:
 		Util.UPGRADES.GRAVITY_GLOVES:
 			tasmaProperties['arm_reach'] += upgradeEffectValues[u]
