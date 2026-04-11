@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://hoiwg2fdxvcr" path="res://assets/images/bg/tutorial.png" id="1_rnyxf"]
 [ext_resource type="Script" uid="uid://5vsgiw6tuejk" path="res://scripts/util/startGame.gd" id="1_uu0hj"]
-[ext_resource type="Texture2D" uid="uid://uopdli1dakj" path="res://assets/sprites/ui/flying_car.png" id="2_1wklo"]
 [ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_u4f7j"]
 [ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="3_1wklo"]
 [ext_resource type="Texture2D" uid="uid://bj0ce0orvqjg" path="res://assets/sprites/ATM.png" id="3_7ac3l"]
@@ -11,6 +10,26 @@
 [ext_resource type="Texture2D" uid="uid://csbhw2i7ri4xe" path="res://assets/sprites/PC.png" id="5_3e81p"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="9_g7bfq"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="10_4a02d"]
+[ext_resource type="Texture2D" uid="uid://ycglotnjqi6u" path="res://sprites2D/złom/gier_tier1.png" id="11_q462l"]
+[ext_resource type="Texture2D" uid="uid://btrtqtwyingo5" path="res://sprites2D/złom/gier_tier2.png" id="12_cyy7t"]
+[ext_resource type="Texture2D" uid="uid://dm1e0o1snpux6" path="res://sprites2D/złom/gier_tier3.png" id="13_1x4hw"]
+[ext_resource type="Texture2D" uid="uid://d1rrehld1edve" path="res://sprites2D/złom/key_tier1.png" id="14_hux2q"]
+[ext_resource type="Texture2D" uid="uid://dxj5juycty36u" path="res://sprites2D/złom/key_tier2.png" id="15_n1gr0"]
+[ext_resource type="Texture2D" uid="uid://cssq503mqw8al" path="res://sprites2D/złom/key_tier3.png" id="16_gwe3r"]
+[ext_resource type="Texture2D" uid="uid://d1u6t0yld7nxx" path="res://sprites2D/złom/screw_tier1.png" id="17_m6rdq"]
+[ext_resource type="Texture2D" uid="uid://fx2aw7qqx4vl" path="res://sprites2D/złom/screw_tier2.png" id="18_f1d85"]
+[ext_resource type="Texture2D" uid="uid://d1pufshwr610" path="res://sprites2D/złom/screw_tier3.png" id="19_4rqrb"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="20_cyy7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x4hw"]
+shader = ExtResource("20_cyy7t")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.0750000035625
+shader_parameter/vignette_amount = 0.550000026125
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.03
 
 [node name="Tutorial" type="Node2D" unique_id=1783201073]
 script = ExtResource("1_uu0hj")
@@ -19,15 +38,9 @@ script = ExtResource("1_uu0hj")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1577702799]
 z_index = -98
-position = Vector2(642, 360.5)
+position = Vector2(642, 361)
 scale = Vector2(1.0125, 1.0125)
 texture = ExtResource("1_rnyxf")
-
-[node name="FlyingCar" type="Sprite2D" parent="CanvasLayer" unique_id=534323108]
-position = Vector2(145, 456.00003)
-rotation = -0.1850049
-scale = Vector2(6, 6)
-texture = ExtResource("2_1wklo")
 
 [node name="FlyingCar2" type="Sprite2D" parent="CanvasLayer" unique_id=447991739]
 position = Vector2(1087, 459)
@@ -64,11 +77,12 @@ autoplay = "e"
 [node name="Label2" type="Label" parent="CanvasLayer" unique_id=1768352896]
 light_mask = 1024
 offset_left = 1.0
-offset_top = 176.0
+offset_top = 169.0
 offset_right = 1281.0
-offset_bottom = 257.0
+offset_bottom = 250.0
 theme = ExtResource("2_u4f7j")
-text = "You have a limited amount of time to invest money into buying an FCC certificate. "
+text = "A clean, seamless future built on innovation and perfect design is within reach…
+Earn the required funds and obtain your FCC certification to bring the future to life!"
 horizontal_alignment = 1
 
 [node name="Label7" type="Label" parent="CanvasLayer" unique_id=149985240]
@@ -78,9 +92,8 @@ offset_top = 48.0
 offset_right = 1281.0
 offset_bottom = 171.0
 theme = ExtResource("2_u4f7j")
-text = "Hello! Your amazing inventions breathe new life into the people, 
-but the Government wants you to comply with state law. 
-"
+text = "Your inventions once promised to reshape the world and usher in a brighter tomorrow,
+but the Government now kindly insists you comply with federal law."
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="CanvasLayer" unique_id=1928376048]
@@ -91,6 +104,39 @@ offset_right = 220.0
 offset_bottom = 577.0
 theme = ExtResource("2_u4f7j")
 text = "Get scrap"
+horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="CanvasLayer" unique_id=1630823951]
+light_mask = 1024
+offset_left = 218.0
+offset_top = 374.0
+offset_right = 380.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+theme_override_font_sizes/font_size = 96
+text = "→"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="CanvasLayer" unique_id=951983830]
+light_mask = 1024
+offset_left = 550.0
+offset_top = 374.0
+offset_right = 712.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+theme_override_font_sizes/font_size = 96
+text = "→"
+horizontal_alignment = 1
+
+[node name="Label10" type="Label" parent="CanvasLayer" unique_id=1548285928]
+light_mask = 1024
+offset_left = 884.0
+offset_top = 374.0
+offset_right = 1046.0
+offset_bottom = 577.0
+theme = ExtResource("2_u4f7j")
+theme_override_font_sizes/font_size = 96
+text = "→"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="CanvasLayer" unique_id=1561845588]
@@ -141,3 +187,65 @@ offset_right = 1328.0
 offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("10_4a02d")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1660044515]
+z_index = -52
+offset_left = 88.0
+offset_top = 357.0
+offset_right = 222.0
+offset_bottom = 498.7969
+rotation = 0.11883435
+color = Color(0.91161156, 0.8784394, 0.87003845, 1)
+
+[node name="GierTier1" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=153373597]
+position = Vector2(32.506783, 31.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("11_q462l")
+
+[node name="GierTier2" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=2126242974]
+position = Vector2(32.506783, 70.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("12_cyy7t")
+
+[node name="GierTier3" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=21115648]
+position = Vector2(32.506783, 105.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("13_1x4hw")
+
+[node name="KeyTier1" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=1074393598]
+position = Vector2(66.50678, 31.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("14_hux2q")
+
+[node name="KeyTier2" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=159558509]
+position = Vector2(66.50678, 70.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("15_n1gr0")
+
+[node name="KeyTier3" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=408767528]
+position = Vector2(66.50678, 105.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("16_gwe3r")
+
+[node name="ScrewTier1" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=1946798513]
+position = Vector2(99.50678, 31.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("17_m6rdq")
+
+[node name="ScrewTier2" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=552192558]
+position = Vector2(99.50678, 70.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("18_f1d85")
+
+[node name="ScrewTier3" type="Sprite2D" parent="CanvasLayer/ColorRect" unique_id=2017539879]
+position = Vector2(99.50678, 105.381546)
+scale = Vector2(2, 2)
+texture = ExtResource("19_4rqrb")
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=399775963]
+z_index = -78
+material = SubResource("ShaderMaterial_1x4hw")
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 1294.0
+offset_bottom = 734.0

@@ -7,6 +7,17 @@
 [ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="4_acpmy"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="6_acpmy"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="7_xl4dv"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="8_xl4dv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5k482"]
+shader = ExtResource("8_xl4dv")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.0750000035625
+shader_parameter/vignette_amount = 0.550000026125
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.03
 
 [node name="Fail" type="Node2D" unique_id=1436357930]
 script = ExtResource("1_qvg2t")
@@ -68,3 +79,11 @@ offset_right = 1328.0
 offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_xl4dv")
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=865755216]
+z_index = -78
+material = SubResource("ShaderMaterial_5k482")
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 1294.0
+offset_bottom = 734.0

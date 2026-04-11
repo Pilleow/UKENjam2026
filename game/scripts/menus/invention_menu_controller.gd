@@ -29,6 +29,7 @@ func _process(delta):
 
 func showMenu():
 	show()
+	Music.turnLPFon()
 	updateRewards()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = false
@@ -39,6 +40,7 @@ func updateRewards():
 		reward.text = "$" + str(int(Prst.calcThingValue(item)))
 
 func hideMenu():
+	Music.turnLPFoff()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = true
 	

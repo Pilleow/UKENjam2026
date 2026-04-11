@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var init_time_sec:float = 1.5
+@export var init_time_sec:float = 1
 var time_sec: float
 
 func _ready() -> void:
@@ -8,7 +8,7 @@ func _ready() -> void:
 	time_sec = init_time_sec
 	if Prst.previousScene == "levelBase":
 		$CanvasLayer/Label.text = "Going to scrapyard"
-	if Prst.previousScene == "tasma":
+	if Prst.previousScene == "walkTasma":
 		$CanvasLayer/Label.text = "Going to base"
 
 func _process(delta: float) -> void:
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	if time_sec < 0:
 		if Prst.previousScene == "levelBase":
 			if get_tree():
-				get_tree().change_scene_to_file("res://scenes/levels/tasma.tscn")
-		if Prst.previousScene == "tasma":
+				get_tree().change_scene_to_file("res://scenes/levels/walkTasma.tscn")
+		if Prst.previousScene == "walkTasma":
 			if get_tree():
 				get_tree().change_scene_to_file("res://scenes/levels/levelBase.tscn")

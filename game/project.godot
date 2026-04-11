@@ -16,16 +16,21 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.44433686, 0.55504483, 1, 1)
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://d3p6onew80nrs"
+
 [autoload]
 
 Util="*uid://cijilg2tk23hc"
 Prst="*uid://bu1j7a614gaaa"
+Music="*uid://bo35di0kx2wda"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=2
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]
@@ -85,3 +90,4 @@ textures/canvas_textures/default_texture_filter=3
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

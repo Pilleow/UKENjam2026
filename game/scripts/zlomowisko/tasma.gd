@@ -115,4 +115,4 @@ func _input(event: InputEvent) -> void:
 		$CanvasLayer/FadeIn.start()
 		await $CanvasLayer/FadeIn.timeout
 		if get_tree():
-			get_tree().change_scene_to_file("res://scenes/levels/transition.tscn")
+			get_tree().change_scene_to_file("res://scenes/levels/walkTasma.tscn")

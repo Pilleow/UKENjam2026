@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 	if not started:
 		return
 	color.a = max(0, 1-Util.ease_out_expo(t*3))
-	print(color.a)
 	if color.a >= 1:
 		timeout.emit()
 	t -= delta

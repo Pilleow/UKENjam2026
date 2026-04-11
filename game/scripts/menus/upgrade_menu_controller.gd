@@ -30,11 +30,13 @@ func _process(delta):
 
 func showMenu():
 	updateItemInfo()
+	Music.turnLPFon()
 	show()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = false
 
 func hideMenu():
+	Music.turnLPFoff()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = true
 
@@ -50,7 +52,6 @@ func updateItemInfo():
 		nd.get_node("count").text = "x" + str(Prst.upgradesBought[item])
 		nd.get_node("cost").text = "$" + str(Prst.upgradePrice[item] as int)
 		var rwd = nd.get_node("reward")
-		print(rwd.get_path())
 		var parts = rwd.text.split(' ')
 		parts[1] = str(int(Prst.tasmaProperties[Util.upgradeToProperty[item]] * 100 - 100.0)) + "%"
 		rwd.text = ' '.join(parts)

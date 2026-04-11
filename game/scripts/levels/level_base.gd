@@ -1,12 +1,6 @@
 extends Node2D
 
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta: float) -> void:
-	pass
-
-
-# ten skrypt powinien byc uzywany w kazdym poziomie jako bazowy skrypt
+func _ready():
+	if not Prst.counting_down:
+		$Player.global_position = Vector2(398, -266)

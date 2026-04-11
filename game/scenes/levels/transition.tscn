@@ -5,12 +5,23 @@
 [ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="3_bq4rx"]
 [ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="4_018hm"]
 [ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="5_f66wd"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="6_quey3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7v06"]
 bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k1ds"]
 bg_color = Color(1, 0.7921569, 0.40392157, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq4rx"]
+shader = ExtResource("6_quey3")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.0750000035625
+shader_parameter/vignette_amount = 0.550000026125
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.03
 
 [node name="Transition" type="Node2D" unique_id=1207163743]
 script = ExtResource("1_vh8v0")
@@ -108,3 +119,11 @@ theme_override_fonts/font = ExtResource("5_f66wd")
 theme_override_font_sizes/font_size = 64
 text = "Going to scrapyard"
 horizontal_alignment = 1
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=286104798]
+z_index = 96
+material = SubResource("ShaderMaterial_bq4rx")
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 1292.0
+offset_bottom = 730.0

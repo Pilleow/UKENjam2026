@@ -26,12 +26,23 @@
 [ext_resource type="Texture2D" uid="uid://d1u6t0yld7nxx" path="res://sprites2D/złom/screw_tier1.png" id="19_da6po"]
 [ext_resource type="Texture2D" uid="uid://fx2aw7qqx4vl" path="res://sprites2D/złom/screw_tier2.png" id="20_tq3wo"]
 [ext_resource type="Texture2D" uid="uid://d1pufshwr610" path="res://sprites2D/złom/screw_tier3.png" id="21_bp5ut"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="26_txw6p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uuwi"]
 bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06kmb"]
 bg_color = Color(1, 0.7921569, 0.40392157, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wffvj"]
+shader = ExtResource("26_txw6p")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.0750000035625
+shader_parameter/vignette_amount = 0.550000026125
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.03
 
 [node name="Node2D" type="Node2D" unique_id=1682711517]
 script = ExtResource("1_ix6v0")
@@ -330,6 +341,14 @@ offset_right = 1328.0
 offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("16_t6rly")
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1041788760]
+z_index = -78
+material = SubResource("ShaderMaterial_wffvj")
+offset_left = -3.999999
+offset_top = -8.0
+offset_right = 1291.0
+offset_bottom = 728.0
 
 [node name="limit" type="Node2D" parent="." unique_id=2112386353]
 z_index = 22

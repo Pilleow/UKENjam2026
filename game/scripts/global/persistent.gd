@@ -5,9 +5,11 @@ extends Node
 # game state
 
 var started = false
+var counting_down = false
+
 var defaults = {
 	"invested": 0,
-	"money": 3,
+	"money": 2,
 	"tasmaProperties": {
 		"arm_reach": 1.0,
 		"arm_speed": 1.0,
@@ -27,13 +29,24 @@ var defaults = {
 }
 
 func restart():
-	timeLeftSecRaw = defaults['timeLeft']
+	timeLeftSecRaw = defaults['timeLeft'] - 0.5
 	timeLeftSec = defaults['timeLeft']
 	invested = defaults['invested']
 	money = defaults['money']
 	tasmaProperties = defaults['tasmaProperties']
 	upgradePrice = defaults['upgradePrice']
 	scrap_amount = defaults['scrapAmount']
+	upgradesBought = {
+		Util.UPGRADES.GRAVITY_GLOVES: 0,
+		Util.UPGRADES.EXOSKELETON: 0,
+		Util.UPGRADES.WD40: 0
+	}
+	inventedThings = {
+		Util.INVENTIONS.HOVERBOARD: 0,
+		Util.INVENTIONS.ROOMBA: 0,
+		Util.INVENTIONS.FLYING_CAR: 0,
+		Util.INVENTIONS.SEGWAY: 0
+	}
 
 # scenes
 
@@ -53,6 +66,8 @@ func investMoney(v=1):
 	investmentChanged.emit()
 	if started and invested >= investTarget:
 		started = false
+		counting_down = false
+		Music.turnHPFon()
 		if get_tree():
 			get_tree().change_scene_to_file("res://scenes/levels/win.tscn")
 	return invested
@@ -60,12 +75,12 @@ func investMoney(v=1):
 # time
 
 signal timeUpdated
-var timeLeftSecRaw: float = 400.0
+var timeLeftSecRaw: float = 400.0 - 0.5
 var timeLeftSec: int = timeLeftSecRaw
 
 func _process(delta: float) -> void:
-	if started:
-		decrement_time(delta)
+	if started and counting_down:
+			decrement_time(delta)
 
 func decrement_time(delta):
 	timeLeftSecRaw -= delta
@@ -75,6 +90,8 @@ func decrement_time(delta):
 		timeUpdated.emit()
 		if started and timeLeftSec < 0:
 			started = false
+			counting_down = false
+			Music.turnHPFon()
 			if get_tree():
 				get_tree().change_scene_to_file("res://scenes/levels/fail.tscn")
 

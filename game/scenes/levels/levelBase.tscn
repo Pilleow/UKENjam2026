@@ -47,6 +47,7 @@
 [ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="34_d3s0h"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="42_raufl"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="43_va3cv"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="46_yo4lv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etbdm"]
 size = Vector2(1312, 148)
@@ -71,11 +72,38 @@ shader_parameter/blink_speed = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwywj"]
 size = Vector2(71, 804)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6n1o6"]
+shader = ExtResource("16_lunea")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 2.0
+shader_parameter/outline_enabled = true
+shader_parameter/blink_enabled = true
+shader_parameter/blink_speed = 7.0
+
 [sub_resource type="GDScript" id="GDScript_3kgif"]
 script/source = "extends Sprite2D
 
+@export_node_path() var inatorMenuP
+@export_node_path() var upgradesMenuP
+
+var inatorMenu
+var upgradesMenu
+
 func _process(delta: float) -> void:
 	offset.y = sin(Time.get_ticks_msec() / 1000.0) * 2.0
+
+func _ready() -> void:
+	upgradesMenu = get_node(upgradesMenuP)
+	inatorMenu = get_node(inatorMenuP)
+	Prst.connect(\"moneyUpdated\", tryBlink)
+	Prst.connect(\"scrapUpdated\", tryBlink)
+	tryBlink()
+
+func tryBlink():
+	var enterCar = get_parent().get_node(\"enterCar\")
+	if not Prst.counting_down:
+		enterCar.blocked = (Prst.money > 0 or inatorMenu.canBuyAnything() or upgradesMenu.canBuyAnything())
+	material.set_shader_parameter(\"outline_enabled\", not enterCar.blocked)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_237x2"]
@@ -148,6 +176,31 @@ bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1h7lg"]
 bg_color = Color(1, 0.7921569, 0.40392157, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oyvbb"]
+shader = ExtResource("46_yo4lv")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.0750000035625
+shader_parameter/vignette_amount = 0.550000026125
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.03
+
+[sub_resource type="GDScript" id="GDScript_6n1o6"]
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	if Prst.counting_down:
+		hide()
+		return
+	show()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"a\") or event.is_action_pressed(\"d\"):
+		hide()
+"
 
 [node name="levelBase" type="Node2D" unique_id=1697035239]
 script = ExtResource("1_etbdm")
@@ -231,6 +284,7 @@ position = Vector2(147.5, -163)
 shape = SubResource("RectangleShape2D_x5he8")
 
 [node name="inventionMenu" type="CanvasLayer" parent="worldObjects/inator" unique_id=1957729965]
+layer = 2
 visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
@@ -854,6 +908,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
 text = "Get more scrap"
 script = ExtResource("2_x5he8")
+hideOnInteract = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/car/enterCar/label3" unique_id=1856548982]
 material = ExtResource("12_7djgm")
@@ -871,10 +926,13 @@ position = Vector2(166, -199)
 shape = SubResource("RectangleShape2D_lwywj")
 
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/car" unique_id=1912069446]
+material = SubResource("ShaderMaterial_6n1o6")
 position = Vector2(48, 45)
 scale = Vector2(2, 2)
 texture = ExtResource("21_3kgif")
 script = SubResource("GDScript_3kgif")
+inatorMenuP = NodePath("../../inator/inventionMenu")
+upgradesMenuP = NodePath("../../upgrades/upgradesMenu")
 
 [node name="upgrades" type="Node2D" parent="worldObjects" unique_id=877311930]
 position = Vector2(679, -144)
@@ -1252,7 +1310,7 @@ texture = ExtResource("17_qcump")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1843173054 groups=["player"]]
 z_index = 1
-position = Vector2(608, -266)
+position = Vector2(808, -266)
 script = ExtResource("2_5074v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=444729725]
@@ -1291,11 +1349,10 @@ texture_scale = 0.3
 z_index = 6
 position = Vector2(-10, -41)
 zoom = Vector2(1.5, 1.5)
-limit_left = -36
+limit_left = 80
 limit_top = -537
-limit_right = 1246
+limit_right = 1128
 limit_bottom = 10000424
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_left_margin = 0.1
@@ -1305,6 +1362,7 @@ drag_bottom_margin = 0.1
 script = ExtResource("13_eabmc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1798229525]
+layer = 2
 
 [node name="hud" type="Node2D" parent="CanvasLayer" unique_id=2036686332]
 z_index = 1
@@ -1347,6 +1405,18 @@ theme_override_font_sizes/font_size = 32
 text = "500"
 horizontal_alignment = 2
 
+[node name="hint" type="Label" parent="CanvasLayer/hud/time" unique_id=2002642101]
+layout_mode = 0
+offset_left = -98.33333
+offset_top = -9.166665
+offset_right = 99.66667
+offset_bottom = 42.833336
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_color = Color(0.62906003, 0.4402, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+text = "paused until drive"
+horizontal_alignment = 2
+
 [node name="target" type="ProgressBar" parent="CanvasLayer/hud" unique_id=647973358]
 offset_left = 41.0
 offset_top = -72.33332
@@ -1377,6 +1447,14 @@ offset_right = 1160.0
 offset_bottom = 40.0
 color = Color(0.13444316, 0.13120636, 0.1602942, 0.3254902)
 
+[node name="CRT" type="ColorRect" parent="CanvasLayer/hud" unique_id=1893689943]
+z_index = -78
+material = SubResource("ShaderMaterial_oyvbb")
+offset_left = 15.833333
+offset_top = -582.5
+offset_right = 1090.0
+offset_bottom = 25.833313
+
 [node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=90964333]
 visible = false
 offset_left = -23.0
@@ -1396,10 +1474,8 @@ offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("43_va3cv")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=203336946]
-color = Color(0.89708984, 0.8970898, 0.89708984, 1)
-
 [node name="hints" type="Node2D" parent="." unique_id=1697570317]
+position = Vector2(0, -5)
 
 [node name="Label" type="Label" parent="hints" unique_id=706354645]
 offset_left = 143.0
@@ -1448,3 +1524,45 @@ theme_override_fonts/font = ExtResource("34_d3s0h")
 theme_override_font_sizes/font_size = 16
 text = "Get more scrap"
 horizontal_alignment = 1
+
+[node name="movement" type="Node2D" parent="hints" unique_id=1892424904]
+visible = false
+script = SubResource("GDScript_6n1o6")
+
+[node name="label3" type="Label" parent="hints/movement" unique_id=1400614151]
+offset_left = 322.0
+offset_top = -405.0
+offset_right = 526.0
+offset_bottom = -366.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Go left"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/movement/label3" unique_id=1682893479]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"a"
+autoplay = "a"
+
+[node name="label4" type="Label" parent="hints/movement" unique_id=701250584]
+offset_left = 518.0
+offset_top = -405.0
+offset_right = 722.0
+offset_bottom = -366.0
+theme = ExtResource("4_lwywj")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Go right"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/movement/label4" unique_id=675372154]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"d"
+autoplay = "d"

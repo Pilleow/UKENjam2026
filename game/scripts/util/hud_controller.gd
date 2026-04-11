@@ -35,8 +35,17 @@ func updateMoney():
 	
 	
 func updateTime():
-	$time.text = str(Prst.timeLeftSec)
-	
+	if Prst.counting_down:
+		$time.text = str(Prst.timeLeftSec)
+		if $time/hint:
+			$time/hint.hide()
+		$time.add_theme_color_override("font_color", "#e29eff")
+	else:
+		$time.text = str(Prst.timeLeftSec)
+		if $time/hint:
+			$time/hint.show()
+		$time.add_theme_color_override("font_color", "#a070b5")
+
 func updateInvest():
 	var tarM = max(0, min(Prst.investTarget, Prst.invested))
 	$target.value = tarM
