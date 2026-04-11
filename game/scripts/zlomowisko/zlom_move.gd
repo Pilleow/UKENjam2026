@@ -4,40 +4,75 @@ extends Area2D
 @onready var tasma = get_parent()
 @onready var reka = tasma.get_node("Reka")
 
-var target_pos = Vector2(100,600);
+var max_capacity_pack = 0;
+var max_capacity_bin = 0;
+
+#var target_pos = Vector2(100,600);
 
 var catched = false;
 var done = false;
 var block_size = 50;
 
+#0 -smietnik, 1-koszy
+var indx = 0
+func _ready() -> void:
+	max_capacity_bin = tasma.max_capacity_bin;
+	max_capacity_pack = tasma.max_capacity_pack;
+
+# ind : 0-smietnik, 1-koszyk
+func _position_scrap(ind: int) -> void:
+	reka.decision = true;
+	
+	if ind == 0:
+		reka.targetblock_pos = tasma.smietnik_pos;
+		#position = tasma.smietnik_pos;
+		tasma.current_cap[ind] += 1;
+		
+	elif ind == 1:
+		reka.targetblock_pos = tasma.koszyk_pos;
+		#position = tasma.koszyk_pos;
+		#tasma.koszyk_pos.y += block_size;
+		tasma.current_cap[ind] += 1;
+
+func _is_scrap_done(ind: int)->void:
+	
+	#if position.x == tasma.koszyk_pos.x and position.y != tasma.spawn_pos.y:
+		##tasma.koszyk_pos.y += block_size;
+		##to wylacza grap effect 
+		#done = true;
+		
+	if not reka.decision and not reka.ready2grab :
+		
+		if ind == 0:
+			tasma.smietnik_pos.y -= block_size;
+		else:
+			tasma.koszyk_pos.y -= block_size
+
+		done = true;
+		print("scrap is done") 
 	
 func _physics_process(delta: float) -> void:
 	if not catched:
 		position.x += speed*delta;
 	else:		
 		# wrzucic do kosza
-		
 		if not done:
 			
-			reka.decision = false;
+			#reka.decision = false;
 			position = reka.position;
 			position.y -= block_size;
-			#position = target_pos;
-			if Input.is_action_just_pressed("a"):
-				print("zlom rozjebany!")
-				position = tasma.smietnik_pos;
-				tasma.smietnik_pos.y += block_size;
-				done = true;
-				reka.decision = true;
-
-			#kupic 
-			if Input.is_action_just_pressed("d"):
-				print("zlom kupiony!")
-				position = tasma.koszyk_pos;
-				tasma.koszyk_pos.y += block_size;
-				reka.decision = true;
-				done = true;
-		
+			#position = target_pos;  
+			
+			# gracz wywala zlom
+			if Input.is_action_just_pressed("a") and tasma.current_cap[0] <= max_capacity_bin:
+				indx = 0;
+				_position_scrap(indx);
+			# gracz kupuje zlom
+			if Input.is_action_just_pressed("d")  and tasma.current_cap[1] <= max_capacity_pack:
+				indx = 1
+				_position_scrap(1);
+  
+			_is_scrap_done(indx);
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	queue_free();
 	pass # Replace with function body.
@@ -45,7 +80,6 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	#if body.is_in_group("reka"):
 	#position = Vector2(0,0);
-	print("catched");
+	#print("catched");
 	catched = true;
-		
 	pass # Replace with function body.
