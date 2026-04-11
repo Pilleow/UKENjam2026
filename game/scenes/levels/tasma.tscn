@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bsb1o5ptig671"]
+
+[ext_resource type="Script" uid="uid://bhyg5tiqfybwx" path="res://scripts/zlomowisko/tasma.gd" id="1_ix6v0"]
+[ext_resource type="PackedScene" uid="uid://c2553ps1o82hn" path="res://scenes/zlomowisko_obj/zlom_player.tscn" id="2_ix6v0"]
+[ext_resource type="PackedScene" uid="uid://copu8t37l0cvu" path="res://scenes/zlomowisko_obj/smiec.tscn" id="2_nuabo"]
+[ext_resource type="PackedScene" uid="uid://2h1cewgrtrh0" path="res://scenes/zlomowisko_obj/zlom1.tscn" id="4_70uve"]
+[ext_resource type="PackedScene" uid="uid://c70mcd2a0pps" path="res://scenes/zlomowisko_obj/zlom2.tscn" id="5_oc4kh"]
+[ext_resource type="PackedScene" uid="uid://bm1axi874vhyk" path="res://scenes/zlomowisko_obj/zlom3.tscn" id="6_m4luk"]
+
+[node name="Node2D" type="Node2D" unique_id=1682711517]
+script = ExtResource("1_ix6v0")
+"ręka" = ExtResource("2_ix6v0")
+smiec = ExtResource("2_nuabo")
+zlom1 = ExtResource("4_70uve")
+zlom2 = ExtResource("5_oc4kh")
+zlom3 = ExtResource("6_m4luk")
+
+[node name="smietnik" type="ColorRect" parent="." unique_id=1350322914]
+offset_left = 8.0
+offset_top = 344.0
+offset_right = 328.0
+offset_bottom = 608.0
+color = Color(1, 0.14117648, 1, 1)
+
+[node name="plecak" type="ColorRect" parent="." unique_id=907211997]
+offset_left = 816.0
+offset_top = 336.0
+offset_right = 1136.0
+offset_bottom = 600.0
+color = Color(0.18039216, 0, 1, 1)
+
+[node name="lab_kosz" type="Label" parent="." unique_id=369915152]
+offset_left = 136.0
+offset_top = 608.0
+offset_right = 200.0
+offset_bottom = 640.0
+text = "bin [a] 	"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="lab_grap" type="Label" parent="." unique_id=1966262369]
+offset_left = 528.0
+offset_top = 608.0
+offset_right = 624.0
+offset_bottom = 640.0
+text = "grap [space]"
+
+[node name="lab_plecak" type="Label" parent="." unique_id=1678199618]
+offset_left = 936.0
+offset_top = 600.0
+offset_right = 1040.0
+offset_bottom = 640.0
+text = "backback [d] 	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tasma" type="ColorRect" parent="." unique_id=2106096501]
+light_mask = 3
+visibility_layer = 6
+offset_top = 112.0
+offset_right = 1152.0
+offset_bottom = 264.0
+
+[node name="Reka" parent="." unique_id=1730410172 instance=ExtResource("2_ix6v0")]
+position = Vector2(576, 344)
