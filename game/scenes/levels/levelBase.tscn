@@ -12,16 +12,23 @@
 [ext_resource type="Script" uid="uid://cyxg88jagdy1y" path="res://scripts/menus/upgrade_menu_controller.gd" id="6_ibh7t"]
 [ext_resource type="Script" uid="uid://c5705uoc20fl2" path="res://scripts/entities/upgrades.gd" id="6_y62yp"]
 [ext_resource type="Script" uid="uid://di2ns3nbp5opo" path="res://scripts/util/hud_controller.gd" id="7_hh3ij"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="7_o3hnr"]
 [ext_resource type="Script" uid="uid://bxngydaja33x7" path="res://scripts/util/no_money.gd" id="8_2am8w"]
 [ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="8_f4aoa"]
 [ext_resource type="Script" uid="uid://7kuu0sqx4wda" path="res://scripts/menus/invest_controller.gd" id="10_4dlwg"]
 [ext_resource type="Texture2D" uid="uid://cnh2xelmsfntw" path="res://assets/images/bg/PCscreen.png" id="10_up2ol"]
+[ext_resource type="Texture2D" uid="uid://cn84mr2nohtn1" path="res://assets/sprites/upgrades/hoverboard.png" id="11_2bpy4"]
+[ext_resource type="Texture2D" uid="uid://xbhavlcy41h2" path="res://assets/sprites/upgrades/segway.png" id="11_jnkfi"]
+[ext_resource type="Texture2D" uid="uid://bmg8mk773hfed" path="res://assets/sprites/upgrades/roomba.png" id="11_l2aut"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="12_7djgm"]
 [ext_resource type="Texture2D" uid="uid://n4ot648poajq" path="res://assets/sprites/inator.png" id="12_mibl4"]
 [ext_resource type="Script" uid="uid://rmtlv2jjbw72" path="res://scripts/util/camera_2d.gd" id="13_eabmc"]
 [ext_resource type="Texture2D" uid="uid://sx0g5l5x5d0h" path="res://assets/sprites/player/idle1.png" id="14_jovm7"]
+[ext_resource type="Script" uid="uid://kvgah1cpck2j" path="res://scripts/entities/enter_car.gd" id="15_0lg5m"]
 [ext_resource type="Texture2D" uid="uid://csbhw2i7ri4xe" path="res://assets/sprites/PC.png" id="15_3p487"]
 [ext_resource type="Texture2D" uid="uid://cwk0fqredpmk4" path="res://assets/sprites/player/idle2.png" id="15_r78wi"]
 [ext_resource type="Texture2D" uid="uid://begfswcpoliwr" path="res://assets/sprites/player/idle3.png" id="16_6cr3c"]
+[ext_resource type="Texture2D" uid="uid://clfbieaygx4og" path="res://assets/sprites/upgrades/wd40.png" id="16_32ujg"]
 [ext_resource type="Shader" uid="uid://dvr7jb5hn8t60" path="res://scripts/util/levelBase.gdshader" id="16_lunea"]
 [ext_resource type="Texture2D" uid="uid://c734shgkkucrf" path="res://assets/sprites/player/idle4.png" id="17_ao2s2"]
 [ext_resource type="Script" uid="uid://pf08bexgtsul" path="res://scripts/entities/invest.gd" id="17_lunea"]
@@ -184,16 +191,25 @@ shape = SubResource("RectangleShape2D_eamg3")
 debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
 
 [node name="label4" type="Label" parent="worldObjects/inator/invent" unique_id=950057680]
-offset_left = -756.0
+offset_left = -735.99994
 offset_top = -137.0
-offset_right = -472.0
-offset_bottom = -105.0
+offset_right = -451.99994
+offset_bottom = -98.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
-text = "[E] Build inventions"
+text = "Build inventions"
 script = ExtResource("2_x5he8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/invent/label4" unique_id=1249027418]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/inator" unique_id=810846364]
 
@@ -223,7 +239,7 @@ offset_top = 164.0
 offset_right = 533.0
 offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8970898, 0.89708984, 0.89708966, 1)
 
 [node name="Label" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1336434883]
 light_mask = 1024
@@ -235,17 +251,26 @@ offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
 text = "[1] Hoverboard"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/hoverboard/Label" unique_id=759306368]
+material = ExtResource("12_7djgm")
+position = Vector2(6.2499847, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"1"
+autoplay = "1"
+
 [node name="count" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=743744329]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.250015
+offset_left = -22.500015
 offset_top = 161.25002
-offset_right = 143.74998
+offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
 text = "x 0"
+horizontal_alignment = 2
 
 [node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=973169774]
 light_mask = 1024
@@ -303,6 +328,7 @@ text = "$5"
 
 [node name="noMoney7" type="Label" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1109971181]
 light_mask = 1024
+z_index = 4
 layout_mode = 0
 offset_left = -16.0
 offset_top = 102.99998
@@ -316,6 +342,12 @@ text = "can't afford!"
 horizontal_alignment = 1
 script = ExtResource("8_2am8w")
 
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu/hoverboard" unique_id=1927530557]
+position = Vector2(63.75, 69.999985)
+rotation = -0.13844575
+scale = Vector2(7, 7)
+texture = ExtResource("11_2bpy4")
+
 [node name="roomba" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=437922270]
 light_mask = 1024
 z_index = 1
@@ -324,10 +356,11 @@ offset_top = 164.0
 offset_right = 683.0
 offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8970898, 0.89708984, 0.89708966, 1)
 
 [node name="noMoney6" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=694203028]
 light_mask = 1024
+z_index = 4
 layout_mode = 0
 offset_left = -14.0000305
 offset_top = 103.00001
@@ -344,14 +377,15 @@ script = ExtResource("8_2am8w")
 [node name="count" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=1971429353]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.250015
+offset_left = -22.500015
 offset_top = 161.25002
-offset_right = 143.74998
+offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
 text = "x 0"
+horizontal_alignment = 2
 
 [node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/roomba" unique_id=379139424]
 light_mask = 1024
@@ -417,6 +451,20 @@ offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
 text = "[2] Roomba"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/roomba/Label" unique_id=1476050079]
+material = ExtResource("12_7djgm")
+position = Vector2(9.999985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"2"
+autoplay = "2"
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu/roomba" unique_id=396788142]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(5.9999995, 5.9999995)
+texture = ExtResource("11_l2aut")
+
 [node name="flying_car" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=1816765723]
 light_mask = 1024
 z_index = 1
@@ -425,10 +473,11 @@ offset_top = 164.0
 offset_right = 833.0
 offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8970898, 0.89708984, 0.89708966, 1)
 
 [node name="noMoney5" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=453325322]
 light_mask = 1024
+z_index = 4
 layout_mode = 0
 offset_left = -16.000015
 offset_top = 103.0
@@ -445,14 +494,15 @@ script = ExtResource("8_2am8w")
 [node name="count" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1854607554]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.250015
+offset_left = -22.500015
 offset_top = 161.25002
-offset_right = 143.74998
+offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
 text = "x 0"
+horizontal_alignment = 2
 
 [node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=207952828]
 light_mask = 1024
@@ -518,6 +568,19 @@ offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
 text = "[3] Flying Car"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/flying_car/Label" unique_id=322690436]
+material = ExtResource("12_7djgm")
+position = Vector2(9.999985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"3"
+autoplay = "3"
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu/flying_car" unique_id=1848481232]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(5.9999995, 5.9999995)
+
 [node name="segway" type="ColorRect" parent="worldObjects/inator/inventionMenu" unique_id=101088052]
 light_mask = 1024
 z_index = 1
@@ -526,10 +589,11 @@ offset_top = 164.0
 offset_right = 983.0
 offset_bottom = 296.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8970898, 0.89708984, 0.89708966, 1)
 
 [node name="noMoney4" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=520750024]
 light_mask = 1024
+z_index = 4
 layout_mode = 0
 offset_left = -14.999939
 offset_top = 102.99999
@@ -546,14 +610,15 @@ script = ExtResource("8_2am8w")
 [node name="count" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=896246542]
 light_mask = 1024
 layout_mode = 0
-offset_left = -11.250015
+offset_left = -22.500015
 offset_top = 161.25002
-offset_right = 143.74998
+offset_right = 132.49998
 offset_bottom = 200.25002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
 text = "x 0"
+horizontal_alignment = 2
 
 [node name="hint" type="Label" parent="worldObjects/inator/inventionMenu/segway" unique_id=2086519168]
 light_mask = 1024
@@ -619,6 +684,20 @@ offset_bottom = 172.75003
 theme = ExtResource("4_lwywj")
 text = "[4] Segway"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/inator/inventionMenu/segway/Label" unique_id=1238471484]
+material = ExtResource("12_7djgm")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"4"
+autoplay = "4"
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu/segway" unique_id=392239547]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(5.9999995, 5.9999995)
+texture = ExtResource("11_jnkfi")
+
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/inator/inventionMenu" unique_id=547664769]
 position = Vector2(641, 291.00003)
 scale = Vector2(6.5, 6.5)
@@ -638,6 +717,7 @@ offset_bottom = -79.0
 color = Color(0.02040301, 0.2529714, 1, 1)
 
 [node name="enterCar" type="Area2D" parent="worldObjects/car" unique_id=1397110705]
+script = ExtResource("15_0lg5m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldObjects/car/enterCar" unique_id=1453596078]
 position = Vector2(82, 58.5)
@@ -645,16 +725,25 @@ shape = SubResource("RectangleShape2D_eamg3")
 debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
 
 [node name="label3" type="Label" parent="worldObjects/car/enterCar" unique_id=712428697]
-offset_left = -31.0
-offset_top = -110.0
-offset_right = 173.0
-offset_bottom = -78.0
+offset_left = -9.0
+offset_top = -102.0
+offset_right = 195.0
+offset_bottom = -63.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
-text = "[E] Get more scrap"
+text = "Get more scrap"
 script = ExtResource("2_x5he8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/car/enterCar/label3" unique_id=1856548982]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="worldObjects/car" unique_id=1065630198]
 
@@ -674,16 +763,25 @@ shape = SubResource("RectangleShape2D_237x2")
 debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
 
 [node name="label2" type="Label" parent="worldObjects/upgrades/showUpgrades" unique_id=1538757185]
-offset_left = -48.0
-offset_top = -105.0
-offset_right = 156.0
-offset_bottom = -73.0
+offset_left = -19.0
+offset_top = -106.0
+offset_right = 185.0
+offset_bottom = -67.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
-text = "[E] Buy upgrades"
+text = "Buy upgrades"
 script = ExtResource("2_x5he8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/showUpgrades/label2" unique_id=1812812507]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
 
 [node name="upgradesMenu" type="CanvasLayer" parent="worldObjects/upgrades" unique_id=438066860]
 visible = false
@@ -709,7 +807,7 @@ offset_top = 158.0
 offset_right = 544.0
 offset_bottom = 290.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8980392, 0.8980392, 0.8980392, 1)
 
 [node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=29667949]
 layout_mode = 0
@@ -720,12 +818,20 @@ offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
 text = "[1] Gravity Gloves"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves/Label" unique_id=649086988]
+material = ExtResource("12_7djgm")
+position = Vector2(4.4999886, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"1"
+autoplay = "1"
+
 [node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=1353303593]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
@@ -734,9 +840,9 @@ text = "x 0"
 [node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=274545134]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
 theme_override_font_sizes/font_size = 24
@@ -744,6 +850,7 @@ text = "$ 5"
 horizontal_alignment = 2
 
 [node name="noMoney3" type="Label" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=608514571]
+z_index = 4
 layout_mode = 0
 offset_left = -15.000061
 offset_top = 96.00001
@@ -765,7 +872,7 @@ offset_top = 158.0
 offset_right = 760.0
 offset_bottom = 290.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8980392, 0.8980392, 0.8980392, 1)
 
 [node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=113043050]
 layout_mode = 0
@@ -776,12 +883,20 @@ offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
 text = "[2] Exoskeleton Arm"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm/Label" unique_id=1035522327]
+material = ExtResource("12_7djgm")
+position = Vector2(10.250034, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"3"
+autoplay = "2"
+
 [node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1404080673]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
@@ -790,9 +905,9 @@ text = "x 0"
 [node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=543890264]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
 theme_override_font_sizes/font_size = 24
@@ -800,6 +915,7 @@ text = "$ 5"
 horizontal_alignment = 2
 
 [node name="noMoney2" type="Label" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1700111302]
+z_index = 4
 layout_mode = 0
 offset_left = -16.00003
 offset_top = 96.0
@@ -821,7 +937,7 @@ offset_top = 158.0
 offset_right = 985.0
 offset_bottom = 290.0
 scale = Vector2(0.8, 0.8)
-color = Color(0, 0, 0, 1)
+color = Color(0.8980392, 0.8980392, 0.8980392, 1)
 
 [node name="Label" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1923081087]
 layout_mode = 0
@@ -832,12 +948,20 @@ offset_bottom = 167.0
 theme = ExtResource("4_lwywj")
 text = "[3] WD40"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/upgrades/upgradesMenu/wd40/Label" unique_id=529335070]
+material = ExtResource("12_7djgm")
+position = Vector2(11.999989, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"3"
+autoplay = "3"
+
 [node name="count" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=963925929]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(0.65689826, 0.65689826, 0.65689826, 1)
 theme_override_font_sizes/font_size = 24
@@ -846,16 +970,23 @@ text = "x 0"
 [node name="cost" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=1071143729]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 171.0
+offset_top = 180.00002
 offset_right = 132.0
-offset_bottom = 196.0
+offset_bottom = 219.00002
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_color = Color(1, 0.7921569, 0.40392157, 1)
 theme_override_font_sizes/font_size = 24
 text = "$ 5"
 horizontal_alignment = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=712427377]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(5.9999995, 5.9999995)
+texture = ExtResource("16_32ujg")
+
 [node name="noMoney" type="Label" parent="worldObjects/upgrades/upgradesMenu/wd40" unique_id=2069370290]
+z_index = 4
 layout_mode = 0
 offset_left = -16.000004
 offset_top = 95.999985
@@ -894,17 +1025,26 @@ shape = SubResource("RectangleShape2D_237x2")
 debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
 
 [node name="label" type="Label" parent="worldObjects/invest/invest" unique_id=1348702298]
-offset_left = -44.0
-offset_top = -111.0
-offset_right = 160.0
-offset_bottom = -79.0
+offset_left = -1.0
+offset_top = -112.0
+offset_right = 203.0
+offset_bottom = -73.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 14
-text = "[E] Invest in goal"
+text = "Invest in goal"
 script = ExtResource("2_x5he8")
 hideOnInteract = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="worldObjects/invest/invest/label" unique_id=1891094399]
+material = ExtResource("12_7djgm")
+position = Vector2(-35.047054, 19.740936)
+rotation = -0.024172671
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_o3hnr")
+animation = &"e"
+autoplay = "e"
 
 [node name="Sprite2D" type="Sprite2D" parent="worldObjects/invest" unique_id=153559944]
 material = SubResource("ShaderMaterial_7djgm")

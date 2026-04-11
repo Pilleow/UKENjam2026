@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://sd3icwfxc2oy"]
+
+[ext_resource type="Script" uid="uid://c2m1qs1tqmbc8" path="res://scripts/levels/transition.gd" id="1_vh8v0"]
+[ext_resource type="Script" uid="uid://di2ns3nbp5opo" path="res://scripts/util/hud_controller.gd" id="2_quey3"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="3_bq4rx"]
+[ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="4_018hm"]
+[ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="5_f66wd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7v06"]
+bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k1ds"]
+bg_color = Color(1, 0.7921569, 0.40392157, 1)
+
+[node name="Transition" type="Node2D" unique_id=1207163743]
+script = ExtResource("1_vh8v0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=280291567]
+
+[node name="hud" type="Node2D" parent="CanvasLayer" unique_id=167733740]
+z_index = 1
+position = Vector2(-22, 693)
+scale = Vector2(1.2, 1.2)
+script = ExtResource("2_quey3")
+
+[node name="scrap" type="RichTextLabel" parent="CanvasLayer/hud" unique_id=669711465]
+offset_left = 19.166656
+offset_top = -157.5
+offset_right = 1081.6665
+offset_bottom = 20.0
+theme = ExtResource("3_bq4rx")
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("4_018hm")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "0"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="CanvasLayer/hud" unique_id=1081223817]
+offset_left = 19.166626
+offset_top = -225.83333
+offset_right = 1084.1665
+offset_bottom = -148.83333
+theme = ExtResource("3_bq4rx")
+theme_override_colors/font_color = Color(0.88634247, 0.6206796, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "500"
+horizontal_alignment = 1
+
+[node name="money" type="Label" parent="CanvasLayer/hud" unique_id=290443975]
+visible = false
+offset_left = 957.49994
+offset_top = -36.50001
+offset_right = 1058.5
+offset_bottom = 15.499989
+theme = ExtResource("3_bq4rx")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 32
+text = "$0"
+horizontal_alignment = 2
+
+[node name="target" type="ProgressBar" parent="CanvasLayer/hud" unique_id=69627872]
+visible = false
+offset_left = 41.0
+offset_top = -72.33332
+offset_right = 841.0
+offset_bottom = -45.33332
+theme_override_styles/background = SubResource("StyleBoxFlat_f7v06")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6k1ds")
+value = 5.42
+show_percentage = false
+
+[node name="targetText" type="Label" parent="CanvasLayer/hud" unique_id=1382304853]
+visible = false
+offset_left = 676.0
+offset_top = -77.33332
+offset_right = 836.0
+offset_bottom = -25.33332
+theme = ExtResource("3_bq4rx")
+theme_override_colors/font_color = Color(0.99999994, 0.79094154, 0.40483838, 1)
+theme_override_font_sizes/font_size = 24
+text = "$0 / $1000"
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1618582211]
+offset_left = -93.0
+offset_top = -65.0
+offset_right = 1479.0
+offset_bottom = 835.0
+color = Color(0, 0, 0, 1)
+
+[node name="overlay" type="ColorRect" parent="CanvasLayer" unique_id=1598713817]
+visible = false
+z_index = 23
+offset_left = -93.0
+offset_top = -65.0
+offset_right = 1479.0
+offset_bottom = 835.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=645197492]
+offset_top = 116.0
+offset_right = 1279.0
+offset_bottom = 218.0
+theme = ExtResource("3_bq4rx")
+theme_override_fonts/font = ExtResource("5_f66wd")
+theme_override_font_sizes/font_size = 64
+text = "Going to scrapyard"
+horizontal_alignment = 1

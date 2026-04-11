@@ -2,6 +2,10 @@ extends Node
 
 # skrypt globalny przechowujacy wszystkie dane trwałe (takie jak stan gracza, postęp itd.)
 
+# scenes
+
+var previousScene = ""
+
 # invest 
 
 signal investmentChanged
@@ -23,6 +27,9 @@ var timeLeftSecRaw: float = 360.0
 var timeLeftSec: int = timeLeftSecRaw
 
 func _process(delta: float) -> void:
+	decrement_time(delta)
+
+func decrement_time(delta):
 	timeLeftSecRaw -= delta
 	var timeleftSecPrev = timeLeftSec
 	timeLeftSec = ceil(timeLeftSecRaw)

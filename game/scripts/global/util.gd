@@ -63,6 +63,8 @@ func ease_out_elastic(x: float) -> float:
 		return 0.0
 	if x == 1.0:
 		return 1.0
-	
 	var c4 := (2.0 * PI) / 3.0
 	return pow(2.0, -20.0 * x) * sin((x * 9.0 - 0.75) * c4) + 1.0
+
+func ease_in_out_quint(x: float) -> float:
+	return 16.0 * x * x * x * x * x if x < 0.5 else 1.0 - pow(-2.0 * x + 2.0, 5.0) / 2.0
