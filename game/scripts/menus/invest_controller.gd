@@ -13,7 +13,7 @@ func _input(event: InputEvent) -> void:
 func send_money(hold=0.12):
 	if not send or player not in get_overlapping_bodies():
 		return
-	Prst.investMoney()
+	Prst.investMoney(1, hold)
 	var gt = get_tree()
 	if not gt:
 		return

@@ -37,12 +37,12 @@ func updateMoney():
 func updateTime():
 	if Prst.counting_down:
 		$time.text = str(Prst.timeLeftSec)
-		if $time/hint:
+		if $time.get_node("hint"):
 			$time/hint.hide()
 		$time.add_theme_color_override("font_color", "#e29eff")
 	else:
 		$time.text = str(Prst.timeLeftSec)
-		if $time/hint:
+		if $time.get_node("hint"):
 			$time/hint.show()
 		$time.add_theme_color_override("font_color", "#a070b5")
 

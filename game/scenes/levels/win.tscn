@@ -10,15 +10,16 @@
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="7_kai3b"]
 [ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="9_hhbke"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_re60i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhbke"]
 shader = ExtResource("9_hhbke")
 shader_parameter/resolution = Vector2(640, 360)
 shader_parameter/scan_line_amount = 0.18000000855
-shader_parameter/warp_amount = 0.0750000035625
-shader_parameter/vignette_amount = 0.550000026125
-shader_parameter/vignette_intensity = 1.0
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/grille_amount = 1.0
-shader_parameter/brightness_boost = 1.03
+shader_parameter/brightness_boost = 1.050000002375
 
 [node name="Win" type="Node2D" unique_id=984637642]
 script = ExtResource("1_nn6dr")
@@ -86,10 +87,10 @@ offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_kai3b")
 
-[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1889315436]
-z_index = -78
-material = SubResource("ShaderMaterial_re60i")
-offset_left = -10.0
-offset_top = -12.0
-offset_right = 1294.0
-offset_bottom = 734.0
+[node name="CRT2" type="ColorRect" parent="CanvasLayer" unique_id=1872411448]
+z_index = 788
+material = SubResource("ShaderMaterial_hhbke")
+offset_left = -13.999999
+offset_top = -14.0
+offset_right = 1300.0
+offset_bottom = 736.0

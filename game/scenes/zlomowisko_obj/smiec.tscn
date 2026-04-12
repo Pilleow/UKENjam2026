@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://c2c52wafywuu1" path="res://sprites2D/złom/trash1.png" id="2_cu4im"]
 [ext_resource type="Texture2D" uid="uid://b4jelae3l46y" path="res://sprites2D/złom/trash2.png" id="3_a0g8m"]
 [ext_resource type="Texture2D" uid="uid://covuvaltaec05" path="res://sprites2D/złom/trash3.png" id="4_bgc24"]
+[ext_resource type="Texture2D" uid="uid://dnstoclnkum4" path="res://sprites2D/złom/trash4.png" id="5_uyguc"]
+[ext_resource type="Texture2D" uid="uid://ds5amnp2u458t" path="res://sprites2D/złom/trash5.png" id="6_50fo0"]
+[ext_resource type="Texture2D" uid="uid://4iri7nv4w23c" path="res://sprites2D/złom/trash6.png" id="7_t58on"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm2fb"]
 size = Vector2(96, 48)
 
 [node name="smiec" type="Area2D" unique_id=1313368299]
 script = ExtResource("1_ef8nx")
-textures = Array[Texture2D]([ExtResource("2_cu4im"), ExtResource("3_a0g8m"), ExtResource("4_bgc24")])
+textures = Array[Texture2D]([ExtResource("2_cu4im"), ExtResource("3_a0g8m"), ExtResource("4_bgc24"), ExtResource("5_uyguc"), ExtResource("6_50fo0"), ExtResource("7_t58on")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=325230566]
 shape = SubResource("RectangleShape2D_gm2fb")

@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="game"
-run/main_scene="uid://dbjrcrhh8ubaf"
+run/main_scene="uid://cusof6rqsksea"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=60
 boot_splash/bg_color=Color(0.44433686, 0.55504483, 1, 1)
 config/icon="res://icon.svg"
 
@@ -25,6 +26,7 @@ buses/default_bus_layout="uid://d3p6onew80nrs"
 Util="*uid://cijilg2tk23hc"
 Prst="*uid://bu1j7a614gaaa"
 Music="*uid://bo35di0kx2wda"
+Sound="*uid://bfwe7h8uc28pb"
 
 [display]
 

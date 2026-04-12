@@ -9,7 +9,7 @@ var counting_down = false
 
 var defaults = {
 	"invested": 0,
-	"money": 2,
+	"money": 0,
 	"tasmaProperties": {
 		"arm_reach": 1.0,
 		"arm_speed": 1.0,
@@ -35,7 +35,12 @@ func restart():
 	money = defaults['money']
 	tasmaProperties = defaults['tasmaProperties']
 	upgradePrice = defaults['upgradePrice']
-	scrap_amount = defaults['scrapAmount']
+	scrap_amount = [
+		5,
+		2,
+		1
+	]
+	print(scrap_amount)
 	upgradesBought = {
 		Util.UPGRADES.GRAVITY_GLOVES: 0,
 		Util.UPGRADES.EXOSKELETON: 0,
@@ -47,6 +52,10 @@ func restart():
 		Util.INVENTIONS.FLYING_CAR: 0,
 		Util.INVENTIONS.SEGWAY: 0
 	}
+	investmentChanged.emit()
+	moneyUpdated.emit()
+	scrapUpdated.emit()
+	timeUpdated.emit()
 
 # scenes
 
@@ -55,21 +64,23 @@ var previousScene = ""
 # invest 
 
 signal investmentChanged
-var investTarget = 100
+var investTarget = 100 # 100
 var invested = 0
 
-func investMoney(v=1):
+func investMoney(v=1, h=0.12):
 	if money < v:
 		return -1
+	var m12 = 1 + (Util.map_to_one_to_two(h) - 1) / 1.5
+	Sound.play_random_variation("coin", Sound.default_volume_db, m12 - 0.05, m12 + 0.05)
 	Prst.remove_money(v)
 	invested += v
 	investmentChanged.emit()
 	if started and invested >= investTarget:
 		started = false
 		counting_down = false
-		Music.turnHPFon()
+		Music.stop_all_music(['main'])
 		if get_tree():
-			get_tree().change_scene_to_file("res://scenes/levels/win.tscn")
+			get_tree().change_scene_to_file("res://scenes/levels/cutsceneWin.tscn")
 	return invested
 
 # time
@@ -92,6 +103,7 @@ func decrement_time(delta):
 			started = false
 			counting_down = false
 			Music.turnHPFon()
+			Music.stop_all_music(['main'])
 			if get_tree():
 				get_tree().change_scene_to_file("res://scenes/levels/fail.tscn")
 
@@ -138,6 +150,7 @@ var tasmaProperties = {
 }
 
 func upgrade(u):
+	Sound.play_random_variation("buy", 5)
 	upgradesBought[u] += 1
 	upgradePrice[u] = ceil(1.7 * upgradePrice[u])
 	match u:
@@ -180,6 +193,7 @@ func calcThingValue(u):
 	return round(pr)
 
 func invent(u):
+	Sound.play_random_variation("buy", 5)
 	inventedThings[u] += 1
 	thingInvented.emit()
 	return inventedThings[u]

@@ -21,15 +21,16 @@
 [ext_resource type="Texture2D" uid="uid://d1pufshwr610" path="res://sprites2D/złom/screw_tier3.png" id="19_4rqrb"]
 [ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="20_cyy7t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1x4hw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyy7t"]
 shader = ExtResource("20_cyy7t")
 shader_parameter/resolution = Vector2(640, 360)
 shader_parameter/scan_line_amount = 0.18000000855
-shader_parameter/warp_amount = 0.0750000035625
-shader_parameter/vignette_amount = 0.550000026125
-shader_parameter/vignette_intensity = 1.0
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/grille_amount = 1.0
-shader_parameter/brightness_boost = 1.03
+shader_parameter/brightness_boost = 1.050000002375
 
 [node name="Tutorial" type="Node2D" unique_id=1783201073]
 script = ExtResource("1_uu0hj")
@@ -242,10 +243,10 @@ position = Vector2(99.50678, 105.381546)
 scale = Vector2(2, 2)
 texture = ExtResource("19_4rqrb")
 
-[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=399775963]
-z_index = -78
-material = SubResource("ShaderMaterial_1x4hw")
-offset_left = -10.0
-offset_top = -12.0
-offset_right = 1294.0
-offset_bottom = 734.0
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=338170910]
+z_index = 788
+material = SubResource("ShaderMaterial_cyy7t")
+offset_left = -13.999999
+offset_top = -14.0
+offset_right = 1300.0
+offset_bottom = 736.0

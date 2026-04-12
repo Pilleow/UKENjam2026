@@ -9,6 +9,12 @@ var availableUpgrades = [
 	Util.UPGRADES.WD40
 ]
 
+@onready var sprites = [
+	$gravity_gloves/Sprite2D,
+	$exoskeleton_arm/Sprite2D,
+	$wd40/Sprite2D
+]
+
 var should_hide = true
 var state_change_time = 0
 
@@ -17,6 +23,18 @@ func _ready() -> void:
 	Prst.connect("upgradeBought", updateItemInfo)
 	hide()
 	hideMenu()
+
+func _physics_process(delta: float) -> void:
+	for s in sprites:
+		var target = 5
+		if s == $gravity_gloves/Sprite2D:
+			target = 4
+		if s.scale.x > target:
+			s.scale.x = s.scale.x * 0.95
+			s.scale.y = s.scale.y * 0.95
+			if s.scale.x < target:
+				s.scale.x = target
+				s.scale.y = target
 
 func _process(delta):
 	if should_hide and offset.y < 700:
@@ -30,15 +48,20 @@ func _process(delta):
 
 func showMenu():
 	updateItemInfo()
+	Music.play_music("screen", "res://assets/music/monitor_buzz.wav", 0, .2, 5, 1, "SFX")
+	Sound.play_random_variation("monitor_on", 5)
 	Music.turnLPFon()
 	show()
 	state_change_time = Time.get_ticks_msec() / 1000.0
 	should_hide = false
 
 func hideMenu():
-	Music.turnLPFoff()
-	state_change_time = Time.get_ticks_msec() / 1000.0
-	should_hide = true
+	if visible:
+		Music.turnLPFoff()
+		Music.stop_music("screen")
+		Sound.play_random_variation("monitor_off", 5)
+		state_change_time = Time.get_ticks_msec() / 1000.0
+		should_hide = true
 
 func toggleMenu():
 	if visible:
@@ -56,6 +79,7 @@ func updateItemInfo():
 		parts[1] = str(int(Prst.tasmaProperties[Util.upgradeToProperty[item]] * 100 - 100.0)) + "%"
 		rwd.text = ' '.join(parts)
 
+
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
@@ -72,16 +96,23 @@ func _input(event: InputEvent) -> void:
 		if c:
 			break
 		cidx += 1
-	buy_upgrade(availableUpgrades[cidx])
+	if buy_upgrade(availableUpgrades[cidx]):
+		var target = 8
+		if cidx == 0:
+			target = 6.5
+		sprites[cidx].scale.x = target
+		sprites[cidx].scale.y = target
 	
 func buy_upgrade(item):
 	if -1 == Prst.remove_money(Prst.upgradePrice[item]):
 		print("nie masz money")
-		return
+		return false
 	var count = Prst.upgrade(item)
 	var nd = get_tree().current_scene.find_child(Util.upgradeToName[item])
 	nd.get_node("count").text = "x" + str(count)
+	
 	Prst.moneyUpdated.emit()
+	return true
 
 func canBuyAnything():
 	for item in availableUpgrades:

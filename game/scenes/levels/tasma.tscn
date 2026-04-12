@@ -34,15 +34,16 @@ bg_color = Color(1, 0.7921569, 0.40392157, 0.15686275)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06kmb"]
 bg_color = Color(1, 0.7921569, 0.40392157, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wffvj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txw6p"]
 shader = ExtResource("26_txw6p")
 shader_parameter/resolution = Vector2(640, 360)
 shader_parameter/scan_line_amount = 0.18000000855
-shader_parameter/warp_amount = 0.0750000035625
-shader_parameter/vignette_amount = 0.550000026125
-shader_parameter/vignette_intensity = 1.0
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/grille_amount = 1.0
-shader_parameter/brightness_boost = 1.03
+shader_parameter/brightness_boost = 1.050000002375
 
 [node name="Node2D" type="Node2D" unique_id=1682711517]
 script = ExtResource("1_ix6v0")
@@ -95,78 +96,6 @@ position = Vector2(627, 353)
 
 [node name="hints" type="Node2D" parent="." unique_id=1633313468]
 z_index = 29
-
-[node name="hint1" type="Label" parent="hints" unique_id=475448460]
-offset_left = 406.0
-offset_top = 25.0
-offset_right = 690.0
-offset_bottom = 64.0
-theme = ExtResource("7_p22pe")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 14
-text = "Reach out for scrap"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint1" unique_id=401566259]
-material = ExtResource("9_3i3pe")
-position = Vector2(-35.047054, 19.740936)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("10_wajn4")
-animation = &"w"
-autoplay = "w"
-
-[node name="hint2" type="Label" parent="hints" unique_id=325255470]
-offset_left = 808.0
-offset_top = 25.0
-offset_right = 1092.0
-offset_bottom = 64.0
-theme = ExtResource("7_p22pe")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 14
-text = "Go back to base"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint2" unique_id=2029705716]
-material = ExtResource("9_3i3pe")
-position = Vector2(-35.047054, 19.740936)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("10_wajn4")
-animation = &"e"
-autoplay = "e"
-
-[node name="hint3" type="Label" parent="hints" unique_id=1531375179]
-offset_left = 89.0
-offset_top = 25.0
-offset_right = 373.0
-offset_bottom = 64.0
-theme = ExtResource("7_p22pe")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 14
-text = "Discard scrap"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint3" unique_id=957181247]
-material = ExtResource("9_3i3pe")
-position = Vector2(-35.047054, 19.740936)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("10_wajn4")
-animation = &"a"
-autoplay = "a"
-
-[node name="hint4" type="Label" parent="hints" unique_id=1231770742]
-offset_left = 1135.0
-offset_top = 25.0
-offset_right = 1419.0
-offset_bottom = 64.0
-theme = ExtResource("7_p22pe")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 14
-text = "Save scrap"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hints/hint4" unique_id=2079098787]
-material = ExtResource("9_3i3pe")
-position = Vector2(-35.047054, 19.740936)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("10_wajn4")
-animation = &"d"
-autoplay = "d"
 
 [node name="ColorRect" type="ColorRect" parent="hints" unique_id=1287515827]
 z_index = -52
@@ -235,6 +164,82 @@ scale = Vector2(2, 2)
 texture = ExtResource("21_bp5ut")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1117061065]
+
+[node name="hint1" type="Label" parent="CanvasLayer" unique_id=475448460]
+z_index = 572
+offset_left = 406.0
+offset_top = 25.0
+offset_right = 690.0
+offset_bottom = 64.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Reach out for scrap"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/hint1" unique_id=401566259]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"w"
+autoplay = "w"
+
+[node name="hint2" type="Label" parent="CanvasLayer" unique_id=325255470]
+z_index = 572
+offset_left = 808.0
+offset_top = 25.0
+offset_right = 1092.0
+offset_bottom = 64.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Go back to base"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/hint2" unique_id=2029705716]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"e"
+autoplay = "e"
+
+[node name="hint3" type="Label" parent="CanvasLayer" unique_id=1531375179]
+z_index = 572
+offset_left = 89.0
+offset_top = 25.0
+offset_right = 373.0
+offset_bottom = 64.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Discard scrap"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/hint3" unique_id=957181247]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"a"
+autoplay = "a"
+
+[node name="hint4" type="Label" parent="CanvasLayer" unique_id=1231770742]
+z_index = 572
+offset_left = 1135.0
+offset_top = 25.0
+offset_right = 1419.0
+offset_bottom = 64.0
+theme = ExtResource("7_p22pe")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 14
+text = "Save scrap"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/hint4" unique_id=2079098787]
+material = ExtResource("9_3i3pe")
+position = Vector2(-35.047054, 19.740936)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("10_wajn4")
+animation = &"d"
+autoplay = "d"
 
 [node name="hud" type="Node2D" parent="CanvasLayer" unique_id=210873405]
 z_index = 1
@@ -342,13 +347,13 @@ offset_bottom = 743.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("16_t6rly")
 
-[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1041788760]
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1935184732]
 z_index = -78
-material = SubResource("ShaderMaterial_wffvj")
-offset_left = -3.999999
-offset_top = -8.0
-offset_right = 1291.0
-offset_bottom = 728.0
+material = SubResource("ShaderMaterial_txw6p")
+offset_left = -13.999999
+offset_top = -14.0
+offset_right = 1300.0
+offset_bottom = 736.0
 
 [node name="limit" type="Node2D" parent="." unique_id=2112386353]
 z_index = 22

@@ -82,12 +82,14 @@ func _getblock2pos(delta:float,pos: Vector2) -> void:
 			enable_input = true;
 			enable_w = true;
 
-	
+
 func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("w") and enable_w and tasma.current_cap[1] < tasma.max_capacity_pack:
 		#print("clicked!")
-		velocity.y = -speed;	
+		if velocity.y == 0 and global_position.distance_to(Vector2(627, 353)) < 1.0:
+			Sound.play_sound("hand_out", 5)
+		velocity.y = -speed;
 
 	
 	#velocity.y = velocity.move_toward(velocity.y,spe)

@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
+@export var playSound = true
 @export var previousSceneName = "levelBase"
 @export var autoInteract = false
 @export_node_path() var fadein
@@ -15,16 +16,18 @@ func _ready() -> void:
 	
 func _r_def():
 	if autoInteract:
-		$label3.hide()
+		$label3.modulate.a = 0
 
 func on_body_entered(b):
 	if blocked:
-		$label3.text = "Explore first!"
+		$label3.text = "Check everything!"
 		$label3/AnimatedSprite2D.hide()
 	else:
 		$label3.text = "Get more scrap"
 		$label3/AnimatedSprite2D.show()
 	if b == player and autoInteract:
+		if playSound:
+			Sound.play_sound("car1", 4)
 		$CollisionShape2D.disabled = true
 		Prst.previousScene = previousSceneName
 		var f = get_node(fadein)
@@ -35,6 +38,8 @@ func on_body_entered(b):
 
 func _input(event):
 	if player in get_overlapping_bodies() and event.is_action_pressed("interact") and not blocked:
+		if playSound:
+			Sound.play_sound("car1", 4)
 		Prst.previousScene = previousSceneName
 		var f = get_node(fadein)
 		f.start()

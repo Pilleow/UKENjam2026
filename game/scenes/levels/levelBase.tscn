@@ -44,10 +44,14 @@
 [ext_resource type="Texture2D" uid="uid://clfbieaygx4og" path="res://assets/sprites/ui/wd40.png" id="23_4472j"]
 [ext_resource type="Texture2D" uid="uid://7el23u30bexo" path="res://assets/sprites/light.png" id="24_qq0t2"]
 [ext_resource type="FontFile" uid="uid://dhl8ly0ip8c4k" path="res://assets/fonts/sairaStencil/SairaStencil-Bold.ttf" id="25_13gon"]
+[ext_resource type="Texture2D" uid="uid://fx1eid3b21v6" path="res://assets/sprites/fabryka/glove.png" id="26_oyvbb"]
+[ext_resource type="Texture2D" uid="uid://bh7h1ctckl5te" path="res://assets/sprites/ui/exoskelet.png" id="26_yo4lv"]
 [ext_resource type="FontFile" uid="uid://d0tjtefv1k3xf" path="res://assets/fonts/sairaStencil/SairaStencil-Regular.ttf" id="34_d3s0h"]
 [ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="42_raufl"]
 [ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="43_va3cv"]
 [ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="46_yo4lv"]
+[ext_resource type="Texture2D" uid="uid://cdceeumkytl83" path="res://assets/sprites/ui/FCC.png" id="48_3b1kx"]
+[ext_resource type="AudioStream" uid="uid://mj54t3yrdpyv" path="res://assets/music/car buzz.wav" id="51_tv7bf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etbdm"]
 size = Vector2(1312, 148)
@@ -181,11 +185,12 @@ bg_color = Color(1, 0.7921569, 0.40392157, 1)
 shader = ExtResource("46_yo4lv")
 shader_parameter/resolution = Vector2(640, 360)
 shader_parameter/scan_line_amount = 0.18000000855
-shader_parameter/warp_amount = 0.0750000035625
-shader_parameter/vignette_amount = 0.550000026125
-shader_parameter/vignette_intensity = 1.0
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/grille_amount = 1.0
-shader_parameter/brightness_boost = 1.03
+shader_parameter/brightness_boost = 1.050000002375
 
 [sub_resource type="GDScript" id="GDScript_6n1o6"]
 script/source = "extends Node2D
@@ -285,7 +290,6 @@ shape = SubResource("RectangleShape2D_x5he8")
 
 [node name="inventionMenu" type="CanvasLayer" parent="worldObjects/inator" unique_id=1957729965]
 layer = 2
-visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("4_eamg3")
@@ -898,10 +902,10 @@ shape = SubResource("RectangleShape2D_eamg3")
 debug_color = Color(0.65173894, 0.519374, 3.85046e-07, 0.41960785)
 
 [node name="label3" type="Label" parent="worldObjects/car/enterCar" unique_id=712428697]
-offset_left = -9.0
-offset_top = -102.0
-offset_right = 195.0
-offset_bottom = -63.0
+offset_left = -53.0
+offset_top = -36.0
+offset_right = 151.0
+offset_bottom = 3.0
 rotation = -0.09571571
 theme = ExtResource("4_lwywj")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -967,6 +971,7 @@ animation = &"e"
 autoplay = "e"
 
 [node name="upgradesMenu" type="CanvasLayer" parent="worldObjects/upgrades" unique_id=438066860]
+visible = false
 offset = Vector2(0, 700)
 transform = Transform2D(1, 0, 0, 1, 0, 700)
 script = ExtResource("6_ibh7t")
@@ -1065,6 +1070,12 @@ theme_override_font_sizes/font_size = 20
 text = "+ 5% scrap reach"
 horizontal_alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades/upgradesMenu/gravity_gloves" unique_id=365925003]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(4, 4)
+texture = ExtResource("26_oyvbb")
+
 [node name="exoskeleton_arm" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=23695248]
 light_mask = 1024
 z_index = 1
@@ -1148,6 +1159,12 @@ theme_override_colors/font_color = Color(0.63999987, 1, 0.39999998, 1)
 theme_override_font_sizes/font_size = 20
 text = "+ 5% arm speed"
 horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="worldObjects/upgrades/upgradesMenu/exoskeleton_arm" unique_id=1713921605]
+position = Vector2(65, 49.999985)
+rotation = -0.13844575
+scale = Vector2(5.9999995, 5.9999995)
+texture = ExtResource("26_yo4lv")
 
 [node name="wd40" type="ColorRect" parent="worldObjects/upgrades/upgradesMenu" unique_id=1765655438]
 light_mask = 1024
@@ -1455,6 +1472,12 @@ offset_top = -582.5
 offset_right = 1090.0
 offset_bottom = 25.833313
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/hud" unique_id=241820465]
+position = Vector2(858.3333, -59.166668)
+rotation = 0.13605508
+scale = Vector2(2, 2)
+texture = ExtResource("48_3b1kx")
+
 [node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=90964333]
 visible = false
 offset_left = -23.0
@@ -1566,3 +1589,11 @@ scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_o3hnr")
 animation = &"d"
 autoplay = "d"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1774981738]
+position = Vector2(1021, -236)
+stream = ExtResource("51_tv7bf")
+volume_db = 24.0
+autoplay = true
+max_distance = 300.0
+bus = &"SFX"

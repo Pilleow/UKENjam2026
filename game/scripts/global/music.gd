@@ -1,80 +1,155 @@
 extends Node
 
-var player: AudioStreamPlayer
-var current_stream: AudioStream = null
-
 var music_bus: String = "Music"
+var sfx_bus: String = "SFX"
 var lpf_effect_index: int = 0
 var hpf_effect_index: int = 1
 
-var default_volume_db: float = 0.0
-var fade_in_start_db: float = -20.0
+var default_volume_db: float = -20.0
+var fade_in_start_db: float = -40.0
 var fade_in_duration: float = 2.0
 
-var volume_tween: Tween
+# Stores players by custom ID
+var players: Dictionary = {}
+var volume_tweens: Dictionary = {}
 
 
 func _ready() -> void:
-	player = AudioStreamPlayer.new()
-	player.volume_db = default_volume_db
-	player.bus = music_bus
-	add_child(player)
-
 	turnLPFoff()
 	turnHPFoff()
 
 
-func load_music(path: String, loop: bool = true) -> bool:
+func _create_player(track_id: String, bus_name: String = "Music") -> AudioStreamPlayer:
+	var new_player := AudioStreamPlayer.new()
+	new_player.bus = bus_name
+	new_player.volume_db = default_volume_db
+	new_player.mix_target = AudioStreamPlayer.MIX_TARGET_STEREO
+	add_child(new_player)
+
+	players[track_id] = new_player
+	return new_player
+
+
+func _get_player(track_id: String) -> AudioStreamPlayer:
+	if players.has(track_id):
+		return players[track_id]
+	return null
+
+
+func load_music(track_id: String, path: String, bus_name: String = "Music") -> bool:
 	var stream := load(path) as AudioStream
 
 	if stream == null:
 		push_error("Music.gd: Failed to load audio stream from path: " + path)
 		return false
 
-	current_stream = stream
-	player.stream = current_stream
+	var player := _get_player(track_id)
+	if player == null:
+		player = _create_player(track_id, bus_name)
+	else:
+		player.bus = bus_name
+
+	player.stream = stream
 	return true
 
 
-func play_music(path: String = "", loop: bool = true) -> void:
+func play_music(
+	track_id: String,
+	path: String = "",
+	from_position: float = 0.0,
+	fade_in: float = 3.0,
+	volume_db: float = 0.0,
+	pitch: float = 1.0,
+	bus_name: String = "Music"
+) -> void:
+	var player := _get_player(track_id)
+
 	if path != "":
-		var ok := load_music(path, loop)
+		var ok := load_music(track_id, path, bus_name)
 		if not ok:
 			return
+		player = _get_player(track_id)
 
-	if player.stream == null:
-		push_error("Music.gd: No music loaded.")
+	if player == null or player.stream == null:
+		push_error("Music.gd: No music loaded for track_id: " + track_id)
 		return
 
-	if volume_tween != null:
-		volume_tween.kill()
+	# Make sure existing players can also switch bus
+	player.bus = bus_name
+
+	if volume_tweens.has(track_id):
+		var old_tween: Tween = volume_tweens[track_id]
+		if old_tween != null:
+			old_tween.kill()
+		volume_tweens.erase(track_id)
 
 	player.stop()
-	player.volume_db = fade_in_start_db
-	player.play(0.0)
 
-	volume_tween = create_tween()
-	volume_tween.tween_property(player, "volume_db", default_volume_db, fade_in_duration)
+	if fade_in > 0.0:
+		player.volume_db = fade_in_start_db
+	else:
+		player.volume_db = volume_db
 
-	print(player.playing)
-	print(player.stream)
-	print(player.bus)
+	player.pitch_scale = pitch
+	player.play(from_position)
+
+	if fade_in > 0.0:
+		var tween := create_tween()
+		tween.tween_property(player, "volume_db", volume_db, fade_in)
+		volume_tweens[track_id] = tween
 
 
-func stop_music() -> void:
-	if volume_tween != null:
-		volume_tween.kill()
+func stop_music(track_id: String) -> void:
+	var player := _get_player(track_id)
+	if player == null:
+		return
+
+	if volume_tweens.has(track_id):
+		var tween: Tween = volume_tweens[track_id]
+		if tween != null:
+			tween.kill()
+		volume_tweens.erase(track_id)
+
 	player.stop()
 
 
-func is_playing() -> bool:
+func set_volume(track_id: String, v: float) -> void:
+	var player := _get_player(track_id)
+	if player == null:
+		return
+
+	if volume_tweens.has(track_id):
+		var old_tween: Tween = volume_tweens[track_id]
+		if old_tween != null:
+			old_tween.kill()
+
+	var tween := create_tween()
+	tween.tween_property(player, "volume_db", v, 3.0)
+	volume_tweens[track_id] = tween
+
+
+func stop_all_music(except = []) -> void:
+	for track_id in players.keys():
+		if track_id in except:
+			continue
+		stop_music(track_id)
+
+
+func remove_music(track_id: String) -> void:
+	var player := _get_player(track_id)
+	if player == null:
+		return
+
+	stop_music(track_id)
+	players.erase(track_id)
+	player.queue_free()
+
+
+func is_playing(track_id: String) -> bool:
+	var player := _get_player(track_id)
+	if player == null:
+		return false
 	return player.playing
-
-
-func set_bus(bus_name: String) -> void:
-	music_bus = bus_name
-	if player != null:
-		player.bus = bus_name
 
 
 func turnLPFon() -> void:

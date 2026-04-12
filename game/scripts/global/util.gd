@@ -63,6 +63,11 @@ var nameToInvent = {
 
 # easing functions
 
+func map_to_one_to_two(x: float) -> float:
+	var x_max := 0.12
+	var x_min := 0.0000224878506
+	return 1.0 + (x_max - x) / (x_max - x_min)
+	
 func ease_out_expo(x: float) -> float:
 	return 1.0 if x == 1.0 else 1.0 - pow(2.0, -10.0 * x)
 

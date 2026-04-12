@@ -70,6 +70,10 @@ func _is_scrap_done(ind: int)->void:
 			#tasma.koszyk_pos.y -= block_size
 		
 		reka.open()
+		if is_in_group("smiec"):
+			Sound.play_sound("trash", -2)
+		else:
+			Sound.play_sound("drop", -2)
 		done = true;
 
 func _process(delta: float) -> void:
@@ -122,6 +126,7 @@ func _on_body_entered(body: Node2D) -> void:
 			if o.catched and not o.done:
 				return
 		reka.close()
+		Sound.play_sound("pick", -2)
 		catched = true
 		sprite.offset.y = 0
 		reka.enable_w = false;

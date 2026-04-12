@@ -4,10 +4,18 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform vec2 resolution = vec2(320.0, 180.0);
 uniform float scan_line_amount : hint_range(0.0, 1.0) = 0.18;
 uniform float warp_amount : hint_range(0.0, 1.0) = 0.015;
-uniform float vignette_amount : hint_range(0.0, 1.0) = 0.10;
-uniform float vignette_intensity : hint_range(0.0, 1.0) = 0.20;
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform float grille_amount : hint_range(0.0, 1.0) = 0.03;
 uniform float brightness_boost : hint_range(1.0, 2.0) = 1.03;
+
+float vignette(vec2 uv) {
+    vec2 v = uv * (1.0 - uv);
+    float vx = pow(v.x * 4.0, vignette_intensity);
+    float vy = pow(v.y * 4.0, vignette_intensity);
+    return clamp(min(vx, vy) * vignette_opacity, 0.0, 1.0);
+}
 
 void fragment() {
     vec2 uv = SCREEN_UV;
@@ -23,11 +31,8 @@ void fragment() {
 
     vec3 color = texture(SCREEN_TEXTURE, uv).rgb * scanline * grille;
 
-    vec2 v_uv = uv * (1.0 - uv.xy);
-    float vignette = v_uv.x * v_uv.y * 15.0;
-    vignette = mix(1.0, vignette, vignette_amount * 0.7);
-
-    color *= vignette * brightness_boost;
+    float vig = vignette(SCREEN_UV);
+    color = mix(vignette_color.rgb, color, vig) * brightness_boost;
 
     COLOR.rgb = color;
     COLOR.a = 1.0;

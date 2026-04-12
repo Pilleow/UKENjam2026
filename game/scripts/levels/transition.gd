@@ -10,6 +10,7 @@ func _ready() -> void:
 		$CanvasLayer/Label.text = "Going to scrapyard"
 	if Prst.previousScene == "walkTasma":
 		$CanvasLayer/Label.text = "Going to base"
+	Sound.play_sound("car2", 4)
 
 func _process(delta: float) -> void:
 	time_sec -= delta

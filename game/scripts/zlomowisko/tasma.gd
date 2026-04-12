@@ -46,6 +46,9 @@ func _procentage(x0: float, x1: float, x2: float,x3: float):
 	srap_distribution[3] = srap_distribution[2]+x3;
 
 func _ready() -> void:
+	Music.stop_music("ovAm")
+	Music.play_music("facAm", "res://assets/music/factory ambient.wav", 0, .5, 8)
+	Music.play_music("line", "res://assets/music/assembly line.wav", 0, .5, 15, Prst.tasmaProperties['roll_speed'])
 	counter = counter_max - 0.5
 	#tu ustawiasz proceny
 	
@@ -115,4 +118,6 @@ func _input(event: InputEvent) -> void:
 		$CanvasLayer/FadeIn.start()
 		await $CanvasLayer/FadeIn.timeout
 		if get_tree():
+			Music.stop_music("line")
+			Music.stop_music("facAm")
 			get_tree().change_scene_to_file("res://scenes/levels/walkTasma.tscn")

@@ -1,0 +1,506 @@
+[gd_scene format=3 uid="uid://cusof6rqsksea"]
+
+[ext_resource type="Script" uid="uid://dtpbn6kne2osi" path="res://scenes/levels/cutscene_intro.gd" id="1_jueyf"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_jc01o"]
+[ext_resource type="FontFile" uid="uid://fb2cckw7gb1m" path="res://assets/fonts/sairaStencil/SairaStencil-Medium.ttf" id="3_f30d5"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="3_rl4l5"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="4_7ujlf"]
+[ext_resource type="Texture2D" uid="uid://dcxllujbtdfy7" path="res://assets/sprites/ui/headphones.png" id="5_dmy54"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="5_wf2bf"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="6_3uafp"]
+[ext_resource type="Texture2D" uid="uid://cbftc5w4yks5a" path="res://assets/images/intro/slide1.png" id="7_jc01o"]
+[ext_resource type="Texture2D" uid="uid://cuxps38swsga1" path="res://assets/sprites/ui/logo2.png" id="7_jrs01"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="7_jueyf"]
+[ext_resource type="Texture2D" uid="uid://dpedcy4bj6c1w" path="res://assets/images/intro/slide2.png" id="8_rl4l5"]
+[ext_resource type="Texture2D" uid="uid://gou7q3adtr3m" path="res://assets/images/intro/slide3.png" id="9_rl4l5"]
+[ext_resource type="Texture2D" uid="uid://unajkjtqarku" path="res://assets/images/intro/slide4.png" id="10_7ujlf"]
+[ext_resource type="Texture2D" uid="uid://dgnam652wtesw" path="res://assets/images/intro/slide5.png" id="11_3uafp"]
+[ext_resource type="Texture2D" uid="uid://dyo63c41l0eds" path="res://assets/images/intro/slide6.png" id="12_jueyf"]
+
+[sub_resource type="Animation" id="Animation_3uafp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("tutorial:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("skip:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("hd:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Label8:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("logo:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Label9:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jueyf"]
+resource_name = "intro"
+length = 26.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.3, 7.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(9.29, 10.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12.3, 13.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(15.3, 16.300001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(18.300001, 19.300001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(21.300001, 22.300001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("tutorial:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 24.3248),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("skip:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(7.6000004, 8.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("hd:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Label8:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("logo:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(2.4570072, 3.457, 5.1855, 6.185473),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Label9:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(2.5085528, 3.4363737, 5.24047, 6.2713823),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmy54"]
+_data = {
+&"RESET": SubResource("Animation_3uafp"),
+&"intro": SubResource("Animation_jueyf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jueyf"]
+shader = ExtResource("7_jueyf")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.050000002375
+
+[node name="CutsceneIntro" type="Node2D" unique_id=485053974]
+script = ExtResource("1_jueyf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1878406846]
+
+[node name="Label7" type="Label" parent="CanvasLayer" unique_id=1431115621]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 247.0
+offset_right = 1281.0
+offset_bottom = 378.0
+theme = ExtResource("2_jc01o")
+theme_override_colors/font_color = Color(1, 0.57, 0.57, 1)
+theme_override_font_sizes/font_size = 40
+text = "You lost, went to jail for illegal sale of unlicensed 
+radio equipment and the people are sad."
+horizontal_alignment = 1
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=1552765614]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_wf2bf")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=1510815492]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_3uafp")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1254323725]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label8" type="Label" parent="CanvasLayer" unique_id=1706593573]
+light_mask = 1024
+z_index = 185
+offset_left = 157.0
+offset_top = 247.0
+offset_right = 1437.0
+offset_bottom = 454.0
+theme = ExtResource("2_jc01o")
+theme_override_colors/font_color = Color(0.5529412, 0.84705883, 0.5803922, 1)
+theme_override_fonts/font = ExtResource("3_f30d5")
+theme_override_font_sizes/font_size = 64
+text = "Headphones 
+Recommended"
+horizontal_alignment = 1
+
+[node name="hd" type="Sprite2D" parent="CanvasLayer" unique_id=635609311]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(398, 367)
+scale = Vector2(8, 8)
+texture = ExtResource("5_dmy54")
+
+[node name="logo" type="Sprite2D" parent="CanvasLayer" unique_id=858056652]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(505.00003, 367)
+scale = Vector2(5, 5)
+texture = ExtResource("7_jrs01")
+
+[node name="Label9" type="Label" parent="CanvasLayer" unique_id=83136294]
+modulate = Color(1, 1, 1, 0)
+light_mask = 1024
+z_index = 185
+offset_left = 136.0
+offset_top = 263.0
+offset_right = 1416.0
+offset_bottom = 470.0
+theme = ExtResource("2_jc01o")
+theme_override_colors/font_color = Color(0.37254903, 0.43529412, 0.90588236, 1)
+theme_override_fonts/font = ExtResource("3_f30d5")
+theme_override_font_sizes/font_size = 64
+text = "Jeans
+the Team"
+horizontal_alignment = 1
+
+[node name="1" type="Sprite2D" parent="CanvasLayer" unique_id=1805631814]
+position = Vector2(335, 195)
+scale = Vector2(4, 4)
+texture = ExtResource("7_jc01o")
+
+[node name="2" type="Sprite2D" parent="CanvasLayer" unique_id=45864683]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(722, 159)
+scale = Vector2(4, 4)
+texture = ExtResource("8_rl4l5")
+
+[node name="3" type="Sprite2D" parent="CanvasLayer" unique_id=1539196006]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1014, 159)
+scale = Vector2(4, 4)
+texture = ExtResource("9_rl4l5")
+
+[node name="4" type="Sprite2D" parent="CanvasLayer" unique_id=287236236]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(278, 549)
+scale = Vector2(4, 4)
+texture = ExtResource("10_7ujlf")
+
+[node name="5" type="Sprite2D" parent="CanvasLayer" unique_id=1708875088]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(626, 508)
+scale = Vector2(4, 4)
+texture = ExtResource("11_3uafp")
+
+[node name="6" type="Sprite2D" parent="CanvasLayer" unique_id=1467590722]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1045, 508)
+scale = Vector2(4, 4)
+texture = ExtResource("12_jueyf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=689116631]
+libraries/ = SubResource("AnimationLibrary_dmy54")
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=358732854]
+offset_left = 774.0
+offset_top = 618.0
+offset_right = 1414.0
+offset_bottom = 840.0
+color = Color(0, 0, 0, 1)
+
+[node name="tutorial" type="Label" parent="CanvasLayer" unique_id=616157207]
+light_mask = 1024
+offset_left = 1033.0
+offset_top = 651.0
+offset_right = 1211.0
+offset_bottom = 690.0
+theme = ExtResource("2_jc01o")
+text = "        Tutorial"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/tutorial" unique_id=1608790891]
+material = ExtResource("3_rl4l5")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_7ujlf")
+animation = &"e"
+autoplay = "e"
+
+[node name="skip" type="Label" parent="CanvasLayer" unique_id=314247797]
+modulate = Color(1, 1, 1, 0)
+light_mask = 1024
+offset_left = 815.0
+offset_top = 651.0
+offset_right = 993.0
+offset_bottom = 690.0
+theme = ExtResource("2_jc01o")
+text = "        Skip ahead"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/skip" unique_id=1421534046]
+material = ExtResource("3_rl4l5")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("4_7ujlf")
+animation = &"w"
+autoplay = "w"
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1393327792]
+z_index = 788
+material = SubResource("ShaderMaterial_jueyf")
+offset_left = -13.999999
+offset_top = -14.0
+offset_right = 1300.0
+offset_bottom = 736.0

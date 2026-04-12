@@ -1,0 +1,364 @@
+[gd_scene format=3 uid="uid://o54vqh6e5240"]
+
+[ext_resource type="Script" uid="uid://bdgtlj5668re3" path="res://scenes/levels/cutscene_win.gd" id="1_ys5kq"]
+[ext_resource type="Theme" uid="uid://cj5hgbih15dr" path="res://assets/themes/basicText.tres" id="2_txfc8"]
+[ext_resource type="Script" uid="uid://da5nnb02i4fhh" path="res://scripts/util/fadeout.gd" id="3_1ee6m"]
+[ext_resource type="Script" uid="uid://cu5c6sqvs5hpc" path="res://scripts/util/fadeIn.gd" id="4_jf42y"]
+[ext_resource type="Texture2D" uid="uid://b3ofy70e233a4" path="res://assets/images/outroWin/win_slide1.png" id="5_ys5kq"]
+[ext_resource type="Texture2D" uid="uid://oyx33csxhv2l" path="res://assets/images/outroWin/win_slide2.png" id="6_ys5kq"]
+[ext_resource type="Texture2D" uid="uid://cgkmrfmjvfeb6" path="res://assets/images/outroWin/win_slide3.png" id="7_ys5kq"]
+[ext_resource type="Texture2D" uid="uid://360cdbh0ja3r" path="res://assets/images/outroWin/win_slide4.png" id="8_ys5kq"]
+[ext_resource type="Texture2D" uid="uid://yqqetmaj14e" path="res://assets/images/outroWin/win_slide5.png" id="9_ys5kq"]
+[ext_resource type="Texture2D" uid="uid://3htvugyk8ybi" path="res://assets/images/outroWin/win_slide6.png" id="10_ys5kq"]
+[ext_resource type="Material" uid="uid://rjgg84ee1aa1" path="res://scripts/util/blink.tres" id="11_7epwd"]
+[ext_resource type="SpriteFrames" uid="uid://dunuu4mmjcn5s" path="res://scripts/util/keys.tres" id="12_juf5y"]
+[ext_resource type="Shader" uid="uid://qc7evp2ofamc" path="res://scripts/util/crt.gdshader" id="13_evujj"]
+
+[sub_resource type="Animation" id="Animation_3uafp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("tutorial:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("skip:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jueyf"]
+resource_name = "intro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2666667, 3.2766666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.366667, 5.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.633333, 7.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.9, 9.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(11.2, 12.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("tutorial:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 13.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("skip:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmy54"]
+_data = {
+&"RESET": SubResource("Animation_3uafp"),
+&"intro": SubResource("Animation_jueyf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jueyf"]
+shader = ExtResource("13_evujj")
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/scan_line_amount = 0.18000000855
+shader_parameter/warp_amount = 0.30000001425
+shader_parameter/vignette_intensity = 0.36
+shader_parameter/vignette_opacity = 0.9690000460275
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/grille_amount = 1.0
+shader_parameter/brightness_boost = 1.050000002375
+
+[node name="CutsceneWin" type="Node2D" unique_id=485053974]
+script = ExtResource("1_ys5kq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1878406846]
+
+[node name="Label7" type="Label" parent="CanvasLayer" unique_id=1431115621]
+light_mask = 1024
+offset_left = 1.0
+offset_top = 247.0
+offset_right = 1281.0
+offset_bottom = 378.0
+theme = ExtResource("2_txfc8")
+theme_override_colors/font_color = Color(1, 0.57, 0.57, 1)
+theme_override_font_sizes/font_size = 40
+text = "You lost, went to jail for illegal sale of unlicensed 
+radio equipment and the people are sad."
+horizontal_alignment = 1
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer" unique_id=1552765614]
+visible = false
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_1ee6m")
+
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer" unique_id=1510815492]
+visible = false
+z_index = 104
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1328.0
+offset_bottom = 743.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_jf42y")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1254323725]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="1" type="Sprite2D" parent="CanvasLayer" unique_id=1805631814]
+position = Vector2(234, 209)
+scale = Vector2(4, 4)
+texture = ExtResource("5_ys5kq")
+
+[node name="2" type="Sprite2D" parent="CanvasLayer" unique_id=45864683]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(633, 215)
+scale = Vector2(4, 4)
+texture = ExtResource("6_ys5kq")
+
+[node name="3" type="Sprite2D" parent="CanvasLayer" unique_id=1539196006]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(984, 165)
+scale = Vector2(4, 4)
+texture = ExtResource("7_ys5kq")
+
+[node name="4" type="Sprite2D" parent="CanvasLayer" unique_id=287236236]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(262, 562)
+scale = Vector2(4, 4)
+texture = ExtResource("8_ys5kq")
+
+[node name="5" type="Sprite2D" parent="CanvasLayer" unique_id=1708875088]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(525, 526)
+scale = Vector2(4, 4)
+texture = ExtResource("9_ys5kq")
+
+[node name="6" type="Sprite2D" parent="CanvasLayer" unique_id=1467590722]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(916, 481)
+scale = Vector2(4, 4)
+texture = ExtResource("10_ys5kq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=689116631]
+libraries/ = SubResource("AnimationLibrary_dmy54")
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=358732854]
+offset_left = -154.0
+offset_top = 634.0
+offset_right = 486.0
+offset_bottom = 856.0
+color = Color(0, 0, 0, 0.5058824)
+
+[node name="tutorial" type="Label" parent="CanvasLayer" unique_id=616157207]
+light_mask = 1024
+offset_left = 356.0
+offset_top = 651.0
+offset_right = 534.0
+offset_bottom = 690.0
+theme = ExtResource("2_txfc8")
+text = "        Finish"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/tutorial" unique_id=1608790891]
+material = ExtResource("11_7epwd")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("12_juf5y")
+animation = &"e"
+autoplay = "e"
+
+[node name="skip" type="Label" parent="CanvasLayer" unique_id=314247797]
+modulate = Color(1, 1, 1, 0)
+light_mask = 1024
+offset_left = 138.0
+offset_top = 651.0
+offset_right = 316.0
+offset_bottom = 690.0
+theme = ExtResource("2_txfc8")
+text = "        Skip ahead"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/skip" unique_id=1421534046]
+material = ExtResource("11_7epwd")
+position = Vector2(12.499985, 17.999985)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("12_juf5y")
+animation = &"w"
+autoplay = "w"
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=1393327792]
+z_index = 788
+material = SubResource("ShaderMaterial_jueyf")
+offset_left = -13.999999
+offset_top = -14.0
+offset_right = 1300.0
+offset_bottom = 736.0

@@ -5,6 +5,13 @@ const SPEED = 400.0
 var extra_speed = 0
 const JUMP_VELOCITY = -500.0
 
+func _ready() -> void:
+	$AnimatedSprite2D.connect("frame_changed", trySfx)
+
+func trySfx():
+	if $AnimatedSprite2D.animation == 'run' and $AnimatedSprite2D.frame % 3 == 1:
+		print("true")
+		Sound.play_random_variation('run', 10)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
